@@ -1,0 +1,334 @@
+body
+{
+	margin: 0;
+	padding: 0;
+	color: #555;
+	font: normal 10pt Arial,Helvetica,sans-serif;
+}
+
+h1{
+    color:#ed7d31;
+}
+
+a{
+    color:#555555;
+}
+
+.clear{
+    clear:both;
+}
+
+#page
+{
+	margin-top: 5px;
+	margin-bottom: 5px;
+	background: white;
+	border: 1px solid #C9E0ED;
+}
+
+#header
+{
+	margin: 0;
+	padding: 0;
+}
+
+.content
+{
+	margin-top: 20px;
+        width:100%;
+}
+
+#sidebar
+{
+	padding: 20px;
+}
+
+#footer
+{
+	padding: 10px;
+	margin: 10px 20px;
+	font-size: 0.8em;
+	text-align: center;
+	border-top: 1px solid #C9E0ED;
+}
+
+#logo
+{
+	padding: 10px 0px;
+	float:left;
+}
+
+.settings{
+    float: right;
+    font-size: 24px;
+    margin-top: 25px;
+    margin-right: 50px;
+}
+
+.settings a{
+    color:#555555;
+}
+
+.settings a:hover{
+    color:#888888;
+}
+
+#mainmenu
+{
+	background:white url(bg.gif) repeat-x left top;
+}
+
+#mainmenu ul
+{
+	padding:6px 20px 5px 20px;
+	margin:0px;
+}
+
+#mainmenu ul li
+{
+	display: inline;
+}
+
+#mainmenu ul li a
+{
+	color:#ffffff;
+	background-color:transparent;
+	font-size:12px;
+	font-weight:bold;
+	text-decoration:none;
+	padding:5px 8px;
+}
+
+#mainmenu ul li a:hover, #mainmenu ul li.active a
+{
+	color: #6399cd;
+	background-color:#EFF4FA;
+	text-decoration:none;
+}
+
+div.flash-error, div.flash-notice, div.flash-success
+{
+	padding:.8em;
+	margin-bottom:1em;
+	border:2px solid #ddd;
+}
+
+div.flash-error
+{
+	background:#FBE3E4;
+	color:#8a1f11;
+	border-color:#FBC2C4;
+}
+
+div.flash-notice
+{
+	background:#FFF6BF;
+	color:#514721;
+	border-color:#FFD324;
+}
+
+div.flash-success
+{
+	background:#E6EFC2;
+	color:#264409;
+	border-color:#C6D880;
+}
+
+div.flash-error a
+{
+	color:#8a1f11;
+}
+
+div.flash-notice a
+{
+	color:#514721;
+}
+
+div.flash-success a
+{
+	color:#264409;
+}
+
+div.form .rememberMe label
+{
+	display: inline;
+}
+
+div.view
+{
+	padding: 10px;
+	margin: 10px 0;
+	border: 1px solid #C9E0ED;
+}
+
+div.breadcrumbs
+{
+	font-size: 0.9em;
+	padding: 5px 20px;
+}
+
+div.breadcrumbs span
+{
+	font-weight: bold;
+}
+
+.table th{
+    background-color:#ed7d31;
+    color:#ffffff;
+}
+
+.table-hover tr:hover{
+    cursor: pointer;
+}
+
+/*.table th:last-child{
+    background-color: #ffffff;
+    border:none;
+}*/
+
+.table th a{
+    color:#ffffff;
+}
+
+.table-striped > tbody > tr:nth-of-type(2n+1){
+    background-color: #fbe5d6;
+}
+
+.table-striped > tbody > tr:nth-of-type(2n+1):hover{
+    background-color: #ffffff;
+}
+
+.table-striped > tbody > tr{
+    background-color: #f8cbad;
+}
+
+/*.table td:last-child{
+    background-color: #ffffff;
+     border-top:none;
+}*/
+
+.table > tbody > tr > td:last-child{
+    vertical-align: middle;
+}
+
+.table td a span{
+    font-size:24px;
+    margin-top:50%;
+}
+
+/** Start Form **/
+div.form{
+    width:70%;
+    margin: 15% auto;
+}
+
+.form input{
+    margin-top:10px;
+}
+
+/** End Form **/
+
+/** Start Btn **/
+.btn-orange{
+    background-color: #ed7d31;
+    border: none;
+    color:#ffffff;
+}
+
+.btn-orange:hover{
+    background-color: #fa8526;
+    color:#ffffff;
+}
+
+.btn{
+    float:right;
+}
+
+.btn-lg{
+    float:left;
+    margin-right:10px;
+    margin-top:10px;
+    height:150px;
+    min-width:150px;
+    padding-top: 3%;
+}
+
+.hot-pink{
+    background-color:#FF5555;
+    color:#ffffff;
+    text-align: center;
+}
+
+.blue{
+    background-color:#4495DB;
+    color:#ffffff;
+    text-align: center;
+}
+
+.btn-lg.blue, .btn-lg.hot-pink{
+    height: 230px;
+    padding-top:25%;
+}
+
+.hot-pink span, .blue span, .purple span, .orange span{
+    margin-top: 35%;
+    display: block;
+}
+
+.purple{
+    background-color: #C646C6;
+    color:#ffffff;
+    text-align: center;
+}
+
+.btn.green{
+    background-color: #7EB63D;
+    color:#ffffff;
+    text-align: center;
+}
+
+.orange{
+    background-color: #ed7d31;
+    color:#ffffff;
+    text-align: center;
+}
+
+A.hot-pink:hover{
+   color:#ffffff;
+   background-color:#FF69B4;
+}
+
+A.blue:hover{
+   color:#ffffff;
+   background-color:#44AEDB;
+}
+
+A.purple:hover{
+   color:#ffffff;
+   background-color:#D050D0;
+}
+
+/** End Btn **/
+
+/** Start Popover **/
+.popover-content .divider {
+    height: 1px;
+    margin: 9px 0px;
+    overflow: hidden;
+    background-color: #E5E5E5;
+}
+/** End Popover **/
+
+.flight, .tour-guide{
+    border-top:1px solid #E5E5E5;
+    margin-top:10px;
+}
+
+.flight:first-child, .tour-guide:first-child{
+    border-top:none;
+    margin-top:0px;
+}
+
+.flight > .row{
+    margin-top:10px;
+}
