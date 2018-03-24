@@ -7,7 +7,7 @@
                 <label class="icon-left" for="password">
                     <i class="fa fa-envelope-o"></i>
                 </label>
-                <input class="form-control" placeholder="Username" ng-model="user.username" type="text" />
+                <input class="form-control @{{errors.username ? 'error' : ''}}" placeholder="Username" ng-model="user.username" type="text" />
                 <div class="alert alert-danger" ng-show="errors.username">@{{errors.username[0]}}</div>
             </div>
         </div>
@@ -17,7 +17,7 @@
                 <label class="icon-left" for="password">
                     <i class="fa fa-lock"></i>
                 </label>
-                <input class="form-control" placeholder="Password" ng-model="user.password" type="password" />
+                <input class="form-control @{{errors.password ? 'error' : ''}}"  placeholder="Password" ng-model="user.password" type="password" />
                 <div class="alert alert-danger" ng-show="errors.password">@{{errors.password[0]}}</div>
             </div>
         </div>

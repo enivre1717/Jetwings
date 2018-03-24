@@ -1,4 +1,8 @@
 <div ng-controller="FormsController">
+    <div class="alert alert-@{{class}}" ng-show="msg != ''">
+        @{{msg}}
+    </div>
+    
     <div class="content menu">
         <div class="col-md-1">
             <div class="hot-pink btn-lg"><span>

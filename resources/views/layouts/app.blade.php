@@ -26,10 +26,14 @@
         <script src="{{ asset("js/app/controllers/FitBookingsController.js") }}" type="text/javascript"></script>
         <script src="{{ asset("js/app/controllers/FormsController.js") }}" type="text/javascript"></script>
         <script src="{{ asset("js/app/controllers/SafetyContractController.js") }}" type="text/javascript"></script>
+        <script src="{{ asset("js/app/controllers/OwnExpensesController.js") }}" type="text/javascript"></script>
         
         <script src="{{ asset("js/app/models/tourguideModel.js") }}" type="text/javascript"></script>
         <script src="{{ asset("js/app/models/fitbookingsModel.js") }}" type="text/javascript"></script>
         <script src="{{ asset("js/app/models/fitTransportsModel.js") }}" type="text/javascript"></script>
+        <script src="{{ asset("js/app/models/saleAgenciesModel.js") }}" type="text/javascript"></script>
+        <script src="{{ asset("js/app/models/safetyContractsModel.js") }}" type="text/javascript"></script>
+        <script src="{{ asset("js/app/models/ownExpensesModel.js") }}" type="text/javascript"></script>
         
         <link href="{{ asset("css/font-awesome.css") }}" rel="stylesheet" type="text/css"/>
         <link href="{{ asset("js/bootstrap-3.3.5/css/bootstrap.min.css") }}" rel="stylesheet" type="text/css"/>

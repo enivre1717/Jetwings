@@ -6,14 +6,19 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
-class SafetyContracts extends Model
+class OwnExpensesAttractions extends Model
 {
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-    protected $table = 'safety_contracts';
+    protected $table = 'own_expenses_form_attractions';
+    
+    public function ownExpenses()
+    {
+        return $this->belongsTo("App\Models\OwnExpenses");
+    }
     
     /* Submit form
      * 

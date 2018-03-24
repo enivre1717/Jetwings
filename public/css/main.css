@@ -149,7 +149,7 @@ div.flash-success a
 	color:#264409;
 }
 
-div.form .rememberMe label
+form .rememberMe label
 {
 	display: inline;
 }
@@ -170,6 +170,10 @@ div.breadcrumbs
 div.breadcrumbs span
 {
 	font-weight: bold;
+}
+
+div.row{
+    margin-bottom:10px;
 }
 
 .table th{
@@ -217,13 +221,47 @@ div.breadcrumbs span
 }
 
 /** Start Form **/
-div.form{
+form{
     width:70%;
     margin: 15% auto;
 }
 
-.form input{
-    margin-top:10px;
+form input{
+    margin-top:10px !important;
+}
+
+form span.required
+{
+    color: #F00;
+}
+
+form div.error label,
+form label.error,
+form span.error
+{
+    color: #C00;
+}
+
+form div.error input,
+form div.error textarea,
+form div.error select,
+form input.error,
+form textarea.error,
+form select.error,
+form .error + i
+{
+    border-color: #C00;
+}
+
+form div.success input,
+form div.success textarea,
+form div.success select,
+form input.success,
+form textarea.success,
+form select.success
+{
+    background: #E6EFC2;
+    border-color: #C6D880;
 }
 
 /** End Form **/

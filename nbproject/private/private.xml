@@ -3,11 +3,21 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/Applications/XAMPP/xamppfiles/htdocs/jetwings/public/js/app/models/saleAgenciesModel.js</file>
+            <file>file:/Applications/XAMPP/xamppfiles/htdocs/jetwings/public/js/app/controllers/LoginController.js</file>
+            <file>file:/Applications/XAMPP/xamppfiles/htdocs/jetwings/resources/views/safetycontract/index.blade.php</file>
+            <file>file:/Applications/XAMPP/xamppfiles/htdocs/jetwings/app/Models/SaleAgencies.php</file>
             <file>file:/Applications/XAMPP/xamppfiles/htdocs/jetwings/public/js/app/controllers/SafetyContractController.js</file>
-            <file>file:/Applications/XAMPP/xamppfiles/htdocs/jetwings/public/js/app/models/%20saleAgenciesModel.js</file>
+            <file>file:/Applications/XAMPP/xamppfiles/htdocs/jetwings/public/css/main.css</file>
+            <file>file:/Applications/XAMPP/xamppfiles/htdocs/jetwings/resources/views/login.blade.php</file>
+            <file>file:/Applications/XAMPP/xamppfiles/htdocs/jetwings/app/Models/SafetyContracts.php</file>
+            <file>file:/Applications/XAMPP/xamppfiles/htdocs/jetwings/app/Http/Controllers/Api/TourGuidesController.php</file>
+            <file>file:/Applications/XAMPP/xamppfiles/htdocs/jetwings/app/Http/Controllers/Api/SaleAgenciesController.php</file>
             <file>file:/Applications/XAMPP/xamppfiles/htdocs/jetwings/public/js/app/main.js</file>
             <file>file:/Applications/XAMPP/xamppfiles/htdocs/jetwings/app/Http/routes.php</file>
-            <file>file:/Applications/XAMPP/xamppfiles/htdocs/jetwings/resources/views/safetycontract/index.blade.php</file>
+            <file>file:/Applications/XAMPP/xamppfiles/htdocs/jetwings/app/Http/Controllers/Api/FitBookingsController.php</file>
+            <file>file:/Applications/XAMPP/xamppfiles/htdocs/jetwings/app/Http/Controllers/Api/SafetyContractController.php</file>
+            <file>file:/Applications/XAMPP/xamppfiles/htdocs/jetwings/app/Http/Controllers/Api/FitTransportsController.php</file>
         </group>
     </open-files>
 </project-private>

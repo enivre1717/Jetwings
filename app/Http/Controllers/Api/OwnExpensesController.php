@@ -1,21 +1,21 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
-use App\Models\SafetyContracts;
+use App\Models\OwnExpenses;
 
-class SafetyContractController extends Controller
+class OwnExpensesController extends \App\Http\Controllers\Controller
 {
     public function __construct()
     {
         $this->middleware('auth:api');
     }
     
-    /* Submit Safety Contract Form
+    /* Submit Own Expenses Form
      * 
      * @params POST data
      * @return json
@@ -23,13 +23,12 @@ class SafetyContractController extends Controller
     public function submitForm(Request $request){
         
         try{
-            
             $aryResponse=array();
             $statusCode=config("app.status_code.OK");
             
-            $safetyContractModel=new SafetyContracts;
-
-            $aryResponse = $safetyContractModel->submitForm($request);
+            $ownExpensesModel=new OwnExpenses;
+            
+            $aryResponse = $ownExpensesModel->submitForm($request->input("ownExpenses"));
 
         }catch(\Exception $e){
             $statusCode=config("app.status_code.Exception");

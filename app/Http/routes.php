@@ -18,7 +18,8 @@ Route::group(['namespace' => 'Web'], function () {
     Route::get('/fitbookings/list', "ViewsController@listBookings");
     Route::get('/fitbookings/forms', "ViewsController@forms");
     
-    Route::get('/safetycontract/index', "ViewsController@safetyContract");
+    Route::get('/safety-contract/index', "ViewsController@safetyContract");
+    Route::get('/own-expenses/index', "ViewsController@ownExpenses");
     
     Route::get('/notification/success', function () {
         return view('modal.success');
@@ -38,7 +39,8 @@ Route::group(['namespace' => 'Api','prefix' => 'api'], function () {
     
     Route::get('fit-transports/fitbookingid/{id}', "FitTransportsController@getFitTransportsById");
     
-    Route::post('safety-contract/submit', "SafetyContractController@submitForm");
+    Route::post('safety-contracts', "SafetyContractController@submitForm");
+    Route::post('own-expenses', "OwnExpensesController@submitForm");
     
     Route::get('sales-agencies/{id}', "SaleAgenciesController@getSaleAgenciesById");
     

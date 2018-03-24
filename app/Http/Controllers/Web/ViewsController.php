@@ -32,4 +32,10 @@ class ViewsController extends \App\Http\Controllers\Controller
         return view("safetycontract.index");
     }
     
+    /* Load safety contract form */
+    public function ownExpenses(){
+        
+        return view("ownexpenses.index");
+    }
+    
 }

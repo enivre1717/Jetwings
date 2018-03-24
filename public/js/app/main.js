@@ -6,12 +6,22 @@ var baseUrl = getUrl .protocol + "//" + getUrl.host + "/" + getUrl.pathname.spli
 var viewUrl = baseUrl+"/public";
 var apiUrl = baseUrl+"/public/api";
 
-var app = angular.module('myApp', ["ngRoute", "ui.bootstrap", "ngCookies", 'tour_guide', 'fit_bookings', 'forms', 'safety_contract']);
+var app = angular.module('myApp', 
+[   "ngRoute", 
+    "ui.bootstrap", 
+    "ngCookies", 
+    'tour_guide', 
+    'fit_bookings', 
+    'forms', 
+    'safety_contracts',
+    "own_expenses"
+]);
 
 var tour_guide = angular.module('tour_guide',["ngRoute"]);
 var fit_bookings = angular.module('fit_bookings',["ngRoute"]);
 var forms = angular.module('forms',["ngRoute"]);
-var safety_contract = angular.module('safety_contract',["ngRoute"]);
+var safety_contracts = angular.module('safety_contracts',["ngRoute"]);
+var own_expenses = angular.module('own_expenses',["ngRoute"]);
 
 app.config(function($routeProvider) {
     $routeProvider
@@ -29,14 +39,67 @@ app.config(function($routeProvider) {
         })
         .when('/safety-contract/index/:fitBookingId',{
             controller:'SafetyContractController',
-            templateUrl: viewUrl+'/safetycontract/index',
-        });
+            templateUrl: viewUrl+'/safety-contract/index',
+        })
+        .when('/own-expenses/index/:fitBookingId',{
+            controller:'OwnExpensesController',
+            templateUrl: viewUrl+'/own-expenses/index',
+        })
+        .otherwise("/");
         
     //console.log($cookies.get("apiToken"));
 });
 
-app.run(['$http' , "$cookies", function($http, $cookies) {
+app.run(['$http' , "$cookies", "$rootScope", "$location", function($http, $cookies, $rootScope, $location) {
     $http.defaults.headers.common['Authorization'] = $cookies.get("apiToken");
+    
+    $rootScope.monthList = function() {
+        
+        var aryMonth = [];
+        var strMonth = "";
+        
+        for(var i =1; i<=12; i++){
+            strMonth = ("0" + i).slice(-2);
+            aryMonth.push({"value": strMonth, "text": strMonth});
+        }
+        
+        return aryMonth;
+    };
+    
+    $rootScope.todayDate = moment().format("DD/MM/YYYY");
+    $rootScope.curYear = moment().format("YYYY");
+    $rootScope.curMonth = moment().format("MM");
+    $rootScope.curDay = moment().format("DD");
+    
+    /*$rootScope.$on("$routeChangeStart", function(evt, to, from) {
+        // requires authorization?
+        console.log(to);
+        if (to.authorize === true)
+        {
+            to.resolve = to.resolve || {};
+        }
+     });*/
+
+     $rootScope.$on("$routeChangeError", function(evt, to, from, error) {
+         if (error.status == 401)
+         {
+             // redirect to login with original path we'll be returning back to
+             $location.path("/");
+         }
+     });
+     
+     $rootScope.showNotification = function(msg, type){
+         
+         $rootScope.msg = msg;
+         
+         if(type == "error"){
+             $rootScope.class = "danger";
+         }else{
+             $rootScope.class = "success";
+         }
+         
+     };
+  
 }]);
 
 app.filter("formatDate",function formatDate(){
@@ -44,3 +107,4 @@ app.filter("formatDate",function formatDate(){
         return moment(text).format(format);
     }
 });
+

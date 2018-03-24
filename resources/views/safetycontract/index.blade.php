@@ -1,5 +1,8 @@
 <h1>离团安全责任书</h1>
 <div ng-controller="SafetyContractController">
+    <a href="#!/fitbookings/forms/@{{contract.fitBookingId}}" class="btn btn-info primary-btn">Back</a>
+    <div class="clear"></div>
+
     <div class="form">
 
         <form class="form">
@@ -8,15 +11,12 @@
         <?php //echo $form->errorSummary($model,NULL,NULL,array("class"=>"alert-danger alert")); ?>
 
         <div class="row">
-            <h2><?php //print($fitModel["tour_code"]); ?> - 离团安全责任书</h2>
+            <h2>@{{bookingDetails.tour_code}} - 离团安全责任书</h2>
         </div>
 
         <div class="row">
             <p>旅游者充分了解并知晓以下情况：</p>
-            <?php
-                //$company_name=SaleAgencies::model()->getCompanyNameById($fitModel->sale_agency_id);
-            ?>
-            <p>一、	<?php //print($company_name); ?>及当地导游已多次劝阻不得脱团、离团；</p>
+            <p>一、	@{{companyName}}及当地导游已多次劝阻不得脱团、离团；</p>
             <p>二、	脱团、离团期间自愿放弃原团队行程安排，认可旅游费用均已实际产生，不得要求退还；</p>
             <p>三、	脱团、离团期间产生的费用由本人承担；</p>
             <p>四、	脱团、离团期间遵守中国及所在国相关法律法规，并对自身的安全负责，在能够控制风险的范围内活动，不参加不适合自身条件或</p>
@@ -26,46 +26,39 @@
         <div class="row">
             <p><label>本人</label>
                 <label class="input">
-                    <input class="form-control <?php //print($model->hasErrors("name") ? "error" : ""); ?>" name="SafetyAffirmationResponsibilityContracts[name]" id="SafetyAffirmationResponsibilityContracts_Name" type="text" 
-                           value="<?php //print(isset($_POST["SafetyAffirmationResponsibilityContracts"]["name"]) ? $_POST["SafetyAffirmationResponsibilityContracts"]["name"] : ""); ?>">
+                    <input class="form-control" name="name" type="text" ng-model="contract.name" />
                 </label>
                 <label>仍坚持于</label>
                 <label class="short">
-                    <input class="form-control <?php //print($model->hasErrors("from_date") ? "error" : ""); ?>" name="SafetyAffirmationResponsibilityContracts[FromDateYr]" id="SafetyAffirmationResponsibilityContracts_FromDateYr" type="text" 
-                           value="<?php //print(isset($_POST["SafetyAffirmationResponsibilityContracts"]["FromDateYr"]) ? $_POST["SafetyAffirmationResponsibilityContracts"]["FromDateYr"] : date("Y")); ?>">
+                    <input class="form-control" name="fromDateYr" type="text" ng-model="contract.fromDateYr"/>
                 </label>
                 <label>年</label>
                 <label class="input select short">
-                    <select class="form-control <?php //print($model->hasErrors("from_date") ? "error" : ""); ?>" name="SafetyAffirmationResponsibilityContracts[FromDateMonth]" id="SafetyAffirmationResponsibilityContracts_FromDateMonth">
-                        <?php //for ($m = 1; $m <= 12; $m++) { ?>
-                            <option value="<?php //print($m); ?>" <?php //print($m == (isset($_POST["SafetyAffirmationResponsibilityContracts"]["FromDateMonth"]) ? $_POST["SafetyAffirmationResponsibilityContracts"]["FromDateMonth"] : date("m")) ? "selected" : ""); ?>><?php //print($m); ?></option>
-                        <?php //}//for  ?>
+                    <select class="form-control" name="fromDateMonth" ng-model="contract.fromDateMonth">
+                        <option value="">- Select -</option>
+                        <option value="@{{month.value}}" ng-repeat="month in monthList">@{{month.text}}</option>
                     </select>
                     <i></i>
                 </label>
                 <label>月</label>
                 <label class="short">
-                    <input class="form-control <?php //print($model->hasErrors("from_date") ? "error" : ""); ?>" name="SafetyAffirmationResponsibilityContracts[FromDateDay]" id="SafetyAffirmationResponsibilityContracts_FromDateDay" type="text" 
-                           value="<?php //print(isset($_POST["SafetyAffirmationResponsibilityContracts"]["FromDateDay"]) ? $_POST["SafetyAffirmationResponsibilityContracts"]["FromDateDay"] : date("d")); ?>">
+                    <input class="form-control" name="fromDateDay" type="text" ng-model="contract.fromDateDay"/>
                 </label>
                 <label>日至</label>
                 <label class="short">
-                    <input class="form-control <?php //print($model->hasErrors("to_date") ? "error" : ""); ?>" name="SafetyAffirmationResponsibilityContracts[ToDateYr]" id="SafetyAffirmationResponsibilityContracts_ToDateYr" type="text" 
-                     value="<?php //print(isset($_POST["SafetyAffirmationResponsibilityContracts"]["ToDateYr"]) ? $_POST["SafetyAffirmationResponsibilityContracts"]["ToDateYr"] : date("Y")); ?>">
+                    <input class="form-control" name="ToDateYr" type="text" ng-model="contract.toDateYr" />
                 </label>
                 <label>年</label>
                 <label class="input select short">
-                    <select class="form-control <?php //print($model->hasErrors("to_date") ? "error" : ""); ?>" name="SafetyAffirmationResponsibilityContracts[ToDateMonth]" id="SafetyAffirmationResponsibilityContracts_ToDateMonth">
-                        <?php //for ($m = 1; $m <= 12; $m++) { ?>
-                            <option value="<?php //print($m); ?>" <?php //print($m == (isset($_POST["SafetyAffirmationResponsibilityContracts"]["ToDateMonth"]) ? $_POST["SafetyAffirmationResponsibilityContracts"]["ToDateMonth"] : date("m")) ? "selected" : ""); ?>><?php //print($m); ?></option>
-                        <?php //}//for  ?>
+                    <select class="form-control" name="ToDateMonth" ng-model="contract.toDateMonth">
+                        <option value="">- Select -</option>
+                        <option value="@{{month.value}}" ng-repeat="month in monthList">@{{month.text}}</option>
                     </select>
                     <i></i>
                 </label>
                 <label>月</label>
                 <label class="short">
-                    <input class="form-control <?php //print($model->hasErrors("to_date") ? "error" : ""); ?>" name="SafetyAffirmationResponsibilityContracts[ToDateDay]" id="SafetyAffirmationResponsibilityContracts_ToDateDay" type="text" 
-                    value="<?php //print(isset($_POST["SafetyAffirmationResponsibilityContracts"]["ToDateDay"]) ? $_POST["SafetyAffirmationResponsibilityContracts"]["ToDateDay"] : ""); ?>">
+                    <input class="form-control" name="ToDateDay" type="text" ng-model="contract.toDateDay" />
                 </label>
                 <label>日期间不参加团</label>
             </p>
@@ -74,29 +67,26 @@
 
             <p><label>队行程，脱团或离团自由活动，于</label>
                 <label class="short">
-                    <input class="form-control <?php //print($model->hasErrors("join_date") ? "error" : ""); ?>" name="SafetyAffirmationResponsibilityContracts[JoinDateYr]" id="SafetyAffirmationResponsibilityContracts_JoinDateYr" type="text" 
-                    value="<?php //print(isset($_POST["SafetyAffirmationResponsibilityContracts"]["JoinDateYr"]) ? $_POST["SafetyAffirmationResponsibilityContracts"]["JoinDateYr"] : date("Y")); ?>">
+                    <input class="form-control" name="JoinDateYr" type="text" ng-model="contract.joinDateYr"/>
                 </label>
                 <label>年</label>
                 <label class="input select short">
-                    <select class="form-control <?php //print($model->hasErrors("join_date") ? "error" : ""); ?>" name="SafetyAffirmationResponsibilityContracts[JoinDateMonth]" id="SafetyAffirmationResponsibilityContracts_JoinDateMonth">
-                        <?php //for ($m = 1; $m <= 12; $m++) { ?>
-                            <option value="<?php //print($m); ?>" <?php //print($m == (isset($_POST["SafetyAffirmationResponsibilityContracts"]["JoinDateMonth"]) ? $_POST["SafetyAffirmationResponsibilityContracts"]["JoinDateMonth"] : date("m")) ? "selected" : ""); ?>><?php //print($m); ?></option>
-                        <?php //}//for  ?>
+                    <select class="form-control" name="JoinDateMonth" ng-model="contract.joinDateMonth">
+                        <option value="">- Select -</option>
+                        <option value="@{{month.value}}" ng-repeat="month in monthList">@{{month.text}}</option>
                     </select>
                     <i></i>
                 </label>
                 <label>月</label>
                 <label class="short">
-                    <input class="form-control <?php //print($model->hasErrors("join_date") ? "error" : ""); ?>" name="SafetyAffirmationResponsibilityContracts[JoinDateDay]" id="SafetyAffirmationResponsibilityContracts_JoinDateDay" type="text" 
-                    value="<?php //print(isset($_POST["SafetyAffirmationResponsibilityContracts"]["JoinDateDay"]) ? $_POST["SafetyAffirmationResponsibilityContracts"]["JoinDateDay"] : ""); ?>">
+                    <input class="form-control" name="JoinDateDay" type="text" ng-model="contract.joinDateDay"/>
                 </label>
                 <label>日归团继续参加后续</label>
             </p>
 
             <div class="clear"></div>
 
-            <p>行程,如因未及时归团、滞留当地、违法行为等给<?php //print($company_name); ?>带来的一</p>
+            <p>行程,如因未及时归团、滞留当地、违法行为等给@{{companyName}}带来的一</p>
             <p>切损失均全权承担。</p>
         </div>
 
@@ -119,45 +109,19 @@
                 <label>（18岁以下需监护人同时签名）</label>
 
                 <div class="row">
-                    <?php //echo $form->labelEx($model, 'nric', array('class' => "short-xs")); ?>
-                    <?php //echo $form->textField($model, 'nric', array('class' => "form-control short")); ?>
+                    <label>护照号码</label>
+                    <input class="form-control short" name="Nric" type="text" ng-model="contract.nric"/>
                     <div class="clear"></div>
-                    <?php //echo $form->error($model, 'nric',array("class"=>"marginLeft20 errorMessage")); ?>
                 </div>
 
                 <div class="row">
-                    日期：<?php //print(date("d/m/Y")); ?>
+                    日期：@{{todayDate}}
                 </div>
             </div>
         </div>
 
         <div class="row buttons">
-            <?php //echo CHtml::submitButton("Submit",array("class"=>"btn btn-info primary-btn")); ?>
-        </div>
-
-        <div class="row">
-            <?php //echo $form->hiddenField($model, 'created_at',array("value"=>date("Y-m-d H:i:s"))); ?>
-            <?php //echo $form->error($model, 'AddedOn'); ?>
-        </div>
-
-        <div class="row">
-            <?php //echo $form->hiddenField($model, 'created_by',array("value"=>Yii::app()->user->id)); ?>
-            <?php //echo $form->error($model, 'AddedByID'); ?>
-        </div>
-
-        <div class="row">
-            <?php //echo $form->hiddenField($model, 'updated_at',array("value"=>date("Y-m-d H:i:s"))); ?>
-            <?php //echo $form->error($model, 'UpdatedOn'); ?>
-        </div>
-
-        <div class="row">
-            <?php //echo $form->hiddenField($model, 'updated_by',array("value"=>Yii::app()->user->id)); ?>
-            <?php //echo $form->error($model, 'UpdatedByID'); ?>
-        </div>
-
-        <div class="row">
-            <?php //echo $form->hiddenField($model, 'fit_booking_id'); ?>
-            <?php //echo $form->error($model, 'FITBookingID'); ?>
+            <input class="btn btn-info primary-btn" type="button" ng-click="submitContract(contract);" value="Submit">
         </div>
 
         </form>

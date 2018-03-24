@@ -162,11 +162,11 @@ h1{
     margin-right:0px !important;
 }
 
-div.form span.required{
+.form span.required{
     display:none;
 }
 
-div.form .note span.required{
+.form .note span.required{
     display:inline-block;
 }
 
@@ -340,25 +340,25 @@ strong{
     border-right: 2px solid #cccccc;
 }
 
-div.form .hint
+.form .hint
 {
     margin: 0;
     padding: 0;
     color: #999;
 }
 
-div.form .note
+.form .note
 {
     font-style: italic;
 }
 
-div.form .errorMessage {
+.form .errorMessage {
     margin-left: 15%;
     color: #F00;
     font-size: 0.9em;
 }
 
-div.form .errorSummary
+.form .errorSummary
 {
 	border: 2px solid #C00;
 	padding: 7px 7px 12px 7px;
@@ -367,48 +367,52 @@ div.form .errorSummary
 	font-size: 0.9em;
 }
 
-div.form .errorSummary p
+.form .errorSummary p
 {
 	margin: 0;
 	padding: 5px;
 }
 
-div.form .errorSummary ul
+.form .errorSummary ul
 {
 	margin: 0;
 	padding: 0 0 0 20px;
 }
 
-div.form span.required
+.form span.required
 {
     color: #F00;
 }
 
-div.form div.error label,
-div.form label.error,
-div.form span.error
+form input.error{
+    border-color: #C00;
+}
+
+.form div.error label,
+.form label.error,
+.form span.error
 {
     color: #C00;
 }
 
-div.form div.error input,
-div.form div.error textarea,
-div.form div.error select,
-div.form input.error,
-div.form textarea.error,
-div.form select.error,
-div.form .error + i
+.form div.error input,
+.form div.error textarea,
+.form div.error select,
+.form input.error,
+.form textarea.error,
+.form select.error,
+.form .error + i
 {
     background: #FEE;
     border-color: #C00;
 }
 
-div.form div.success input,
-div.form div.success textarea,
-div.form div.success select,
-div.form input.success,
-div.form textarea.success,
-div.form select.success
+.form div.success input,
+.form div.success textarea,
+.form div.success select,
+.form input.success,
+.form textarea.success,
+.form select.success
 {
     background: #E6EFC2;
     border-color: #C6D880;
@@ -434,11 +438,11 @@ div.form select.success
     float:left;
 }
 
-div.form .radio > label, div.form .checkbox > label{
+.form .radio > label, .form .checkbox > label{
     font-weight:normal;
 }
 
-div.form .note, .form a{
+.form .note, .form a{
     margin-left:15%;
 }
 
@@ -612,7 +616,7 @@ div.form .note, .form a{
     border-bottom:1px solid #ff0000 !important;
 }
 
-div.form .restaurant-expenses .errorMessage, div.form .tickets-expenses .errorMessage, div.form .expenses .errorMessage{
+.form .restaurant-expenses .errorMessage, .form .tickets-expenses .errorMessage, .form .expenses .errorMessage{
     margin-left:0px;
 }
 
