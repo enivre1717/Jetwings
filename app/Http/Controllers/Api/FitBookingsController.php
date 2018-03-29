@@ -87,7 +87,7 @@ class FitBookingsController extends \App\Http\Controllers\Controller
     
     /* Retrieve one booking
      * 
-     * @params POST input $request, int FITBookingID
+     * @params GET input $request, int FITBookingID
      * @return json
      */
     public function getFitBookingsById(Request $request, $id){
@@ -99,9 +99,8 @@ class FitBookingsController extends \App\Http\Controllers\Controller
             
             $fitBookingModel=new FitBookings;
 
-            $aryResponse = $fitBookingModel->getFitBookingsById($id);
+            $aryResponse= $fitBookingModel->getFitBookingsById($id);
 
-            
         }catch(\Exception $e){
             //echo 'Caught exception: ',  $e->getMessage(), "\n";
             $aryResponse["message"] = 'Caught exception: '.$e->getMessage()."\n";

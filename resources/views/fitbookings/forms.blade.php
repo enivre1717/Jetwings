@@ -1,4 +1,8 @@
 <div ng-controller="FormsController">
+    
+    <a href="#!/fitbookings/list" class="btn btn-info primary-btn">Back</a>
+    <div class="clear"></div>
+    
     <div class="alert alert-@{{class}}" ng-show="msg != ''">
         @{{msg}}
     </div>

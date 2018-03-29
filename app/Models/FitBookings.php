@@ -15,6 +15,22 @@ class FitBookings extends Model
      */
     protected $table = 'fit_bookings';
     
+    /**
+     * One:Many relationship between fit_bookings & fit_transports
+     */
+    public function transports()
+    {
+        return $this->hasMany('App\Models\FitTransports', "fit_booking_id");
+    }
+    
+    /**
+     * One:Many relationship between fit_bookings & fit_calls
+     */
+    public function calls()
+    {
+        return $this->hasMany('App\Models\FitCalls',"fit_booking_id");
+    }
+    
     /* Retrieve all the bookings
      * 
      * @params POST input $data
@@ -103,14 +119,24 @@ class FitBookings extends Model
      */
     public function getFitBookingsById($id){
         
-        $result=self::leftJoin('tours', 'fit_bookings.tour_id','=','tours.id')
+        $result = self::with(["transports", "calls","calls.hotels", "calls.flights","calls.hotels.hotels",
+                              "transports.transportAgencies","transports.transports"])
+                ->leftJoin('tours', 'fit_bookings.tour_id','=','tours.id')
+                ->leftJoin('sale_agencies',"fit_bookings.sale_agency_id",'=',"sale_agencies.id")
+                ->select(['fit_bookings.*','sale_agencies.name AS company_name','tours.type'])
+                ->where([
+                    ["fit_bookings.id","=",$id]
+                ])->get();
+                
+        
+        /*$result=self::leftJoin('tours', 'fit_bookings.tour_id','=','tours.id')
                 ->leftJoin('sale_agencies',"fit_bookings.sale_agency_id",'=',"sale_agencies.id")
                 ->where([
                     ["fit_bookings.id","=",$id]
                 ])
                 ->select(['fit_bookings.*','sale_agencies.name AS company_name','tours.type'])
                 ->get();
-                //->toSql();
+                //->toSql();*/
         
         
         return $result;
@@ -128,30 +154,13 @@ class FitBookings extends Model
                 ->where([
                     ["fit_bookings.id","=",$id]
                 ])
-                ->select(['welcome_sign_type','welcome_sign_text','sale_agency_id'])
+                ->select(['welcome_sign_type','welcome_sign_text','sale_agencies.name'])
                 ->first();
         
-        switch($result->welcome_sign_type){
-            case "CTrip":
-                $template="welcome_ctrip";
-                break;
-            case "FXTrip":
-                $template="welcome_fxtrip";
-                break;
-            case "Forest":
-                $template="welcome_forest";
-                break;
-            case "JW":
-                $template="welcome";
-                break;
-            default:
-                $template="welcome";
-                break;
-        }//switch
         
-        $result->welcome_sign_text = $result->welcome_sign_text!="" ? $result->welcome_sign_text : $result->sale_agency_id;
+        //$result->welcome_sign_text = $result->welcome_sign_text!="" ? $result->welcome_sign_text : $result->name;
         
-        return ["template"=>$template, "result"=>$result];
+        return $result;
     }
     
 }

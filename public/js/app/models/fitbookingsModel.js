@@ -18,6 +18,11 @@ app.factory('fitbookingsModel', function($http, $route){
             return $http.get(apiUrl+"/fitbookings/mine/"+fitBookingId);
         };
         
+        obj.getWelcomeSign= function(fitBookingId){
+            
+            return $http.get(apiUrl+"/fitbookings/welcome/"+fitBookingId);
+        };
+        
 	return obj;
 
 });

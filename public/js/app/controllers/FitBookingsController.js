@@ -59,4 +59,36 @@ fit_bookings.controller("FitBookingsController", ["$scope", "$route", "$http", "
             
             $location.path("/fitbookings/forms/"+fitBookingId);
         };
-}]);
+}])
+    .controller("FitBookingsDetailsController", ["$scope", "$route", "$http", "$uibModal", "$window", "fitbookingsModel", "$location", 
+    function($scope, $route , $http, $uibModal, $window, fitbookingsModel, $location) {
+        
+        var fitBookingId = $route.current.params.fitBookingId;
+        
+        fitbookingsModel.getBookingDetails(fitBookingId)
+            .then(function(results){
+                $scope.fitbookings = results.data[0];
+                
+                $scope.hotels = [];
+                
+                angular.forEach($scope.fitbookings.calls, function(v,k){
+                   $scope.hotels.push(v.hotels);
+                });
+                
+            }).catch(function(error){
+                console.log("Error occurred in retrieving bookings.");
+            });
+    }]).controller("WelcomeController", ["$scope", "$route", "$http", "$uibModal", "$window", "fitbookingsModel", "$location", 
+    function($scope, $route , $http, $uibModal, $window, fitbookingsModel, $location) {
+        
+        $scope.fitBookingId = $route.current.params.fitBookingId;
+        
+        fitbookingsModel.getWelcomeSign($scope.fitBookingId)
+            .then(function(results){
+                
+                $scope.welcomeSign = results.data;
+                
+            }).catch(function(error){
+                console.log("Error occurred in retrieving welcome sign.");
+            });
+    }]);

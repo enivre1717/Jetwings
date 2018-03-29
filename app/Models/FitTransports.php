@@ -15,6 +15,30 @@ class FitTransports extends Model
      */
     protected $table = 'fit_transports';
     
+    /**
+     * One:One relationship between fit_bookings & fit_transports
+     */
+    public function fitBookings()
+    {
+        return $this->belongsTo('App\Models\FitBookings');
+    }
+    
+    /**
+     * One:One relationship between fit_transports & transports
+     */
+    public function transports()
+    {
+        return $this->belongsTo('App\Models\Transports',"transport_id");
+    }
+    
+    /**
+     * One:One relationship between fit_transports & transport_agencies
+     */
+    public function transportAgencies()
+    {
+        return $this->belongsTo('App\Models\TransportAgencies',"transport_agency_id");
+    }
+    
     /* Retrieve transports by fitbooking Id
      * 
      * @params int $fitBookingId

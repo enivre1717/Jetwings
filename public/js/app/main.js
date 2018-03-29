@@ -37,6 +37,14 @@ app.config(function($routeProvider) {
           controller:'FormsController',
           templateUrl: viewUrl+'/fitbookings/forms',
         })
+        .when('/fitbookings/details/:fitBookingId', {
+          controller:'FitBookingsDetailsController',
+          templateUrl: viewUrl+'/fitbookings/details',
+        })
+        .when('/fitbookings/welcome/:fitBookingId', {
+          controller:'WelcomeController',
+          templateUrl: viewUrl+'/fitbookings/welcome',
+        })
         .when('/safety-contract/index/:fitBookingId',{
             controller:'SafetyContractController',
             templateUrl: viewUrl+'/safety-contract/index',
@@ -45,7 +53,9 @@ app.config(function($routeProvider) {
             controller:'OwnExpensesController',
             templateUrl: viewUrl+'/own-expenses/index',
         })
-        .otherwise("/");
+        .otherwise({
+            templateUrl: viewUrl+'/errors/404',
+        });
         
     //console.log($cookies.get("apiToken"));
 });
@@ -71,14 +81,11 @@ app.run(['$http' , "$cookies", "$rootScope", "$location", function($http, $cooki
     $rootScope.curMonth = moment().format("MM");
     $rootScope.curDay = moment().format("DD");
     
-    /*$rootScope.$on("$routeChangeStart", function(evt, to, from) {
-        // requires authorization?
-        console.log(to);
-        if (to.authorize === true)
-        {
-            to.resolve = to.resolve || {};
+    $rootScope.$on("$routeChangeStart", function(evt, to, from) {
+        if(typeof to !== "undefined" && to.$$route.originalPath == "/"){
+            $location.path("/fitbookings/list");
         }
-     });*/
+     });
 
      $rootScope.$on("$routeChangeError", function(evt, to, from, error) {
          if (error.status == 401)
@@ -105,6 +112,10 @@ app.run(['$http' , "$cookies", "$rootScope", "$location", function($http, $cooki
 app.filter("formatDate",function formatDate(){
     return function(text,format){
         return moment(text).format(format);
+    }
+}).filter("html", function html($sce){
+    return function(text){
+        return $sce.trustAsHtml(text);
     }
 });
 

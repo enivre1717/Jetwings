@@ -17,9 +17,13 @@ Route::group(['namespace' => 'Web'], function () {
 
     Route::get('/fitbookings/list', "ViewsController@listBookings");
     Route::get('/fitbookings/forms', "ViewsController@forms");
+    Route::get('/fitbookings/details', "ViewsController@bookingDetails");
+    Route::get('/fitbookings/welcome', "ViewsController@welcome");
     
     Route::get('/safety-contract/index', "ViewsController@safetyContract");
     Route::get('/own-expenses/index', "ViewsController@ownExpenses");
+    
+    Route::get('/errors/{errorCode}', "ViewsController@error");
     
     Route::get('/notification/success', function () {
         return view('modal.success');

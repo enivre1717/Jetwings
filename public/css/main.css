@@ -370,3 +370,70 @@ A.purple:hover{
 .flight > .row{
     margin-top:10px;
 }
+
+/** Start booking details **/
+
+.header {
+    width: 100%;
+    background-color: #ed7d31;
+    font-size: 18px;
+    color: #ffffff;
+    margin: 10px auto 0px;
+    text-align: center;
+    height: 80px;
+    padding-top: 31px;
+}
+
+.remarks {
+    background-color: #fff2cc;
+    padding: 15px;
+    margin-top: 10px;
+}
+/** End booking details**/
+
+/** Start Welcome Sign **/
+.blackBg{
+    background-color: #000000;
+    margin:20px auto;
+    width:90%;
+    padding:5px;
+}
+
+.innerBorder{
+    background-color: #ffffff;
+    margin:0 auto;
+    padding: 5px;
+}
+
+.borderBlack{
+    border:1px solid #000000;
+    margin:0 auto;
+    background-color: #ffffff;
+}
+
+.borderBlack .row{
+    margin:0px;
+}
+
+.borderBlack .row img{
+    /*margin-left: 33%;
+    margin-top:10px;*/
+    margin: 20px auto 0px;
+}
+
+.borderBlack .body{
+    margin-top:5%;
+    margin-bottom:5%;
+    /*margin-left:30%;*/
+    color:#000000;
+    font-weight:bold;
+    font-size: 150px;
+    text-align:center;
+}
+
+.borderBlack .footer{
+    margin-bottom:10px;
+    /*margin-left:13%;*/
+}
+
+/** End Welcome Sign **/

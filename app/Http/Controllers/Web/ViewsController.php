@@ -26,6 +26,11 @@ class ViewsController extends \App\Http\Controllers\Controller
         return view("fitbookings.forms");
     }
     
+    /* Load booking details*/
+    public function bookingDetails(){
+        return view("fitbookings.details");
+    }
+    
     /* Load safety contract form */
     public function safetyContract(){
         
@@ -36,6 +41,18 @@ class ViewsController extends \App\Http\Controllers\Controller
     public function ownExpenses(){
         
         return view("ownexpenses.index");
+    }
+    
+    /* Load Welcome page */
+    public function welcome(){
+        return view("fitbookings.welcome");
+    }
+    
+    /* Load error page */
+    public function error($errorCode){
+        if($errorCode == 404){
+            return view("errors.404");
+        }
     }
     
 }

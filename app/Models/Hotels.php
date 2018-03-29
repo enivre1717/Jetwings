@@ -6,29 +6,21 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
-class FitHotels extends Model
+class Hotels extends Model
 {
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-    protected $table = 'fit_hotels';
+    protected $table = 'hotels';
     
     /**
-     * One:One relationship between fit_calls & fit_hotels
+     * One:Many relationship between fit_hotels & hotels
      */
-    public function calls()
+    public function fitHotels()
     {
-        return $this->belongsTo('App\Models\FitCalls');
-    }
-    
-    /**
-     * One:One relationship between fit_hotels & hotels
-     */
-    public function hotels()
-    {
-        return $this->belongsTo('App\Models\Hotels',"hotel_id");
+        return $this->hasMany('App\Models\FitHotels',"id");
     }
     
     /* Retrieve hotels by fitbooking Id

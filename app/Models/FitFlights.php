@@ -15,6 +15,14 @@ class FitFlights extends Model
      */
     protected $table = 'fit_flights';
     
+    /**
+     * One:One relationship between fit_calls & fit_flights
+     */
+    public function flights()
+    {
+        return $this->belongsTo('App\Models\FitCalls');
+    }
+    
     /* Retrieve flights by fitbooking Id
      * 
      * @params int $fitBookingId, callNum, type (arrival/departure)
