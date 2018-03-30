@@ -18,7 +18,7 @@ class FitFlights extends Model
     /**
      * One:One relationship between fit_calls & fit_flights
      */
-    public function flights()
+    public function calls()
     {
         return $this->belongsTo('App\Models\FitCalls');
     }
@@ -58,5 +58,5 @@ class FitFlights extends Model
         return $result;
         
     }
-    
+      
 }

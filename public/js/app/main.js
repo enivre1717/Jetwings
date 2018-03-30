@@ -14,7 +14,8 @@ var app = angular.module('myApp',
     'fit_bookings', 
     'forms', 
     'safety_contracts',
-    "own_expenses"
+    "own_expenses",
+    "arrival_form",
 ]);
 
 var tour_guide = angular.module('tour_guide',["ngRoute"]);
@@ -22,8 +23,9 @@ var fit_bookings = angular.module('fit_bookings',["ngRoute"]);
 var forms = angular.module('forms',["ngRoute"]);
 var safety_contracts = angular.module('safety_contracts',["ngRoute"]);
 var own_expenses = angular.module('own_expenses',["ngRoute"]);
+var arrival_form = angular.module('arrival_form',["ngRoute"]);
 
-app.config(function($routeProvider) {
+app.config(function($routeProvider, $locationProvider) {
     $routeProvider
         .when('/', {
           controller:'LoginController',
@@ -53,11 +55,15 @@ app.config(function($routeProvider) {
             controller:'OwnExpensesController',
             templateUrl: viewUrl+'/own-expenses/index',
         })
+        .when('/arrival/index/:fitBookingId',{
+            controller:'ArrivalFormController',
+            templateUrl: viewUrl+'/arrival/index',
+        })
         .otherwise({
             templateUrl: viewUrl+'/errors/404',
         });
         
-    //console.log($cookies.get("apiToken"));
+    //$locationProvider.html5Mode(true);
 });
 
 app.run(['$http' , "$cookies", "$rootScope", "$location", function($http, $cookies, $rootScope, $location) {
@@ -82,9 +88,10 @@ app.run(['$http' , "$cookies", "$rootScope", "$location", function($http, $cooki
     $rootScope.curDay = moment().format("DD");
     
     $rootScope.$on("$routeChangeStart", function(evt, to, from) {
-        if(typeof to !== "undefined" && to.$$route.originalPath == "/"){
+        if(typeof $cookies.get("apiToken") !== "undefined" && to.$$route.originalPath == "/"){
             $location.path("/fitbookings/list");
         }
+        
      });
 
      $rootScope.$on("$routeChangeError", function(evt, to, from, error) {
@@ -92,6 +99,7 @@ app.run(['$http' , "$cookies", "$rootScope", "$location", function($http, $cooki
          {
              // redirect to login with original path we'll be returning back to
              $location.path("/");
+             $cookies.remove("apiToken");
          }
      });
      

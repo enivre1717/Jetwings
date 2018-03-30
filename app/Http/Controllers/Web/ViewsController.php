@@ -48,6 +48,11 @@ class ViewsController extends \App\Http\Controllers\Controller
         return view("fitbookings.welcome");
     }
     
+    /* Load Arrival page */
+    public function arrival(){
+        return view("arrival.index");
+    }
+    
     /* Load error page */
     public function error($errorCode){
         if($errorCode == 404){

@@ -31,6 +31,14 @@ class FitBookings extends Model
         return $this->hasMany('App\Models\FitCalls',"fit_booking_id");
     }
     
+    /**
+     * One:One relationship between fit_bookings & arrival_forms
+     */
+    public function arrivalForms()
+    {
+        return $this->hasOne('App\Models\ArrivalForms',"id");
+    }
+    
     /* Retrieve all the bookings
      * 
      * @params POST input $data
@@ -163,4 +171,23 @@ class FitBookings extends Model
         return $result;
     }
     
+    /* Get Arrival Details
+     * 
+     * @params POST int $id
+     * @return array
+     */
+    
+    public function getArrivalDetails($id, $callNum){
+        
+        $result=self::with(["calls" =>function($query) use($callNum){
+                    $query->where([
+                            "fit_calls.call_num"=>$callNum
+                        ]);
+                }, "calls.flights"])
+                ->where(["id"=>$id])->get();
+        
+        //die(print_r($result));
+        
+        return $result;
+    }
 }
