@@ -8,6 +8,14 @@ app.factory('arrivalFormModel', function($http, $route){
             return $http.get(apiUrl+"/arrival-form/"+fitbookingId);
         };
 	
+        obj.submitForms = function(arrivalForms){
+            
+            var data = {
+                "arrivalForms": arrivalForms
+            };
+            
+            return $http.post(apiUrl+"/arrival-form/submit", data);
+        };
         
 	return obj;
 

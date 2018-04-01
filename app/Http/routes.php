@@ -23,6 +23,7 @@ Route::group(['namespace' => 'Web'], function () {
     Route::get('/safety-contract/index', "ViewsController@safetyContract");
     Route::get('/own-expenses/index', "ViewsController@ownExpenses");
     Route::get('/arrival/index', "ViewsController@arrival");
+    Route::get('/commission/index', "ViewsController@commission");
     
     Route::get('/errors/{errorCode}', "ViewsController@error");
     
@@ -47,6 +48,7 @@ Route::group(['namespace' => 'Api','prefix' => 'api'], function () {
     Route::post('safety-contracts', "SafetyContractController@submitForm");
     Route::post('own-expenses', "OwnExpensesController@submitForm");
     Route::post('fit-flights/get-arrival-details', "FitFlightsController@getArrivalDetails");
+    Route::post('arrival-form/submit', "ArrivalFormController@submitForm");
     
     
     Route::get('sales-agencies/{id}', "SaleAgenciesController@getSaleAgenciesById");

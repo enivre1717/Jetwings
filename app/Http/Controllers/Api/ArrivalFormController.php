@@ -16,7 +16,7 @@ class ArrivalFormController extends \App\Http\Controllers\Controller
         $this->middleware('auth:api');
     }
     
-    /* Retrieve/submit Arrival Form
+    /* Retrieve Arrival Form
      * 
      * @params GET data
      * @return json
@@ -30,6 +30,29 @@ class ArrivalFormController extends \App\Http\Controllers\Controller
             $arrivalFormsModel=new ArrivalForms;
             
             $aryResponse = $arrivalFormsModel->getArrivalFormDetails($fitbookingId, Auth::id());
+
+        }catch(\Exception $e){
+            $statusCode=config("app.status_code.Exception");
+            $aryResponse["message"] = 'Caught exception: '.$e->getMessage()."\n";
+        }
+        
+        return response()->json($aryResponse, $statusCode);
+    }
+    
+    /* Submit Arrival Form
+     * 
+     * @params POST data
+     * @return json
+     */
+    public function submitForm(Request $request){
+        
+        try{
+            $aryResponse=array();
+            $statusCode=config("app.status_code.OK");
+            
+            $arrivalFormsModel=new ArrivalForms;
+            
+            $aryResponse = $arrivalFormsModel->insertArrivalFormDetails($request->input("arrivalForms"));
 
         }catch(\Exception $e){
             $statusCode=config("app.status_code.Exception");

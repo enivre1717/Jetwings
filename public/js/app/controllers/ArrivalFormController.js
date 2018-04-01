@@ -1,7 +1,7 @@
 'use strict'
 
-arrival_form.controller("ArrivalFormController", ["$scope", "$route", "$location", "$http", "$uibModal", "arrivalFormModel", "fitFlightsModel", 
-    function($scope, $route , $location, $http, $uibModal, arrivalFormModel, fitFlightsModel) {
+arrival_form.controller("ArrivalFormController", ["$scope", "$rootScope", "$route", "$location", "$http", "$uibModal", "arrivalFormModel", "fitFlightsModel", 
+    function($scope, $rootScope, $route , $location, $http, $uibModal, arrivalFormModel, fitFlightsModel) {
         
         var fitBookingId = $route.current.params.fitBookingId;
         
@@ -64,6 +64,23 @@ arrival_form.controller("ArrivalFormController", ["$scope", "$route", "$location
         
         $scope.submitForm = function(arrivalForms){
             
-            console.log(arrivalForms);
+            arrivalFormModel.submitForms(arrivalForms)
+                    .then(function(results){
+                        if(results.data == true){
+                            $rootScope.showNotification("二次交接与离新确认书已成功提交。","success");
+                        }else{
+                            $rootScope.showNotification("二次交接与离新确认书未提交。","error");
+                        }
+                        
+                        $location.path("/fitbookings/forms/"+arrivalForms.fit_booking_id);
+                        
+                    }).catch(function(error){
+                        if(error.status == 401){
+                            $location.path("/");
+                        }else{
+                            console.log("Error occurred in retrieving arrival details.");
+                        }
+
+                    });
         };
 }]);

@@ -59,6 +59,10 @@ app.config(function($routeProvider, $locationProvider) {
             controller:'ArrivalFormController',
             templateUrl: viewUrl+'/arrival/index',
         })
+        .when('/commission/index/:fitBookingId',{
+            controller:'CommissionFormController',
+            templateUrl: viewUrl+'/commission/index',
+        })
         .otherwise({
             templateUrl: viewUrl+'/errors/404',
         });

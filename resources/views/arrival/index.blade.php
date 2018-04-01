@@ -1,8 +1,9 @@
 <div ng-controller="ArrivalFormController">
     
-    <a href="#!/fitbookings/forms/@{{fitbookings.id}}" class="btn btn-info primary-btn">Back</a>
+    <a href="#!/fitbookings/forms/@{{arrivalForms.fit_booking_id}}" class="btn btn-info primary-btn">Back</a>
     <div class="clear"></div>
     
+    <h1>二次交接与离新确认书</h1>
     <div class="form">
         <form name="form" class="j-forms arrival-form" novalidate>
     

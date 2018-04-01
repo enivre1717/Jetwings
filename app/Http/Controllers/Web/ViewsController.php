@@ -53,6 +53,11 @@ class ViewsController extends \App\Http\Controllers\Controller
         return view("arrival.index");
     }
     
+    /* Load Commission page */
+    public function commission(){
+        return view("commission.index");
+    } 
+    
     /* Load error page */
     public function error($errorCode){
         if($errorCode == 404){
