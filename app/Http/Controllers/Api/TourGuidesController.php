@@ -75,4 +75,23 @@ class TourGuidesController extends \App\Http\Controllers\Controller
             return response()->json($ex->getMessage(), 400);
         }
     }
+    
+    public function getTourGuideDetails(){
+        
+        try{
+            $statusCode = config("app.status_code.OK");
+            
+            $tourguideModel = new TourGuides;
+            
+            $aryResponse = $tourguideModel->getTourGuideDetails();
+            
+            return response()->json($aryResponse, $statusCode);
+            
+        }catch(Exception $ex){
+            $statusCode = config("app.status_code.Exception");
+            
+            return response()->json($ex->getMessage(), $statusCode);
+        }
+        
+    }
 }

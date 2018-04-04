@@ -226,9 +226,9 @@ form{
     margin: 15% auto;
 }
 
-form input{
+/*form input{
     margin-top:10px !important;
-}
+}*/
 
 form span.required
 {

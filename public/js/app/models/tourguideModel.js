@@ -11,6 +11,12 @@ app.factory('tourguideModel', function($http){
             
             return $http.post(apiUrl+"/login",user);
         };
+        
+        obj.getTourGuideDetails = function(){
+            
+            return $http.get(apiUrl+"/me");
+            
+        };
 	
 	return obj;
 

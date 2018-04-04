@@ -20,10 +20,11 @@ Route::group(['namespace' => 'Web'], function () {
     Route::get('/fitbookings/details', "ViewsController@bookingDetails");
     Route::get('/fitbookings/welcome', "ViewsController@welcome");
     
-    Route::get('/safety-contract/index', "ViewsController@safetyContract");
+    Route::get('/safety-contracts/index', "ViewsController@safetyContracts");
     Route::get('/own-expenses/index', "ViewsController@ownExpenses");
     Route::get('/arrival/index', "ViewsController@arrival");
-    Route::get('/commission/index', "ViewsController@commission");
+    Route::get('/commissions/index', "ViewsController@commissions");
+    Route::get('/claims/index', "ViewsController@claims");
     
     Route::get('/errors/{errorCode}', "ViewsController@error");
     
@@ -38,6 +39,8 @@ Route::group(['namespace' => 'Api','prefix' => 'api'], function () {
     
     Route::post('login', "TourGuidesController@login");
     Route::post('logout', "TourGuidesController@logout");
+    Route::get('me', "TourGuidesController@getTourGuideDetails");
+    
     Route::post('fitbookings/mine', "FitBookingsController@getFitBookings");
     
     Route::get('fitbookings/mine/{id}', "FitBookingsController@getFitBookingsById");
@@ -49,10 +52,12 @@ Route::group(['namespace' => 'Api','prefix' => 'api'], function () {
     Route::post('own-expenses', "OwnExpensesController@submitForm");
     Route::post('fit-flights/get-arrival-details', "FitFlightsController@getArrivalDetails");
     Route::post('arrival-form/submit', "ArrivalFormController@submitForm");
+    Route::post('commission-form/submit', "CommissionFormController@submitForm");
     
     
     Route::get('sales-agencies/{id}', "SaleAgenciesController@getSaleAgenciesById");
     Route::get('arrival-form/{id}', "ArrivalFormController@index");
+    Route::get('commission-form/{id}', "CommissionFormController@index");
     
 });
 

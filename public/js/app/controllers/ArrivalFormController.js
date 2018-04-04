@@ -78,7 +78,7 @@ arrival_form.controller("ArrivalFormController", ["$scope", "$rootScope", "$rout
                         if(error.status == 401){
                             $location.path("/");
                         }else{
-                            console.log("Error occurred in retrieving arrival details.");
+                            console.log("Error occurred in submitting arrival form.");
                         }
 
                     });

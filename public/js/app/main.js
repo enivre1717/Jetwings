@@ -16,6 +16,7 @@ var app = angular.module('myApp',
     'safety_contracts',
     "own_expenses",
     "arrival_form",
+    "commission_form",
 ]);
 
 var tour_guide = angular.module('tour_guide',["ngRoute"]);
@@ -24,6 +25,7 @@ var forms = angular.module('forms',["ngRoute"]);
 var safety_contracts = angular.module('safety_contracts',["ngRoute"]);
 var own_expenses = angular.module('own_expenses',["ngRoute"]);
 var arrival_form = angular.module('arrival_form',["ngRoute"]);
+var commission_form = angular.module('commission_form',["ngRoute"]);
 
 app.config(function($routeProvider, $locationProvider) {
     $routeProvider
@@ -47,9 +49,9 @@ app.config(function($routeProvider, $locationProvider) {
           controller:'WelcomeController',
           templateUrl: viewUrl+'/fitbookings/welcome',
         })
-        .when('/safety-contract/index/:fitBookingId',{
+        .when('/safety-contracts/index/:fitBookingId',{
             controller:'SafetyContractController',
-            templateUrl: viewUrl+'/safety-contract/index',
+            templateUrl: viewUrl+'/safety-contracts/index',
         })
         .when('/own-expenses/index/:fitBookingId',{
             controller:'OwnExpensesController',
@@ -59,9 +61,13 @@ app.config(function($routeProvider, $locationProvider) {
             controller:'ArrivalFormController',
             templateUrl: viewUrl+'/arrival/index',
         })
-        .when('/commission/index/:fitBookingId',{
+        .when('/commissions/index/:fitBookingId',{
             controller:'CommissionFormController',
-            templateUrl: viewUrl+'/commission/index',
+            templateUrl: viewUrl+'/commissions/index',
+        })
+        .when('/claims/index/:fitBookingId',{
+            controller:'ClaimsController',
+            templateUrl: viewUrl+'/claims/index',
         })
         .otherwise({
             templateUrl: viewUrl+'/errors/404',

@@ -39,6 +39,14 @@ class FitBookings extends Model
         return $this->hasOne('App\Models\ArrivalForms',"id");
     }
     
+    /**
+     * One:Many relationship with tourguide_commissions
+     */
+    public function commissions()
+    {
+        return $this->hasMany('App\Models\TourguideCommissions',"fit_booking_id");
+    }
+    
     /* Retrieve all the bookings
      * 
      * @params POST input $data

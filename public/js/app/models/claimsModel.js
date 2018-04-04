@@ -1,5 +1,5 @@
 'use strict'
-app.factory('commissionFormModel', function($http, $route){
+app.factory('claimsModel', function($http, $route){
 	
 	var obj = {};
 	

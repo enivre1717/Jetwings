@@ -15,6 +15,14 @@ class TourGuides extends Authenticatable
      */
     protected $table = 'tour_guides';
     
+    /**
+     * One:Many relationship with tourguide_commissions
+     */
+    public function commissions()
+    {
+        return $this->hasMany('App\Models\TourguideCommissions', "id");
+    }
+    
     public function authenicateTourGuide($username,$password){
         
         $apiToken="";
@@ -115,4 +123,11 @@ class TourGuides extends Authenticatable
         return $this->new_password;
     }
     
+    public function getTourGuideDetails(){
+        
+        $results = self::where(["id"=>Auth::id()])
+                   ->select(["id","name"])->get();
+        
+        return $results;
+    }
 }

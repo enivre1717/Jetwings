@@ -32,9 +32,9 @@ class ViewsController extends \App\Http\Controllers\Controller
     }
     
     /* Load safety contract form */
-    public function safetyContract(){
+    public function safetyContracts(){
         
-        return view("safetycontract.index");
+        return view("safetycontracts.index");
     }
     
     /* Load safety contract form */
@@ -48,15 +48,20 @@ class ViewsController extends \App\Http\Controllers\Controller
         return view("fitbookings.welcome");
     }
     
-    /* Load Arrival page */
+    /* Load Arrival Form */
     public function arrival(){
         return view("arrival.index");
     }
     
-    /* Load Commission page */
-    public function commission(){
-        return view("commission.index");
-    } 
+    /* Load Commission Form */
+    public function commissions(){
+        return view("commissions.index");
+    }
+    
+    /* Load Claim Form */
+    public function claims(){
+        return view("claims.index");
+    }
     
     /* Load error page */
     public function error($errorCode){
