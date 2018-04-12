@@ -41,4 +41,17 @@ class Common{
                 return sprintf("%02d-%02d-%02d",$year,$arrDate[1],$arrDate[0]);
         }
     }//unfriendly_short_date
+    
+    public static function getOtherExpensesClaimOptions(){
+        
+        $aryOptions[0]=["id"=>16, "text"=>"矿泉水"];
+        $aryOptions[1]=["id"=>17, "text"=>"酒店行李"];
+        $aryOptions[2]=["id"=>18, "text"=>"蛋糕"];
+        $aryOptions[3]=["id"=>19, "text"=>"水果"];
+        $aryOptions[4]=["id"=>20, "text"=>"礼品"];
+        $aryOptions[5]=["id"=>21, "text"=>"DFS 司机小费"];
+        $aryOptions[6]=["id"=>22, "text"=>"Option 司机小费"];
+        
+        return $aryOptions;
+    }
 }

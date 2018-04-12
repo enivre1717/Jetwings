@@ -46,18 +46,23 @@ Route::group(['namespace' => 'Api','prefix' => 'api'], function () {
     Route::get('fitbookings/mine/{id}', "FitBookingsController@getFitBookingsById");
     Route::get('fitbookings/welcome/{id}', "FitBookingsController@getWelcomeSign");
     
-    Route::get('fit-transports/fitbookingid/{id}', "FitTransportsController@getFitTransportsById");
+    Route::get('fit-transports/{id}', "FitTransportsController@getFitTransportsById");
+    Route::get('sales-agencies/{id}', "SaleAgenciesController@getSaleAgenciesById");
+    Route::get('restaurants', "RestaurantsController@getRestaurants");
+    Route::get('tickets', "TicketsController@getTickets");
+    Route::get('attractions', "AttractionsController@getAttractions");
+    Route::get('common/other-expenses-claim-options', "CommonController@getOtherExpensesClaimOptions");
     
-    Route::post('safety-contracts', "SafetyContractController@submitForm");
-    Route::post('own-expenses', "OwnExpensesController@submitForm");
     Route::post('fit-flights/get-arrival-details', "FitFlightsController@getArrivalDetails");
+    
+    Route::post('safety-contracts/submit', "SafetyContractController@submitForm");
+    Route::post('own-expenses/submit', "OwnExpensesController@submitForm");
     Route::post('arrival-form/submit', "ArrivalFormController@submitForm");
     Route::post('commission-form/submit', "CommissionFormController@submitForm");
     
-    
-    Route::get('sales-agencies/{id}', "SaleAgenciesController@getSaleAgenciesById");
     Route::get('arrival-form/{id}', "ArrivalFormController@index");
     Route::get('commission-form/{id}', "CommissionFormController@index");
+    Route::get('claims/{id}', "ClaimsController@index");
     
 });
 

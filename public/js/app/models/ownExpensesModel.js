@@ -9,7 +9,7 @@ app.factory('ownExpensesModel', function($http, $route){
                 "ownExpenses": ownExpenses
             };
             
-            return $http.post(apiUrl+"/own-expenses", data);
+            return $http.post(apiUrl+"/own-expenses/submit", data);
         };
 	
         

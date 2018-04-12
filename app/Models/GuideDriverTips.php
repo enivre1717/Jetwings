@@ -15,6 +15,12 @@ class GuideDriverTips extends Model
      */
     protected $table = 'guide_driver_tips';
     
-    
+    /**
+     * One:One relationship between tourguide_claims & guide_income_products
+     */
+    public function claims()
+    {
+        return $this->belongsTo('App\Models\TourGuideClaims',"tour_guide_claim_id","id");
+    }
     
 }

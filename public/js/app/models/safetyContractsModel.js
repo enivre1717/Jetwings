@@ -9,7 +9,7 @@ app.factory('safetyContractsModel', function($http, $route){
                 "contract": contract
             };
             
-            return $http.post(apiUrl+"/safety-contracts", data);
+            return $http.post(apiUrl+"/safety-contracts/submit", data);
         };
 	
         

@@ -5,8 +5,7 @@ app.factory('fitTransportsModel', function($http, $route){
 	
 	obj.getTransportsByBookingId = function(bookingId){
             
-            console.log("transport");
-            return $http.get(apiUrl+"/fit-transports/fitbookingid/"+bookingId);
+            return $http.get(apiUrl+"/fit-transports/"+bookingId);
         };
 	
 	return obj;

@@ -17,6 +17,7 @@ var app = angular.module('myApp',
     "own_expenses",
     "arrival_form",
     "commission_form",
+    "claims",
 ]);
 
 var tour_guide = angular.module('tour_guide',["ngRoute"]);
@@ -26,6 +27,7 @@ var safety_contracts = angular.module('safety_contracts',["ngRoute"]);
 var own_expenses = angular.module('own_expenses',["ngRoute"]);
 var arrival_form = angular.module('arrival_form',["ngRoute"]);
 var commission_form = angular.module('commission_form',["ngRoute"]);
+var claims = angular.module('claims',["ngRoute"]);
 
 app.config(function($routeProvider, $locationProvider) {
     $routeProvider

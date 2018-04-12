@@ -42,6 +42,10 @@
         <script src="{{ asset("js/app/models/fitFlightsModel.js") }}" type="text/javascript"></script>
         <script src="{{ asset("js/app/models/commissionFormModel.js") }}" type="text/javascript"></script>
         <script src="{{ asset("js/app/models/claimsModel.js") }}" type="text/javascript"></script>
+        <script src="{{ asset("js/app/models/restaurantsModel.js") }}" type="text/javascript"></script>
+        <script src="{{ asset("js/app/models/ticketsModel.js") }}" type="text/javascript"></script>
+        <script src="{{ asset("js/app/models/commonModel.js") }}" type="text/javascript"></script>
+        <script src="{{ asset("js/app/models/attractionsModel.js") }}" type="text/javascript"></script>
         
         <link href="{{ asset("css/font-awesome.css") }}" rel="stylesheet" type="text/css"/>
         <link href="{{ asset("js/bootstrap-3.3.5/css/bootstrap.min.css") }}" rel="stylesheet" type="text/css"/>

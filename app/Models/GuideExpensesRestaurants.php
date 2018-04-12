@@ -15,6 +15,20 @@ class GuideExpensesRestaurants extends Model
      */
     protected $table = 'guide_expenses_restaurants';
     
+    /**
+     * One:One relationship between tourguide_claims & guide_expenses_restaurants
+     */
+    public function claims()
+    {
+        return $this->belongsTo('App\Models\TourGuideClaims',"tour_guide_claim_id","id");
+    }
     
+    /**
+     * One:One relationship between restaurants & guide_expenses_restaurants
+     */
+    public function restaurants()
+    {
+        return $this->belongsTo('App\Models\Restaurants',"restaurant_id","id");
+    }
     
 }
