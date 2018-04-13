@@ -15,9 +15,8 @@ var app = angular.module('myApp',
     'forms', 
     'safety_contracts',
     "own_expenses",
-    "arrival_form",
-    "commission_form",
-    "claims",
+    "in_store",
+    "feedback"
 ]);
 
 var tour_guide = angular.module('tour_guide',["ngRoute"]);
@@ -25,11 +24,10 @@ var fit_bookings = angular.module('fit_bookings',["ngRoute"]);
 var forms = angular.module('forms',["ngRoute"]);
 var safety_contracts = angular.module('safety_contracts',["ngRoute"]);
 var own_expenses = angular.module('own_expenses',["ngRoute"]);
-var arrival_form = angular.module('arrival_form',["ngRoute"]);
-var commission_form = angular.module('commission_form',["ngRoute"]);
-var claims = angular.module('claims',["ngRoute"]);
+var in_store = angular.module('in_store',["ngRoute"]);
+var feedback = angular.module('feedback',["ngRoute"]);
 
-app.config(function($routeProvider, $locationProvider) {
+app.config(function($routeProvider) {
     $routeProvider
         .when('/', {
           controller:'LoginController',
@@ -43,39 +41,25 @@ app.config(function($routeProvider, $locationProvider) {
           controller:'FormsController',
           templateUrl: viewUrl+'/fitbookings/forms',
         })
-        .when('/fitbookings/details/:fitBookingId', {
-          controller:'FitBookingsDetailsController',
-          templateUrl: viewUrl+'/fitbookings/details',
-        })
-        .when('/fitbookings/welcome/:fitBookingId', {
-          controller:'WelcomeController',
-          templateUrl: viewUrl+'/fitbookings/welcome',
-        })
-        .when('/safety-contracts/index/:fitBookingId',{
+        .when('/safety-contract/index/:fitBookingId',{
             controller:'SafetyContractController',
-            templateUrl: viewUrl+'/safety-contracts/index',
+            templateUrl: viewUrl+'/safety-contract/index',
         })
         .when('/own-expenses/index/:fitBookingId',{
             controller:'OwnExpensesController',
             templateUrl: viewUrl+'/own-expenses/index',
         })
-        .when('/arrival/index/:fitBookingId',{
-            controller:'ArrivalFormController',
-            templateUrl: viewUrl+'/arrival/index',
+        .when('/in-store/index/:fitBookingId',{
+            controller: 'InStoreController',
+            templateUrl: viewUrl+'/in-store/index'
         })
-        .when('/commissions/index/:fitBookingId',{
-            controller:'CommissionFormController',
-            templateUrl: viewUrl+'/commissions/index',
+        .when('/feedback/index/:fitBookingId',{
+            controller: 'FeedbackController',
+            templateUrl: viewUrl+'/feedback/index'
         })
-        .when('/claims/index/:fitBookingId',{
-            controller:'ClaimsController',
-            templateUrl: viewUrl+'/claims/index',
-        })
-        .otherwise({
-            templateUrl: viewUrl+'/errors/404',
-        });
+        .otherwise("/");
         
-    //$locationProvider.html5Mode(true);
+    //console.log($cookies.get("apiToken"));
 });
 
 app.run(['$http' , "$cookies", "$rootScope", "$location", function($http, $cookies, $rootScope, $location) {
@@ -99,19 +83,20 @@ app.run(['$http' , "$cookies", "$rootScope", "$location", function($http, $cooki
     $rootScope.curMonth = moment().format("MM");
     $rootScope.curDay = moment().format("DD");
     
-    $rootScope.$on("$routeChangeStart", function(evt, to, from) {
-        if(typeof $cookies.get("apiToken") !== "undefined" && to.$$route.originalPath == "/"){
-            $location.path("/fitbookings/list");
+    /*$rootScope.$on("$routeChangeStart", function(evt, to, from) {
+        // requires authorization?
+        console.log(to);
+        if (to.authorize === true)
+        {
+            to.resolve = to.resolve || {};
         }
-        
-     });
+     });*/
 
      $rootScope.$on("$routeChangeError", function(evt, to, from, error) {
          if (error.status == 401)
          {
              // redirect to login with original path we'll be returning back to
              $location.path("/");
-             $cookies.remove("apiToken");
          }
      });
      
@@ -132,10 +117,6 @@ app.run(['$http' , "$cookies", "$rootScope", "$location", function($http, $cooki
 app.filter("formatDate",function formatDate(){
     return function(text,format){
         return moment(text).format(format);
-    }
-}).filter("html", function html($sce){
-    return function(text){
-        return $sce.trustAsHtml(text);
     }
 });
 

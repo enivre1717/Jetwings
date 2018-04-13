@@ -47,6 +47,18 @@ class ViewsController extends \App\Http\Controllers\Controller
     public function welcome(){
         return view("fitbookings.welcome");
     }
+
+    /* Load in store form */
+    public function inStore(){
+        
+        return view("instore.index");
+    }
+
+    /* Load feedback form */
+    public function feedback(){
+        
+        return view("feedback.index");
+    }
     
     /* Load Arrival Form */
     public function arrival(){

@@ -19,6 +19,8 @@ Route::group(['namespace' => 'Web'], function () {
     Route::get('/fitbookings/forms', "ViewsController@forms");
     Route::get('/fitbookings/details', "ViewsController@bookingDetails");
     Route::get('/fitbookings/welcome', "ViewsController@welcome");
+    Route::get('/in-store/index', "ViewsController@inStore");
+    Route::get('/feedback/index', "ViewsController@feedback");
     
     Route::get('/safety-contracts/index', "ViewsController@safetyContracts");
     Route::get('/own-expenses/index', "ViewsController@ownExpenses");

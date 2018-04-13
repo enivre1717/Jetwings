@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html ng-app="myApp">
     <head>
-        <base href="{{url("/")}}">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<meta name="language" content="en" />
@@ -28,9 +27,8 @@
         <script src="{{ asset("js/app/controllers/FormsController.js") }}" type="text/javascript"></script>
         <script src="{{ asset("js/app/controllers/SafetyContractController.js") }}" type="text/javascript"></script>
         <script src="{{ asset("js/app/controllers/OwnExpensesController.js") }}" type="text/javascript"></script>
-        <script src="{{ asset("js/app/controllers/ArrivalFormController.js") }}" type="text/javascript"></script>
-        <script src="{{ asset("js/app/controllers/CommissionFormController.js") }}" type="text/javascript"></script>
-        <script src="{{ asset("js/app/controllers/ClaimsController.js") }}" type="text/javascript"></script>
+        <script src="{{ asset("js/app/controllers/InStoreController.js") }}" type="text/javascript"></script>
+        <script src="{{ asset("js/app/controllers/FeedbackController.js") }}" type="text/javascript"></script>
         
         <script src="{{ asset("js/app/models/tourguideModel.js") }}" type="text/javascript"></script>
         <script src="{{ asset("js/app/models/fitbookingsModel.js") }}" type="text/javascript"></script>
@@ -38,14 +36,8 @@
         <script src="{{ asset("js/app/models/saleAgenciesModel.js") }}" type="text/javascript"></script>
         <script src="{{ asset("js/app/models/safetyContractsModel.js") }}" type="text/javascript"></script>
         <script src="{{ asset("js/app/models/ownExpensesModel.js") }}" type="text/javascript"></script>
-        <script src="{{ asset("js/app/models/arrivalFormModel.js") }}" type="text/javascript"></script>
-        <script src="{{ asset("js/app/models/fitFlightsModel.js") }}" type="text/javascript"></script>
-        <script src="{{ asset("js/app/models/commissionFormModel.js") }}" type="text/javascript"></script>
-        <script src="{{ asset("js/app/models/claimsModel.js") }}" type="text/javascript"></script>
-        <script src="{{ asset("js/app/models/restaurantsModel.js") }}" type="text/javascript"></script>
-        <script src="{{ asset("js/app/models/ticketsModel.js") }}" type="text/javascript"></script>
-        <script src="{{ asset("js/app/models/commonModel.js") }}" type="text/javascript"></script>
-        <script src="{{ asset("js/app/models/attractionsModel.js") }}" type="text/javascript"></script>
+        <script src="{{ asset("js/app/models/inStoreModel.js") }}" type="text/javascript"></script>
+        <script src="{{ asset("js/app/models/feedbackModel.js") }}" type="text/javascript"></script>
         
         <link href="{{ asset("css/font-awesome.css") }}" rel="stylesheet" type="text/css"/>
         <link href="{{ asset("js/bootstrap-3.3.5/css/bootstrap.min.css") }}" rel="stylesheet" type="text/css"/>
