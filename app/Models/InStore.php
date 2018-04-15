@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 use App\Models\InStoreAttractions;
 use App\Models\InStoreNames;
@@ -37,14 +39,14 @@ class InStore extends Model
         $hasSaved = false;
         $aryAttractions = array();
         $aryNames = array();
-        
-        dd($data);
-        exit;
 
         $inStoreModel = new InStore;
         
         $inStoreModel->fit_booking_id = $data['fitBookingId'];
         $inStoreModel->representative = $data['representative'];
+        $inStoreModel->add_remove_attraction = $data['addRemoveAttraction'];
+        $inStoreModel->signature = $data['signature'];
+        $inStoreModel->tour_leader_signature = $data['tourLeaderSignature'];
         $inStoreModel->created_by = Auth::id();
         $inStoreModel->updated_by = Auth::id();
         

@@ -12,13 +12,13 @@
                 <p>
                     <label class="radio">
                         建议增加景点。
-                        <input value="Add" name="InStoreForms[add_remove_attraction]" id="InStoreForms_add_remove_attraction" type="radio"><i></i>
+                        <input value="Add" ng-model="inStore.addRemoveAttraction" name="add_remove_attraction" type="radio"><i></i>
                     </label>
                 </p>
                 <p>
                 <label class="radio">
                     客人要求减少景点。
-                    <input value="Remove" name="InStoreForms[add_remove_attraction]" id="InStoreForms_add_remove_attraction" type="radio"><i></i>
+                    <input value="Remove" ng-model="inStore.addRemoveAttraction" name="add_remove_attraction" type="radio"><i></i>
                 </label>
                 </p>
             </div>
