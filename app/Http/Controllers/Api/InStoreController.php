@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
+use App\Models\InStore;
+
 class InStoreController extends \App\Http\Controllers\Controller
 {
     public function __construct()
@@ -20,7 +22,7 @@ class InStoreController extends \App\Http\Controllers\Controller
             
             $inStoreModel = new InStore;
             
-            $aryResponse = $ownExpensesModel->submitForm($request->input("inStore"));
+            $aryResponse = $inStoreModel->submitForm($request->input("inStore"));
 
         }catch(\Exception $e){
             $statusCode=config("app.status_code.Exception");

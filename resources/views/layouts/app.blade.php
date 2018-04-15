@@ -38,6 +38,9 @@
         <script src="{{ asset("js/app/models/ownExpensesModel.js") }}" type="text/javascript"></script>
         <script src="{{ asset("js/app/models/inStoreModel.js") }}" type="text/javascript"></script>
         <script src="{{ asset("js/app/models/feedbackModel.js") }}" type="text/javascript"></script>
+
+        <script src="{{ asset("js/jquery.signature/jquery.signature.min.js") }}" type="text/javascript"></script>
+        <script src="{{ asset("js/jquery.signature/excanvas.js") }}" type="text/javascript"></script>
         
         <link href="{{ asset("css/font-awesome.css") }}" rel="stylesheet" type="text/css"/>
         <link href="{{ asset("js/bootstrap-3.3.5/css/bootstrap.min.css") }}" rel="stylesheet" type="text/css"/>
@@ -46,6 +49,8 @@
         <link href="{{ asset("js/jquery-ui.css") }}" rel="stylesheet" type="text/css"/>
         <link href="{{ asset("js/ui-lightness/jquery-ui-1.8.16.custom.css") }}" rel="stylesheet" type="text/css"/>
         <link href="{{ asset("css/main.css") }}" rel="stylesheet" type="text/css"/>
+
+        <link href="{{ asset("js/jquery.signature/jquery.signature.css") }}" rel="stylesheet" type="text/css"/>
         
         <!--<link href="<?php //echo Yii::app()->request->baseUrl; ?>/css/common.css" rel="stylesheet" type="text/css"/>-->
         <title>JetWings International Pte Ltd - @yield('title')</title>

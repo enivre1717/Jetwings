@@ -59,6 +59,7 @@ Route::group(['namespace' => 'Api','prefix' => 'api'], function () {
     
     Route::post('safety-contracts/submit', "SafetyContractController@submitForm");
     Route::post('own-expenses/submit', "OwnExpensesController@submitForm");
+    Route::post('in-store/submit', "InStoreController@submitForm");
     Route::post('arrival-form/submit', "ArrivalFormController@submitForm");
     Route::post('commission-form/submit', "CommissionFormController@submitForm");
     

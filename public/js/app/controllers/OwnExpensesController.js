@@ -5,7 +5,7 @@ own_expenses.controller("OwnExpensesController", ["$scope", "$rootScope", "$rout
         
         var fitBookingId = $route.current.params.fitBookingId;
         
-        $scope.ownExpenses = {};
+        $scope.ownExpenses = {}; 
         
         $scope.ownExpenses.fitBookingId = fitBookingId;
         

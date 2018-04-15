@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -38,5 +38,38 @@ class InStore extends Model
         $aryAttractions = array();
         $aryNames = array();
         
+        dd($data);
+        exit;
+
+        $inStoreModel = new InStore;
+        
+        $inStoreModel->fit_booking_id = $data['fitBookingId'];
+        $inStoreModel->representative = $data['representative'];
+        $inStoreModel->created_by = Auth::id();
+        $inStoreModel->updated_by = Auth::id();
+        
+        if($inStoreModel->save()){
+            
+            $hasSaved = true;
+            
+            foreach($data["attractions"] as $key=>$value){
+                $attractionsModel = new InStoreAttractions;
+                $attractionsModel->attraction = $value["attraction"];
+                $attractionsModel->timestamps = false;
+                $aryAttractions[] = $attractionsModel;
+            }
+            
+            foreach($data["names"] as $key=>$value){
+                $namesModel = new InStoreNames;
+                $namesModel->name = $value["name"];
+                $namesModel->timestamps = false;
+                $aryNames[] = $namesModel;
+            }
+            
+            $inStoreModel->attractions()->saveMany($aryAttractions);
+            $inStoreModel->names()->saveMany($aryNames);
+        }
+        
+        return $hasSaved;
     }
 }

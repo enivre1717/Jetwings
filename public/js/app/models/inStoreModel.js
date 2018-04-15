@@ -4,15 +4,13 @@ app.factory('inStoreModel', function($http, $route){
 	var obj = {};
 	
 	obj.submitForm = function(inStore){
-            
             var data = {
                 "inStore": inStore
             };
-            
-            return $http.post(apiUrl+"/in-store", data);
+            // console.log("IN STORE FROM DATA",data);
+            return $http.post(apiUrl+"/in-store/submit", data);
         };
 	
-        
 	return obj;
 
 });
