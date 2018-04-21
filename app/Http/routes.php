@@ -62,6 +62,7 @@ Route::group(['namespace' => 'Api','prefix' => 'api'], function () {
     Route::post('in-store/submit', "InStoreController@submitForm");
     Route::post('arrival-form/submit', "ArrivalFormController@submitForm");
     Route::post('commission-form/submit', "CommissionFormController@submitForm");
+    Route::post('feedback/submit', "FeedbackController@submitForm");
     
     Route::get('arrival-form/{id}', "ArrivalFormController@index");
     Route::get('commission-form/{id}', "CommissionFormController@index");
