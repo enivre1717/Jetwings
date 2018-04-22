@@ -222,7 +222,12 @@ div.row{
 
 /** Start Form **/
 form{
+<<<<<<< HEAD
     /*margin: 15% auto;*/
+=======
+    width:70%;
+    margin: 50px auto;
+>>>>>>> bugbee
 }
 
 /*form input{
@@ -439,9 +444,10 @@ A.purple:hover{
 .sigWrapper .sigNav { list-style: none; float: right; }
 
 /** End Welcome Sign **/
-#feedback-form .marginTop50 label { float: left !important; margin-right: 10px; margin-top: 10px; }
-#feedback-form .short { width: 15%; margin-right: 10px; }
-#feedback-form .sigWrapper + label, #feedback-form .sigWrapper + label + label { text-align: center; width: 100%; }
+
+.form .representative label, .form .names label { float: left !important; margin-right: 10px; margin-top: 10px; }
+.form .short { width: 15%; margin-right: 10px; float: left; }
+.form .sigWrapper + label, #feedback-form .sigWrapper + label + label { text-align: center; width: 100%; }
 
 .panel { margin-top: 10px; }
 .panel-default > .panel-heading { background-color: #ed7d31; }
@@ -478,4 +484,3 @@ A.purple:hover{
     background-color:#fff4e7;
 }
 /** End Tour Guide Claims **/
->>>>>>> Jervine

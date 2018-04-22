@@ -1,12 +1,11 @@
 <h1>增加/减少景点协议书</h1>
 
 <div ng-controller="InStoreController">
-    IN STORE
-    <a href="#!/fitbookings/forms/@{{ownExpenses.fitBookingId}}" class="btn btn-info primary-btn">Back</a>
+    <a href="#!/fitbookings/forms/@{{inStore.fitBookingId}}" class="btn primary-btn orange">Back</a>
     <div class="clear"></div>
 
     <div class="form">
-        <form name="form" class="j-forms form">
+        <form name="form" class="j-forms">
             <div class="row">
                 <p>为丰富旅游者的娱乐活动及购物需求，旅行社在不影响正常行程安排的前提下，</p>
                 <p>
@@ -25,16 +24,16 @@
 
             <div class="row attractions">
                 <div class="row" ng-repeat="attraction in inStore.attractions">
-                    <div class="col-md-5">
-                        <label>景点:</label>
+                    <div class="col-md-10 col-xs-12">
+                        <!-- <label>景点:</label> -->
                         <input type="text" placeholder="景点" maxlength="255" class="form-control" name="attraction[@{{$index}}]" ng-model="attraction.attraction"/>
                         <div class="clear"></div>
                     </div>
                 </div>
                 
                 <div class="row">
-                    <div class="col-md-5">
-                        <button class="btn btn-info primary-btn" ng-click="addAttraction();">添加景点</button>
+                    <div class="col-md-12">
+                        <button class="btn primary-btn orange pull-right" ng-click="addAttraction();">添加景点</button>
                     </div>
                 </div>
             </div>
@@ -45,7 +44,7 @@
             </div>
 
             <div class="row">
-                <div class="col-xs-9 col-md-9">
+                <div class="col-xs-9 col-md-9 no-padding-left">
                     <div class="sigWrapper">
                         <ul class="sigNav">
                             <li class="clearButton"><a href="#clear">Clear</a></li>
@@ -58,7 +57,7 @@
                     <label>客人签名</label>
                 </div>
                 
-                <div class="col-xs-2 col-md-2">
+                <div class="col-xs-3 col-md-3 no-padding-right">
                     <div class="sigWrapper">
                         <ul class="sigNav">
                             <li class="clearButton"><a href="#clear">Clear</a></li>
@@ -80,23 +79,24 @@
             </div>
 
             <div class="row customer-names">
-                <div class="row" ng-repeat="name in inStore.names">
-                    <div class="col-md-5">
+                <div class="row names" ng-repeat="name in inStore.names">
+                    <div class="col-md-1">
                         <label>景点:</label>
-                        <input type="text" placeholder="景点" maxlength="255" class="form-control" name="name[@{{$index}}]" ng-model="name.name"/>
-                        <div class="clear"></div>
+                    </div>
+                    <div class="col-md-3">
+                        <input type="text" placeholder="名" maxlength="255" class="form-control" name="name[@{{$index}}]" ng-model="name.name"/>
                     </div>
                 </div>
                 
                 <div class="row">
                     <div class="col-md-5">
-                        <button class="btn btn-info primary-btn" ng-click="addName();">添加景点</button>
+                        <button class="btn primary-btn orange" ng-click="addName();">添加景点</button>
                     </div>
                 </div>
             </div>
             
             <div class="row buttons">
-                <button class="btn btn-info primary-btn" ng-click="submitForm(inStore);">Submit</button>
+                <button class="btn primary-btn orange" ng-click="submitForm(inStore);">Submit</button>
             </div>
         </form>
     </div>
