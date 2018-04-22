@@ -31,4 +31,57 @@ class GuideExpensesRestaurants extends Model
         return $this->belongsTo('App\Models\Restaurants',"restaurant_id","id");
     }
     
+    /* Insert/ Update/ Delete Expenses Fee
+     * 
+     * @params object $claimModel, array $expensesRestaurants
+     */
+    public function updateExpensesRestaurant($claimModel, $expensesRestaurants){
+        
+        $aryExpensesRestaurants = array();
+        
+        foreach($expensesRestaurants as $key=>$value){
+            if(!empty($value["id"])){
+                
+                $expensesRestaurantsModel = GuideExpensesRestaurants::find($value["id"]);
+                
+                //if id is not empty, restaurant_id also not empty
+                if(empty($value["restaurant_id"])){
+                    
+                    //update
+                    $expensesRestaurantsModel->restaurant_id = $value["restaurant_id"];
+                    $expensesRestaurantsModel->amount = $value["amount"];
+                    $expensesRestaurantsModel->claim_option_id=  $value["claim_option_id"];
+                    $expensesRestaurantsModel->timestamps = false;
+                    $aryExpensesRestaurants[] = $expensesRestaurantsModel;
+                    
+                }else{
+                    //delete
+                    
+                    $expensesRestaurantsModel->delete();
+                }
+                
+            }else{
+                
+                //if id is empty and restaurant_id is not empty
+                
+                if(!empty($value["restaurant_id"])){
+                    //insert
+                    $expensesRestaurantsModel = new GuideExpensesRestaurants;
+                    $expensesRestaurantsModel->restaurant_id = $value["restaurant_id"];
+                    $expensesRestaurantsModel->amount = $value["amount"];
+                    $expensesRestaurantsModel->claim_option_id=  $value["claim_option_id"];
+                    $expensesRestaurantsModel->timestamps = false;
+                    $aryExpensesRestaurants[] = $expensesRestaurantsModel;
+                }
+            }//if id 
+            
+        }//foreach
+        
+
+        if(count($aryExpensesRestaurants)>0){
+            $claimModel->expensesRestaurants()->saveMany($aryExpensesRestaurants);
+        }
+            
+    }
+    
 }

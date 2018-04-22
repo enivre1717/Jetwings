@@ -143,4 +143,132 @@ class TourguideClaims extends Model
         return $result;
     }
     
+    public function submitClaims($claim){
+        
+        //if there is no claim id
+        if(empty($claim["id"])){
+            
+            return self::insertClaims($claim);
+            
+        }//if has claim id
+
+        
+        
+        /*if($inStoreModel->save()){
+            
+            $hasSaved = true;
+            
+            foreach($data["attractions"] as $key=>$value){
+                $attractionsModel = new InStoreAttractions;
+                $attractionsModel->attraction = $value["attraction"];
+                $attractionsModel->timestamps = false;
+                $aryAttractions[] = $attractionsModel;
+            }
+            
+            foreach($data["names"] as $key=>$value){
+                $namesModel = new InStoreNames;
+                $namesModel->name = $value["name"];
+                $namesModel->timestamps = false;
+                $aryNames[] = $namesModel;
+            }
+            
+            $inStoreModel->attractions()->saveMany($aryAttractions);
+            $inStoreModel->names()->saveMany($aryNames);
+        }*/
+        
+        return false;
+    }
+    
+    /* Insert Claim into DB
+     * 
+     * @params array $claim
+     * @return boolean
+     */
+    public function insertClaims($claim){
+        
+        $hasSaved = false;
+        $aryExpensesFees = array();
+        $aryExpensesRestaurants = array();
+        $aryExpensesTaxis = array();
+        $aryExpensesTips = array();
+        $aryIncomeOwns = array();
+        $aryIncomeProducts = array();
+        $aryOtherIncomes = array();
+        $aryOtherExpenses = array();
+        $aryTicketExpenses = array();
+        
+        //insert into DB
+        $claimModel = new TourguideClaims;
+
+        $claimModel->fit_booking_id = $claim['fit_booking_id'];
+        $claimModel->tour_guide_id = Auth::id();
+        $claimModel->advance_cash = !empty($claim['advance_cash']) ? $claim['advance_cash'] : 0;
+        $claimModel->status = "Pending";
+        $claimModel->added_by_id = Auth::id();
+        $claimModel->updated_by_id = Auth::id();
+
+        if($claimModel->save()){
+            
+            $hasSaved = true;
+            
+            if(isset($claim["expenses_fees"])){
+                $expensesFeeModel = new GuideExpensesFees;
+                $expensesFeeModel->updateExpensesFees($claimModel,$claim["expenses_fees"]);
+            }
+            
+            if(isset($claim["expenses_restaurants"])){
+                $expensesRestaurantsModel = new GuideExpensesRestaurants;
+                $expensesRestaurantsModel->updateExpensesRestaurant($claimModel,$claim["expenses_restaurants"]);
+            }
+            
+            if(isset($claim["expenses_taxis"])){
+                $expensesTaxisModel = new GuideExpensesTaxis;
+                $expensesTaxisModel->updateExpensesTaxis($claimModel,$claim["expenses_taxis"]);
+            }
+            
+            if(isset($claim["expenses_tips"])){
+                $expensesTipsModel = new GuideExpensesTips;
+                $expensesTipsModel->updateExpensesTips($claimModel,$claim["expenses_tips"]);
+            }
+            
+            if(isset($claim["ticket_expenses"])){
+                
+                $ticketExpensesModel = new GuideTicketExpenses;
+                $ticketExpensesModel->updateTicketExpenses($claimModel,$claim["ticket_expenses"]);
+                
+            }
+            
+            if(isset($claim["other_expenses"])){
+                
+                $otherExpensesModel = new GuideOtherExpenses;
+                $otherExpensesModel->updateOtherExpenses($claimModel,$claim["other_expenses"]);
+                
+            }
+            
+            if(isset($claim["income_owns"])){
+                
+                $incomeOwnsModel = new GuideIncomeOwns;
+                $incomeOwnsModel->updateIncomeOwns($claimModel,$claim["income_owns"]);
+                
+            }
+            
+            if(isset($claim["income_products"])){
+                
+                $incomeProductsModel = new GuideIncomeProducts;
+                $incomeProductsModel->updateIncomeProducts($claimModel,$claim["income_products"]);
+                
+            }
+            
+            if(isset($claim["other_incomes"])){
+                
+                $otherIncomesModel = new GuideOtherIncomes;
+                $otherIncomesModel->updateOtherIncomes($claimModel,$claim["other_incomes"]);
+                
+            }
+            
+        }//if saved
+        
+        return $hasSaved;
+    }
+    
 }

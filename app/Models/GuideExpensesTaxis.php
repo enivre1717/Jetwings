@@ -23,4 +23,32 @@ class GuideExpensesTaxis extends Model
         return $this->belongsTo('App\Models\TourGuideClaims',"tour_guide_claim_id","id");
     }
     
+    /* Insert/ Update/ Delete Expenses Taxis
+     * 
+     * @params object $claimModel, array $expensesTaxis
+     */
+    public function updateExpensesTaxis($claimModel, $expensesTaxis){
+        
+        $aryExpensesTaxis = array();
+        
+        foreach($expensesTaxis as $key=>$value){
+            //if have id, update
+            if(!empty($value["id"])){
+                $expensesTaxisModel = self::find($value["id"]);
+                
+            }else{
+                $expensesTaxisModel = new GuideExpensesTaxis;
+             }
+             
+             $expensesTaxisModel->amount = $value["amount"];
+             $expensesTaxisModel->claim_option_id=  $value["claim_option_id"];
+             $expensesTaxisModel->timestamps = false;
+             $aryExpensesTaxis[] = $expensesTaxisModel;
+        }
+
+        if(count($aryExpensesTaxis)>0){
+            $claimModel->expensesTaxis()->saveMany($aryExpensesTaxis);
+        }
+        
+    }
 }

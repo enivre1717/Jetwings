@@ -8,14 +8,14 @@ app.factory('claimsModel', function($http, $route){
             return $http.get(apiUrl+"/claims/"+fitbookingId);
         };
 	
-        /*obj.submitForms = function(commissions){
+        obj.submitForms = function(claim){
             
             var data = {
-                "commissions": commissions
+                "claim": claim
             };
             
-            return $http.post(apiUrl+"/commission-form/submit", data);
-        };*/
+            return $http.post(apiUrl+"/claims/submit", data);
+        };
         
 	return obj;
 

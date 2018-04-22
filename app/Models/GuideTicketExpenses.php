@@ -31,4 +31,58 @@ class GuideTicketExpenses extends Model
         return $this->belongsTo('App\Models\Tickets',"id","ticket");
     }
     
+    /* Insert/ Update/ Delete Ticket Expenses
+     * 
+     * @params object $claimModel, array $ticketExpenses
+     */
+    public function updateTicketExpenses($claimModel, $ticketExpenses){
+        
+        $aryTicketExpenses = array();
+        
+        foreach($ticketExpenses as $key=>$value){
+            if(!empty($value["id"])){
+                
+                $ticketExpensesModel = GuideTicketExpenses::find($value["id"]);
+                
+                //if id is not empty, ticket also not empty
+                if(empty($value["ticket"])){
+                    
+                    //update
+                    $ticketExpensesModel->ticket = $value["ticket"];
+                    $ticketExpensesModel->other_ticket = $value["other_ticket"];
+                    $ticketExpensesModel->amount = $value["amount"];
+                    $ticketExpensesModel->claim_option_id=  $value["claim_option_id"];
+                    $ticketExpensesModel->timestamps = false;
+                    $aryTicketExpenses[] = $ticketExpensesModel;
+                    
+                }else{
+                    //delete
+                    
+                    $ticketExpensesModel->delete();
+                }
+                
+            }else{
+                
+                //if id is empty and ticket is not empty
+                
+                if(!empty($value["ticket"])){
+                    //insert
+                    $ticketExpensesModel = new GuideTicketExpenses;
+                    $ticketExpensesModel->ticket = $value["ticket"];
+                    $ticketExpensesModel->other_ticket = $value["other_ticket"];
+                    $ticketExpensesModel->amount = $value["amount"];
+                    $ticketExpensesModel->claim_option_id=  $value["claim_option_id"];
+                    $ticketExpensesModel->timestamps = false;
+                    $aryTicketExpenses[] = $ticketExpensesModel;
+                }
+            }//if id 
+            
+        }//foreach
+        
+
+        if(count($aryTicketExpenses)>0){
+            $claimModel->ticketExpenses()->saveMany($aryTicketExpenses);
+        }
+            
+    }
 }
