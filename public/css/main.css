@@ -481,3 +481,20 @@ A.purple:hover{
     background-color:#fff4e7;
 }
 /** End Tour Guide Claims **/
+
+.menu a.btn-small { color: #ffffff; font-size: 18px; margin-top: 10px; }
+.menu .btn-small { float: left; height: 50px; width: 20%; }
+
+@media (max-width: 575.98px) { 
+    .menu .btn-small { width: 100%; }
+    .btn-lg { width: 100%; }
+    .btn-lg span{ margin-top: 12% !important; padding-top: 10% !important; }
+    div.hot-pink { padding-top: 10% !important; }
+}
+
+@media (min-width: 576px) and (max-width: 767.98px) { 
+    .menu .btn-small { width: 100%; }
+    .btn-lg { width: 100%; }
+    .btn-lg span{ margin-top: 12% !important; padding-top: 10% !important; }
+    div.hot-pink { padding-top: 10% !important; }
+}
