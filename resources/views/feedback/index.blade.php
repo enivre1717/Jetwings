@@ -1,9 +1,11 @@
 <h1>意见表</h1>
 
 <div ng-controller="FeedbackController">
-    FEEDBACK
+    <a href="#!/fitbookings/forms/@{{feedback.fitBookingId}}" class="btn primary-btn orange">Back</a>
+    <div class="clear"></div>
+
     <div class="form">
-        <form id="feedback-form" name="form" class="j-forms form" style="margin-top:4% !important;">
+        <form id="feedback-form" name="form" class="j-forms">
             <div class="row">
                 <div class="col-md-5">
                     团号 Tour Code:
@@ -192,7 +194,7 @@
                             </div>
                         </div>
                         <div class="row">
-                            <button class="btn btn-info primary-btn pull-right" ng-click="addRestaurantFeedback();">添加客人</button>
+                            <button class="btn primary-btn pull-right orange" ng-click="addRestaurantFeedback();">添加客人</button>
                         </div>
                     </div>
                 </div>
@@ -234,31 +236,32 @@
                 </div>
                 
             </div>
-            <div class="row marginTop50">
-                <div class="clear"></div>
+            <div class="row representative">
                 <label>本人</label>
                 <input class="form-control short" placeholder="团员代表" name="representative" id="Feedbacks_representative" maxlength="255" type="text" ng-model="feedback.representative" />
                 <label>代表以下团员代签。</label>
+                <div class="clear"></div>
             </div>
 
             <div class="row">
-                <div class="row" ng-repeat="name in feedback.names">
-                    <div class="col-md-5">
+                <div class="row names" ng-repeat="name in feedback.names">
+                    <div class="col-md-1">
                         <label>团员名:</label>
-                        <input type="text" placeholder="景点" maxlength="255" class="form-control" name="name[@{{$index}}]" ng-model="name.name"/>
-                        <div class="clear"></div>
+                    </div>
+                    <div class="col-md-3">
+                        <input type="text" placeholder="名" maxlength="255" class="form-control" name="name[@{{$index}}]" ng-model="name.name"/>
                     </div>
                 </div>
                 
                 <div class="row">
                     <div class="col-md-5">
-                        <button class="btn btn-info primary-btn" ng-click="addName();">添加客人</button>
+                        <button class="btn primary-btn orange" ng-click="addName();">添加客人</button>
                     </div>
                 </div>
             </div>
 
             <div class="row buttons">
-                <button class="btn btn-info primary-btn" ng-click="submitForm(feedback);">Submit</button>
+                <button class="btn primary-btn orange" ng-click="submitForm(feedback);">Submit</button>
             </div>
         </form>
     </div>
