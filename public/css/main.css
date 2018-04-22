@@ -222,12 +222,9 @@ div.row{
 
 /** Start Form **/
 form{
-<<<<<<< HEAD
-    /*margin: 15% auto;*/
-=======
     width:70%;
     margin: 50px auto;
->>>>>>> bugbee
+
 }
 
 /*form input{
