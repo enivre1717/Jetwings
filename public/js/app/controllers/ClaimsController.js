@@ -1,7 +1,7 @@
 'use strict'
 
-claims.controller("ClaimsController", ["$scope", "$route", "$location", "$http", "$uibModal", "$window", "claimsModel", "restaurantsModel", "ticketsModel", "commonModel", "attractionsModel", 
-    function($scope, $route , $location, $http, $uibModal, $window, claimsModel, restaurantsModel, ticketsModel, commonModel, attractionsModel) {
+claims.controller("ClaimsController", ["$scope", "$rootScope", "$route", "$location", "$http", "$uibModal", "$window", "claimsModel", "restaurantsModel", "ticketsModel", "commonModel", "attractionsModel", 
+    function($scope, $rootScope, $route , $location, $http, $uibModal, $window, claimsModel, restaurantsModel, ticketsModel, commonModel, attractionsModel) {
         
         var fitBookingId = $route.current.params.fitBookingId;
         
@@ -415,9 +415,19 @@ claims.controller("ClaimsController", ["$scope", "$route", "$location", "$http",
                             console.log("Error occurred in submitting tour guide claim.");
                         }
                     });
-                        
-                        
-
+        };
+        
+        $scope.getClaimOption = function(claimOptionId){
+            
+            var text = "";
+            angular.forEach($scope.claim_options, function(v,k){
+                if(v.id == claimOptionId){
+                    text = v.text;
+                }
+                
+            });
+            
+            return text;
         };
        
 }]);

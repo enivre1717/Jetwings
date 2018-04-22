@@ -45,7 +45,7 @@ class GuideIncomeOwns extends Model
                 $incomeOwnsModel = GuideIncomeOwns::find($value["id"]);
                 
                 //if id is not empty, attraction_id also not empty
-                if(empty($value["attraction_id"])){
+                if(!empty($value["attraction_id"])){
                     
                     //update
                     $incomeOwnsModel->attraction_id = $value["attraction_id"];

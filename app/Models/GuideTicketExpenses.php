@@ -28,7 +28,7 @@ class GuideTicketExpenses extends Model
      */
     public function tickets()
     {
-        return $this->belongsTo('App\Models\Tickets',"id","ticket");
+        return $this->belongsTo('App\Models\Tickets',"ticket","id");
     }
     
     /* Insert/ Update/ Delete Ticket Expenses
@@ -45,7 +45,7 @@ class GuideTicketExpenses extends Model
                 $ticketExpensesModel = GuideTicketExpenses::find($value["id"]);
                 
                 //if id is not empty, ticket also not empty
-                if(empty($value["ticket"])){
+                if(!empty($value["ticket"])){
                     
                     //update
                     $ticketExpensesModel->ticket = $value["ticket"];

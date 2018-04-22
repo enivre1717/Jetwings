@@ -45,7 +45,7 @@ class GuideExpensesFees extends Model
              $expensesFeeModel->timestamps = false;
              $aryExpensesFees[] = $expensesFeeModel;
         }
-
+        
         if(count($aryExpensesFees)>0){
             $claimModel->expensesFees()->saveMany($aryExpensesFees);
         }

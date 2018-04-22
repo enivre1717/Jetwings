@@ -466,4 +466,8 @@ A.purple:hover{
 .yellow tr:nth-child(odd){
     background-color:#fff4e7;
 }
+
+table .text{
+    color:#333333;
+}
 /** End Tour Guide Claims **/

@@ -37,7 +37,7 @@ class GuideOtherIncomes extends Model
                 $otherIncomesModel = GuideOtherIncomes::find($value["id"]);
                 
                 //if id is not empty, income also not empty
-                if(empty($value["income"])){
+                if(!empty($value["income"])){
                     
                     //update
                     $otherIncomesModel->income = $value["income"];

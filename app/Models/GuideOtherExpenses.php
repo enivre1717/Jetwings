@@ -37,7 +37,7 @@ class GuideOtherExpenses extends Model
                 $otherExpensesModel = GuideOtherExpenses::find($value["id"]);
                 
                 //if id is not empty, claim_option_id also not empty
-                if(empty($value["claim_option_id"])){
+                if(!empty($value["claim_option_id"])){
                     
                     //update
                     $otherExpensesModel->expenses = $value["expenses"];

@@ -22,18 +22,21 @@
                             <option value="undefined">-Select -</option>
                             <option ng-repeat="r in restaurants" ng-value="@{{r.id}}">@{{r.name}}</option>
                         </select>
+                        <div class="text">@{{restaurant.restaurants.name}}</div>
                         <div class="clear"></div>
                         
                         <div>
                             <input name="otherRestuarant[]" class="form-control" ng-show="claim.status != 'Approved' && (restaurant.restaurant_id != undefined && (restaurant.restaurant_id == 0 || restaurant.restaurant_id == 999))" class="form-class" type="text" ng-model ="restaurant.other_restaurant" />
+                            <div class="text">@{{restaurant.other_restaurant}}</div>
                             <div class="clear"></div>
                         </div>
                     </td>
                     <td>
                         <div ng-show="claim.status != 'Approved'" class="input-group">
                             <label class="input-group-addon"><i class="fa fa-usd"></i></label>
-                            <input ng-keyup="calTotal(claim);" class="form-control" name="restaurantAmount[]" ng-model="restaurant.amount" ng-value="restaurant.amount.toFixed(2)"/>
+                            <input type="text" ng-keyup="calTotal(claim);" class="form-control" name="restaurantAmount[]" ng-model="restaurant.amount" ng-value="restaurant.amount.toFixed(2)"/>
                         </div>
+                        <div class="text">@{{restaurant.amount}}</div>
                         <div class="clear"></div>
                     </td>
                 </tr>
@@ -58,8 +61,9 @@
                     <td>
                         <div ng-show="claim.status != 'Approved'" class="input-group">
                             <label class="input-group-addon" for="$"><i class="fa fa-usd"></i></label>
-                            <input ng-keyup="calTotal(claim);" type="text" class="form-control" name="guideFeeAmount" ng-model="claim.expenses_fees[0].amount" ng-value="claim.expenses_fees[0].amount.toFixed(2)"/>
+                            <input type="text"  ng-keyup="calTotal(claim);" type="text" class="form-control" name="guideFeeAmount" ng-model="claim.expenses_fees[0].amount" ng-value="claim.expenses_fees[0].amount.toFixed(2)"/>
                         </div>
+                        <div class="text">@{{claim.expenses_fees[0].amount}}</div>
                         <div class="clear"></div>
                     </td>
 <!--                    <td>
@@ -77,15 +81,17 @@
                     <td>
                         <div ng-show="claim.status != 'Approved'" class="input-group">
                             <label class="input-group-addon" for="$"><i class="fa fa-usd"></i></label>
-                            <input ng-keyup="calTotal(claim);" type="text" class="form-control" name="guideTipsAmount" ng-model="claim.expenses_tips[0].amount" ng-value="claim.expenses_tips[0].amount.toFixed(2)"/>
+                            <input type="text" ng-keyup="calTotal(claim);" type="text" class="form-control" name="guideTipsAmount" ng-model="claim.expenses_tips[0].amount" ng-value="claim.expenses_tips[0].amount.toFixed(2)"/>
                         </div>
+                        <div class="text">@{{claim.expenses_tips[0].amount}}</div>
                         <div class="clear"></div>
                     </td>
                     <td>
                         <div ng-show="claim.status != 'Approved'" class="input-group">
                             <label class="input-group-addon" for="$"><i class="fa fa-usd"></i></label>
-                            <input ng-keyup="calTotal(claim);" type="text" class="form-control" name="guideTaxisAmount" ng-model="claim.expenses_taxis[0].amount" ng-value="claim.expenses_taxis[0].amount.toFixed(2)"/>
+                            <input type="text"  ng-keyup="calTotal(claim);" type="text" class="form-control" name="guideTaxisAmount" ng-model="claim.expenses_taxis[0].amount" ng-value="claim.expenses_taxis[0].amount.toFixed(2)"/>
                         </div>
+                        <div class="text">@{{claim.expenses_taxis[0].amount}}</div>
                         <div class="clear"></div>
                     </td>
                 </tr>
@@ -103,24 +109,26 @@
                         <option value="">-Select -</option>
                         <option ng-repeat="t in tickets" ng-value="@{{t.id}}">@{{t.ticket}}</option>
                     </select>
-                    
+                    <div class="text">@{{ticket.tickets.ticket}}</div>
                     <div class="clear"></div>
                     <div>
-                        <input ng-show="claim.status != 'Approved' && ticket.ticket!='' && ticket.ticket == 0" type="text" name="otherTicket[]" class="form-control" ng-model="ticket.other_ticket" />
+                        <input type="text"  ng-show="claim.status != 'Approved' && ticket.ticket!='' && ticket.ticket == 0" type="text" name="otherTicket[]" class="form-control" ng-model="ticket.other_ticket" />
+                        <div class="text">@{{ticket.other_ticket}}</div>
                         <div class="clear"></div>
                     </div>
                 </td>
                 <td>
                     <div ng-show="claim.status != 'Approved'" class="input-group">
                         <label class="input-group-addon" for="$"><i class="fa fa-usd"></i></label>
-                        <input ng-keyup="calTotal(claim);" type="text" class="form-control" name="ticketExpensesAmount[]" ng-model="ticket.amount" ng-value="ticket.amount.toFixed(2)"/>
+                        <input type="text"  ng-keyup="calTotal(claim);" type="text" class="form-control" name="ticketExpensesAmount[]" ng-model="ticket.amount" ng-value="ticket.amount.toFixed(2)"/>
                     </div>
+                    <div class="text">@{{ticket.amount}}</div>
                     <div class="clear"></div>
                 </td>
             </tr>
             <tr>
                 <td>&nbsp;</td>
-                <td><input ng-show="claim.status != 'Approved'" type="button" ng-click="addTickets();" value="Add Item 新增项目" class="btn btn-info" /></td>
+                <td><input type="text"  ng-show="claim.status != 'Approved'" type="button" ng-click="addTickets();" value="Add Item 新增项目" class="btn btn-info" /></td>
             </tr>
         </table>
     
@@ -135,11 +143,12 @@
                         <option value="">-Select -</option>
                         <option ng-repeat="c in claim_options" ng-value="@{{c.id}}">@{{c.text}}</option>
                     </select>
+                    <div class="text">@{{getClaimOption(other_expenses.claim_option_id)}}</div>
                 </td>
                 <td>
                     <div ng-show="claim.status != 'Approved'" class="input-group">
                         <label class="input-group-addon" for="$"><i class="fa fa-usd"></i></label>
-                        <input ng-keyup="calTotal(claim);" type="text" class="form-control" name="otherExpensesAmount[]" ng-model="other_expenses.amount" ng-value="other_expenses.amount.toFixed(2)"/>
+                        <input type="text"  ng-keyup="calTotal(claim);" type="text" class="form-control" name="otherExpensesAmount[]" ng-model="other_expenses.amount" ng-value="other_expenses.amount.toFixed(2)"/>
                     </div>
                     <div class="clear"></div>
                 </td>
@@ -179,14 +188,14 @@
                         
                     </td>
                     <td>
-                        <input ng-keyup="calTotal(claim); calTotalIncome(income);" type="text" name="qty[]" class="form-control" ng-model="income.qty" />
+                        <input type="text" ng-keyup="calTotal(claim); calTotalIncome(income);" type="text" name="qty[]" class="form-control" ng-model="income.qty" />
                         <div class="clear"></div>
                         
                     </td>
                     <td>
                         <div ng-show="claim.status != 'Approved'" class="input-group">
                             <label class="input-group-addon" for="$"><i class="fa fa-usd"></i></label>
-                            <input ng-keyup="calTotal(claim); calTotalIncome(income);" type="text" class="form-control" name="sellingPrice[]" ng-model="income.selling_price" ng-value="income.selling_price.toFixed(2)"/>
+                            <input type="text" ng-keyup="calTotal(claim); calTotalIncome(income);" type="text" class="form-control" name="sellingPrice[]" ng-model="income.selling_price" ng-value="income.selling_price.toFixed(2)"/>
                         </div>
                         <div class="clear"></div>
                         
@@ -194,7 +203,7 @@
                     <td>
                         <div ng-show="claim.status != 'Approved'" class="input-group">
                             <label class="input-group-addon" for="$"><i class="fa fa-usd"></i></label>
-                            <input ng-keyup="calTotal(claim); calTotalIncome(income);" type="text" class="form-control" name="tlCost[]" ng-model="income.tl_cost" ng-value="income.tl_cost.toFixed(2)"/>
+                            <input type="text" ng-keyup="calTotal(claim); calTotalIncome(income);" type="text" class="form-control" name="tlCost[]" ng-model="income.tl_cost" ng-value="income.tl_cost.toFixed(2)"/>
                         </div>
                         <div class="clear"></div>
                         
@@ -202,7 +211,7 @@
                     <td>
                         <div ng-show="claim.status != 'Approved'" class="input-group">
                             <label class="input-group-addon" for="$"><i class="fa fa-usd"></i></label>
-                            <input ng-keyup="calTotal(claim); calTotalIncome(income);" type="text" class="form-control" name="tgCost[]" ng-model="income.tg_cost" ng-value="income.tg_cost.toFixed(2)"/>
+                            <input type="text" ng-keyup="calTotal(claim); calTotalIncome(income);" type="text" class="form-control" name="tgCost[]" ng-model="income.tg_cost" ng-value="income.tg_cost.toFixed(2)"/>
                         </div>
                         <div class="clear"></div>
                         
@@ -234,12 +243,12 @@
                 </tr>
                 <tr ng-repeat="product in claim.income_products">
                     <td>
-                        <input ng-show="claim.status != 'Approved'" type="text" ng-keyup="calTotal(claim); calTotalProduct(product);" class="form-control" ng-model="product.fee" ng-value="product.fee.toFixed(2)"/>
+                        <input type="text" ng-show="claim.status != 'Approved'" type="text" ng-keyup="calTotal(claim); calTotalProduct(product);" class="form-control" ng-model="product.fee" ng-value="product.fee.toFixed(2)"/>
                         <div class="clear"></div>
                         
                     </td>
                     <td>
-                        <input ng-show="claim.status != 'Approved'" type="text" ng-keyup="calTotal(claim); calTotalProduct(product);" class="form-control" ng-model="product.qty" />
+                        <input type="text" ng-show="claim.status != 'Approved'" type="text" ng-keyup="calTotal(claim); calTotalProduct(product);" class="form-control" ng-model="product.qty" />
                         <div class="clear"></div>
                         
                     </td>
@@ -262,13 +271,13 @@
                 
                 <tr ng-repeat="other_income in claim.other_incomes">
                     <td>
-                        <input ng-show="claim.status != 'Approved'" type="text" name="income[]" class="form-control" ng-model="other_income.income" />
+                        <input type="text" ng-show="claim.status != 'Approved'" type="text" name="income[]" class="form-control" ng-model="other_income.income" />
                         <div class="clear"></div>
                     </td>
                     <td>
                         <div ng-show="claim.status != 'Approved'" class="input-group">
                             <label class="input-group-addon" for="$"><i class="fa fa-usd"></i></label>
-                            <input ng-keyup="calTotal(claim);" type="text" class="form-control" name="otherIncomeAmount[]" ng-model="other_income.amount" ng-value="other_income.amount.toFixed(2)"/>
+                            <input type="text" ng-keyup="calTotal(claim);" type="text" class="form-control" name="otherIncomeAmount[]" ng-model="other_income.amount" ng-value="other_income.amount.toFixed(2)"/>
                         </div>
                         <div class="clear"></div>
                     </td>
@@ -291,7 +300,7 @@
                     <td>
                         <div ng-show="claim.status != 'Approved'" class="input-group" ng-show="claim.status != 'Approved'">
                             <label class="input-group-addon" for="$"><i class="fa fa-usd"></i></label>
-                            <input ng-keyup="calTotal(claim);" type="text" class="form-control" name="advanceCash[]" ng-model="claim.advance_cash" ng-value="claim.advance_cash.toFixed(2)"/>
+                            <input type="text" ng-keyup="calTotal(claim);" type="text" class="form-control" name="advanceCash[]" ng-model="claim.advance_cash" ng-value="claim.advance_cash.toFixed(2)"/>
                         </div>
                         <div class="clear"></div>
                     </td>

@@ -131,7 +131,9 @@ class TourguideClaims extends Model
         $result=self::with(["fitBookings" => function($query){
                     return $query->select(["id","pax_update","driver_tips"]);
                 },"driverTips","expensesFees","expensesRestaurants","expensesTaxis","expensesTips",
-                "incomeOwns","incomeProducts","otherExpenses","otherIncomes","TicketExpenses"])
+                "incomeOwns","incomeProducts","otherExpenses","otherIncomes","TicketExpenses", "expensesRestaurants.restaurants",
+                "TicketExpenses.tickets",
+                ])
                 ->where([
                     ["fit_booking_id","=",$fitBookingId],
                     ["status","<>", "Deleted"],
@@ -145,68 +147,38 @@ class TourguideClaims extends Model
     
     public function submitClaims($claim){
         
-        //if there is no claim id
-        if(empty($claim["id"])){
-            
-            return self::insertClaims($claim);
-            
-        }//if has claim id
-
-        
-        
-        /*if($inStoreModel->save()){
-            
-            $hasSaved = true;
-            
-            foreach($data["attractions"] as $key=>$value){
-                $attractionsModel = new InStoreAttractions;
-                $attractionsModel->attraction = $value["attraction"];
-                $attractionsModel->timestamps = false;
-                $aryAttractions[] = $attractionsModel;
-            }
-            
-            foreach($data["names"] as $key=>$value){
-                $namesModel = new InStoreNames;
-                $namesModel->name = $value["name"];
-                $namesModel->timestamps = false;
-                $aryNames[] = $namesModel;
-            }
-            
-            $inStoreModel->attractions()->saveMany($aryAttractions);
-            $inStoreModel->names()->saveMany($aryNames);
-        }*/
-        
-        return false;
+        return self::updateClaims($claim);
     }
     
-    /* Insert Claim into DB
+    /* Insert/ Update Claim into DB
      * 
      * @params array $claim
      * @return boolean
      */
-    public function insertClaims($claim){
+    public function updateClaims($claim){
         
         $hasSaved = false;
-        $aryExpensesFees = array();
-        $aryExpensesRestaurants = array();
-        $aryExpensesTaxis = array();
-        $aryExpensesTips = array();
-        $aryIncomeOwns = array();
-        $aryIncomeProducts = array();
-        $aryOtherIncomes = array();
-        $aryOtherExpenses = array();
-        $aryTicketExpenses = array();
         
-        //insert into DB
-        $claimModel = new TourguideClaims;
+        if(empty($claim["id"])){
+            
+            //insert into DB
+            $claimModel = new TourguideClaims;
 
-        $claimModel->fit_booking_id = $claim['fit_booking_id'];
-        $claimModel->tour_guide_id = Auth::id();
-        $claimModel->advance_cash = !empty($claim['advance_cash']) ? $claim['advance_cash'] : 0;
-        $claimModel->status = "Pending";
-        $claimModel->added_by_id = Auth::id();
-        $claimModel->updated_by_id = Auth::id();
+            $claimModel->fit_booking_id = $claim['fit_booking_id'];
+            $claimModel->tour_guide_id = Auth::id();
+            $claimModel->advance_cash = !empty($claim['advance_cash']) ? $claim['advance_cash'] : 0;
+            $claimModel->status = "Pending";
+            $claimModel->added_by_id = Auth::id();
+            $claimModel->updated_by_id = Auth::id();
+        
+        }else{
+            
+            //update into DB
+            $claimModel = TourguideClaims::find($claim["id"]);
 
+            $claimModel->advance_cash = !empty($claim['advance_cash']) ? $claim['advance_cash'] : 0;
+        }
+        
         if($claimModel->save()){
             
             $hasSaved = true;

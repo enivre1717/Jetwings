@@ -37,7 +37,7 @@ class GuideIncomeProducts extends Model
                 $incomeProductsModel = GuideIncomeProducts::find($value["id"]);
                 
                 //if id is not empty, fee also not empty
-                if(empty($value["fee"])){
+                if(!empty($value["fee"])){
                     
                     //update
                     $incomeProductsModel->fee = $value["fee"];
