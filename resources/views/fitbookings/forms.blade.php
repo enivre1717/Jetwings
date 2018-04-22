@@ -1,4 +1,8 @@
 <div ng-controller="FormsController">
+    
+    <a href="#!/fitbookings/list" class="btn btn-info primary-btn">Back</a>
+    <div class="clear"></div>
+    
     <div class="alert alert-@{{class}}" ng-show="msg != ''">
         @{{msg}}
     </div>
@@ -30,7 +34,7 @@
         </div>
 
         <div class="col-md-10">
-            <a class="btn btn-small blue" href="#!/safety-contract/index/@{{bookingDetails.id}}">离团安全责任书</a>
+            <a class="btn btn-small blue" href="#!/safety-contracts/index/@{{bookingDetails.id}}">离团安全责任书</a>
             
             <div class="clear"></div>
             
@@ -64,10 +68,10 @@
         </div>
 
         <div class="col-md-10">
-            <a class="btn btn-small orange" href="#!/commission/index/@{{bookingDetails.id}}">佣金单</a>
+            <a class="btn btn-small orange" href="#!/commissions/index/@{{bookingDetails.id}}">佣金单</a>
             <div class="clear"></div>
             
-            <a class="btn btn-small orange" href="#!/claim/index/@{{bookingDetails.id}}">请款单</a>
+            <a class="btn btn-small orange" href="#!/claims/index/@{{bookingDetails.id}}">请款单</a>
             <div class="clear"></div>
         </div>
     </div>

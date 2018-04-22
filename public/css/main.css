@@ -222,8 +222,7 @@ div.row{
 
 /** Start Form **/
 form{
-    width:70%;
-    margin: 15% auto;
+    /*margin: 15% auto;*/
 }
 
 /*form input{
@@ -439,3 +438,32 @@ A.purple:hover{
 .kbw-signature { min-width: 100%; height: 200px; }
 
 /** End Welcome Sign **/
+
+/** Start Tour Guide Claims **/
+
+.blue th{
+    background-color:#5b9bd5;
+    font-weight:bold;
+}
+
+.blue tr:nth-child(odd){
+    background-color:#d2deef;
+}
+
+.blue tr:nth-child(even){
+    background-color:#eaeff7;
+}
+
+.yellow th{
+    background-color:#ffc000;
+    font-weight:bold;
+}
+
+.yellow tr:nth-child(even){
+    background-color:#ffe8cb;
+}
+
+.yellow tr:nth-child(odd){
+    background-color:#fff4e7;
+}
+/** End Tour Guide Claims **/

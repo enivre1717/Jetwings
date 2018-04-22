@@ -30,7 +30,7 @@ class ClaimsController extends \App\Http\Controllers\Controller
             $ClaimsModel=new TourguideClaims;
             
             $aryResponse = $ClaimsModel->getAClaim($fitbookingId, Auth::id());
-
+            
         }catch(\Exception $e){
             $statusCode=config("app.status_code.Exception");
             $aryResponse["message"] = 'Caught exception: '.$e->getMessage()."\n";
@@ -50,9 +50,9 @@ class ClaimsController extends \App\Http\Controllers\Controller
             $aryResponse=array();
             $statusCode=config("app.status_code.OK");
             
-            $commissionFormModel=new TourguideCommissions;
+            $claimsModel=new TourguideClaims;
             
-            $aryResponse = $commissionFormModel->insertCommissionClaims($request->input("commissions"));
+            $aryResponse = $claimsModel->submitClaims($request->input("claim"));
 
         }catch(\Exception $e){
             $statusCode=config("app.status_code.Exception");

@@ -23,4 +23,33 @@ class GuideExpensesTips extends Model
         return $this->belongsTo('App\Models\TourGuideClaims',"tour_guide_claim_id","id");
     }
     
+    /* Insert/ Update/ Delete Expenses Tips
+     * 
+     * @params object $claimModel, array $expensesTaxis
+     */
+    public function updateExpensesTips($claimModel, $expensesTips){
+        
+        $aryExpensesTips = array();
+        
+        foreach($expensesTips as $key=>$value){
+            //if have id, update
+            if(!empty($value["id"])){
+                $expensesTipsModel = self::find($value["id"]);
+                
+            }else{
+                $expensesTipsModel = new GuideExpensesTips;
+             }
+             
+             $expensesTipsModel->amount = $value["amount"];
+             $expensesTipsModel->claim_option_id=  $value["claim_option_id"];
+             $expensesTipsModel->timestamps = false;
+             $aryExpensesTips[] = $expensesTipsModel;
+        }
+
+        if(count($aryExpensesTips)>0){
+            $claimModel->expensesTips()->saveMany($aryExpensesTips);
+        }
+        
+    } 
+    
 }
