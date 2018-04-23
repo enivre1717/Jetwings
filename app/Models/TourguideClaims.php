@@ -132,7 +132,7 @@ class TourguideClaims extends Model
                     return $query->select(["id","pax_update","driver_tips"]);
                 },"driverTips","expensesFees","expensesRestaurants","expensesTaxis","expensesTips",
                 "incomeOwns","incomeProducts","otherExpenses","otherIncomes","TicketExpenses", "expensesRestaurants.restaurants",
-                "TicketExpenses.tickets",
+                "TicketExpenses.tickets", "incomeOwns.attractions"
                 ])
                 ->where([
                     ["fit_booking_id","=",$fitBookingId],

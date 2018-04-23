@@ -26,7 +26,8 @@
         <div class="row">
             <p><label>本人</label>
                 <label class="input">
-                    <input class="form-control" name="name" type="text" ng-model="contract.name" />
+                    <input class="form-control @{{errors.name ? 'error' : ''}}" name="name" type="text" ng-model="contract.name" />
+                    <span class="alert alert-danger" ng-show="errors.name">@{{errors.name[0]}}</span>
                 </label>
                 <label>仍坚持于</label>
                 <label class="short">
@@ -92,31 +93,28 @@
 
 
         <div class="row">
-            <div class="col-xs-5 col-md-5"></div>
-            <div class="col-xs-5 col-md-5">
-                <div class="sigWrapper">
-                    <ul class="sigNav">
-                      <li class="clearButton"><a href="#clear">Clear</a></li>
-                    </ul>
-                    <div class="clear"></div>
-                    <div class="sigPad <?php //print($model->getError("signature") ? "error" : ""); ?>" id="Signature"></div>
-                    <?php //echo $form->hiddenField($model,'signature',array("class"=>"output")); ?>
-                    <div class="clear"></div>
-                    <?php //echo $form->error($model, 'signature',array("class"=>"marginLeft20 errorMessage")); ?>
-                </div>
+            <div class="sigWrapper">
+                <ul class="sigNav">
+                  <li class="clearButton"><a href="#clear">Clear</a></li>
+                </ul>
+                <div class="clear"></div>
+                <div class="sigPad kbw-signature @{{errors.signature ? 'error' : ''}}" id="Signature"></div>
+                <input type="hidden" class="output" id="contract_signature" ng-model="contract.signature" />
+                <div class="alert alert-danger" ng-show="errors.signature">@{{errors.signature[0]}}</div>
+            </div>
 
-                <label>签名</label>
-                <label>（18岁以下需监护人同时签名）</label>
+            <label>签名</label>
+            <label>（18岁以下需监护人同时签名）</label>
 
-                <div class="row">
-                    <label>护照号码</label>
-                    <input class="form-control short" name="Nric" type="text" ng-model="contract.nric"/>
-                    <div class="clear"></div>
-                </div>
+            <div class="row">
+                <label>护照号码</label>
+                <input class="form-control short @{{errors.nric ? 'error' : ''}}" name="Nric" type="text" ng-model="contract.nric"/>
+                <div class="clear"></div>
+                <div class="alert alert-danger" ng-show="errors.nric">@{{errors.nric[0]}}</div>
+            </div>
 
-                <div class="row">
-                    日期：@{{todayDate}}
-                </div>
+            <div class="row">
+                日期：@{{todayDate}}
             </div>
         </div>
 

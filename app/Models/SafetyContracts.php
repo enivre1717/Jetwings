@@ -32,6 +32,7 @@ class SafetyContracts extends Model
         $contractModel->join_date = $data['joinDateYr']."-".$data['joinDateMonth']."-".$data['joinDateDay'];
         $contractModel->created_by = Auth::id();
         $contractModel->updated_by = Auth::id();
+        $contractModel->signature = $data['signature'];
         
         if($contractModel->save()){
             return true;

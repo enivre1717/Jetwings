@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use Validator;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -26,9 +27,26 @@ class SafetyContractController extends \App\Http\Controllers\Controller
             $aryResponse=array();
             $statusCode=config("app.status_code.OK");
             
-            $safetyContractModel=new SafetyContracts;
+            $validator = Validator::make($request->all(), [
+                'name' => 'required',
+                'nric' => 'required',
+                'signature' => 'required',
+            ],[
+                "name.required" => "名字不能为空!",
+                "nric.required" => "护照号码不能为空!",
+                "signature.required" => "签名不能为空!"
+            ]);
             
-            $aryResponse = $safetyContractModel->submitForm($request->input("contract"));
+            if ($validator->fails()) {
+                $aryErrors["errors"] = $validator->errors();
+                
+                $aryResponse = $aryErrors;
+                
+            }else{
+                $safetyContractModel=new SafetyContracts;
+
+                $aryResponse = $safetyContractModel->submitForm($request->input("contract"));
+            }
 
         }catch(\Exception $e){
             $statusCode=config("app.status_code.Exception");

@@ -52,17 +52,24 @@ safety_contracts.controller("SafetyContractController", ["$scope", "$rootScope",
             });
             
         $scope.submitContract = function(contract){
-          
-          safetyContractsModel.submitForm(contract)
+            
+            //retrieve signature
+            contract.signature = $("#contract_signature").val();
+            
+            safetyContractsModel.submitForm(contract)
                   .then(function(results){
                       
-                        if(results.data == true){
-                            $rootScope.showNotification("离团安全责任书已成功提交。","success");
+                        if(typeof results.data.errors !== "undefined" && Object.keys(results.data.errors).length>0){
+                            $scope.errors = results.data.errors;
                         }else{
-                            $rootScope.showNotification("离团安全责任书未提交。","error");
+                            if(results.data == true){
+                                $rootScope.showNotification("离团安全责任书已成功提交。","success");
+                            }else{
+                                $rootScope.showNotification("离团安全责任书未提交。","error");
+                            }
+
+                            $location.path("/fitbookings/forms/"+contract.fitBookingId);
                         }
-                        
-                        $location.path("/fitbookings/forms/"+contract.fitBookingId);
                         
                   }).catch(function(error){
                       
@@ -74,4 +81,14 @@ safety_contracts.controller("SafetyContractController", ["$scope", "$rootScope",
 
                   });
         };
+        
+        // Begin SigPad
+        $('#Signature').signature({syncField: $("#Signature").next("input") });
+        
+        $('.clearButton a').click( function(e) {
+            e.preventDefault();
+            $(this).parents(".sigWrapper").find(".sigPad").signature('clear');
+            $(this).parents(".sigWrapper").find(".sigPad").next("input").val("");
+        });
+        // End SigPad
 }]);
