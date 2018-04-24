@@ -8,12 +8,12 @@
     </div>
     
     <div class="content menu">
-        <div class="col-md-1">
+        <div class="col-md-1 col-sm-12">
             <div class="hot-pink btn-lg"><span>
                 @{{bookingDetails.tour_code}}<br>团队详情</span></div>
         </div>
 
-        <div class="col-md-10">
+        <div class="col-md-10 col-sm-12">
             <a class="btn btn-small hot-pink" href="#!/fitbookings/details/@{{bookingDetails.id}}">团队资料</a>
             <div class="clear"></div>
             
@@ -29,11 +29,11 @@
 
         <div class="clear"></div>
 
-        <div class="col-md-1">
+        <div class="col-md-1 col-sm-12">
             <div class="blue btn-lg"><span>表格</span></div>
         </div>
 
-        <div class="col-md-10">
+        <div class="col-md-10 col-sm-12">
             <a class="btn btn-small blue" href="#!/safety-contracts/index/@{{bookingDetails.id}}">离团安全责任书</a>
             
             <div class="clear"></div>
@@ -63,11 +63,11 @@
 
         <div class="clear"></div>
 
-        <div class="col-md-1">
+        <div class="col-md-1 col-sm-12">
             <div class="orange btn-lg"><span>款项</span></div>
         </div>
 
-        <div class="col-md-10">
+        <div class="col-md-10 col-sm-12">
             <a class="btn btn-small orange" href="#!/commissions/index/@{{bookingDetails.id}}">佣金单</a>
             <div class="clear"></div>
             

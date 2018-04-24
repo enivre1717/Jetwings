@@ -147,7 +147,8 @@ class FitBookings extends Model
                               "transports.transportAgencies","transports.transports"])
                 ->leftJoin('tours', 'fit_bookings.tour_id','=','tours.id')
                 ->leftJoin('sale_agencies',"fit_bookings.sale_agency_id",'=',"sale_agencies.id")
-                ->select(['fit_bookings.*','sale_agencies.name AS company_name','tours.type'])
+                ->leftJoin('tour_guides',"fit_bookings.main_tour_guide_id",'=',"tour_guides.id")
+                ->select(['fit_bookings.*','sale_agencies.name AS company_name','tours.type','tour_guides.name as tour_guide_name'])
                 ->where([
                     ["fit_bookings.id","=",$id]
                 ])->get();

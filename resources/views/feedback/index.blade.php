@@ -24,7 +24,7 @@
 
                 <div class="col-md-5">
                     导游 Tour Guide:
-                    @{{fitBookings.tour_guide_ids}}
+                    @{{fitBookings.tour_guide_name}}
                 </div>
             </div>
             <div class="row">
