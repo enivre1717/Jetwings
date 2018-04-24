@@ -392,6 +392,16 @@ A.purple:hover{
     padding: 15px;
     margin-top: 10px;
 }
+
+.tour-details .green table th{
+    background-color: #bf9000;
+    font-weight: bold;
+}
+
+.tour-details .green table td{
+    background-color: #fff2cc;
+}
+
 /** End booking details**/
 
 /** Start Welcome Sign **/
@@ -503,3 +513,14 @@ table .text{
     color:#333333;
 }
 /** End Tour Guide Claims **/
+
+/** safety form **/
+.safety-form span{
+    float:left;
+    margin-top: 10px;
+}
+
+.safety-form label{
+    margin-left: 10px;
+    display:block;
+}

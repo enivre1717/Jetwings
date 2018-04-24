@@ -1,7 +1,7 @@
 'use strict'
 
-tour_guide.controller("LoginController", ["$scope", "$route", "$http", "$uibModal", "$window", "tourguideModel", "$cookies", "$location", 
-    function($scope, $route, $http, $uibModal, $window, tourguideModel, $cookies, $location) {
+tour_guide.controller("LoginController", ["$scope", "$rootScope", "$route", "$http", "$uibModal", "$window", "tourguideModel", "$cookies", "$location", 
+    function($scope, $rootScope, $route, $http, $uibModal, $window, tourguideModel, $cookies, $location) {
 
     $scope.login = function(user){
         

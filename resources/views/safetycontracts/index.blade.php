@@ -5,10 +5,23 @@
 
     <div class="form">
 
-        <form class="form">
+        <form class="form safety-form">
 
 
-        <?php //echo $form->errorSummary($model,NULL,NULL,array("class"=>"alert-danger alert")); ?>
+        <div class="row alert alert-danger" ng-show="errors">
+            Please fix the following input errors:
+            <ul>
+                <li ng-show="errors.name">@{{errors.name[0]}}</li>
+                <li ng-show="errors.fromDateYr">@{{errors.fromDateYr[0]}}</li>
+                <li ng-show="errors.fromDateDay">@{{errors.fromDateDay[0]}}</li>
+                <li ng-show="errors.toDateYr">@{{errors.toDateYr[0]}}</li>
+                <li ng-show="errors.toDateDay">@{{errors.toDateDay[0]}}</li>
+                <li ng-show="errors.joinDateYr">@{{errors.joinDateYr[0]}}</li>
+                <li ng-show="errors.joinDateDay">@{{errors.joinDateDay[0]}}</li>
+                <li ng-show="errors.signature">@{{errors.signature[0]}}</li>
+                <li ng-show="errors.nric">@{{errors.nric[0]}}</li>
+            </ul>
+        </div>
 
         <div class="row">
             <h2>@{{bookingDetails.tour_code}} - 离团安全责任书</h2>
@@ -20,20 +33,19 @@
             <p>二、	脱团、离团期间自愿放弃原团队行程安排，认可旅游费用均已实际产生，不得要求退还；</p>
             <p>三、	脱团、离团期间产生的费用由本人承担；</p>
             <p>四、	脱团、离团期间遵守中国及所在国相关法律法规，并对自身的安全负责，在能够控制风险的范围内活动，不参加不适合自身条件或</p>
-            <p>有安全危险的旅游活动，若因此导致人身损害、财产损失，旅游者应承担全部责任，不予采取任何方式向<?php //print($company_name); ?>及相关方追究责任；</p>
+            <p>有安全危险的旅游活动，若因此导致人身损害、财产损失，旅游者应承担全部责任，不予采取任何方式向@{{companyName}}及相关方追究责任；</p>
         </div>
 
         <div class="row">
-            <p><label>本人</label>
-                <label class="input">
-                    <input class="form-control @{{errors.name ? 'error' : ''}}" name="name" type="text" ng-model="contract.name" />
-                    <span class="alert alert-danger" ng-show="errors.name">@{{errors.name[0]}}</span>
-                </label>
-                <label>仍坚持于</label>
+            <span>本人</span>
                 <label class="short">
-                    <input class="form-control" name="fromDateYr" type="text" ng-model="contract.fromDateYr"/>
+                    <input class="form-control @{{errors.name ? 'error' : ''}}" name="name" type="text" ng-model="contract.name" />
                 </label>
-                <label>年</label>
+                <span>仍坚持于</span>
+                <label class="short">
+                    <input class="form-control @{{errors.fromDateYr ? 'error' : ''}}" name="fromDateYr" type="text" ng-model="contract.fromDateYr"/>
+                </label>
+                <span>年</span>
                 <label class="input select short">
                     <select class="form-control" name="fromDateMonth" ng-model="contract.fromDateMonth">
                         <option value="">- Select -</option>
@@ -41,15 +53,15 @@
                     </select>
                     <i></i>
                 </label>
-                <label>月</label>
+                <span>月</span>
                 <label class="short">
-                    <input class="form-control" name="fromDateDay" type="text" ng-model="contract.fromDateDay"/>
+                    <input class="form-control @{{errors.fromDateDay ? 'error' : ''}}" name="fromDateDay" type="text" ng-model="contract.fromDateDay"/>
                 </label>
-                <label>日至</label>
+                <span>日至</span>
                 <label class="short">
-                    <input class="form-control" name="ToDateYr" type="text" ng-model="contract.toDateYr" />
+                    <input class="form-control @{{errors.toDateYr ? 'error' : ''}}" name="ToDateYr" type="text" ng-model="contract.toDateYr" />
                 </label>
-                <label>年</label>
+                <span>年</span>
                 <label class="input select short">
                     <select class="form-control" name="ToDateMonth" ng-model="contract.toDateMonth">
                         <option value="">- Select -</option>
@@ -57,20 +69,20 @@
                     </select>
                     <i></i>
                 </label>
-                <label>月</label>
+                <span>月</span>
                 <label class="short">
-                    <input class="form-control" name="ToDateDay" type="text" ng-model="contract.toDateDay" />
+                    <input class="form-control @{{errors.toDateDay ? 'error' : ''}}" name="ToDateDay" type="text" ng-model="contract.toDateDay" />
                 </label>
-                <label>日期间不参加团</label>
-            </p>
+                <span>日期间不参加团</span>
+            
 
             <div class="clear"></div>
 
-            <p><label>队行程，脱团或离团自由活动，于</label>
+            <span>队行程，脱团或离团自由活动，于</span>
                 <label class="short">
-                    <input class="form-control" name="JoinDateYr" type="text" ng-model="contract.joinDateYr"/>
+                    <input class="form-control @{{errors.joinDateYr ? 'error' : ''}}" name="JoinDateYr" type="text" ng-model="contract.joinDateYr"/>
                 </label>
-                <label>年</label>
+                <span>年</span>
                 <label class="input select short">
                     <select class="form-control" name="JoinDateMonth" ng-model="contract.joinDateMonth">
                         <option value="">- Select -</option>
@@ -78,12 +90,12 @@
                     </select>
                     <i></i>
                 </label>
-                <label>月</label>
+                <span>月</span>
                 <label class="short">
-                    <input class="form-control" name="JoinDateDay" type="text" ng-model="contract.joinDateDay"/>
+                    <input class="form-control @{{errors.joinDateDay ? 'error' : ''}}" name="JoinDateDay" type="text" ng-model="contract.joinDateDay"/>
                 </label>
-                <label>日归团继续参加后续</label>
-            </p>
+                <span>日归团继续参加后续</span>
+            
 
             <div class="clear"></div>
 
@@ -100,7 +112,6 @@
                 <div class="clear"></div>
                 <div class="sigPad kbw-signature @{{errors.signature ? 'error' : ''}}" id="Signature"></div>
                 <input type="hidden" class="output" id="contract_signature" ng-model="contract.signature" />
-                <div class="alert alert-danger" ng-show="errors.signature">@{{errors.signature[0]}}</div>
             </div>
 
             <label>签名</label>
@@ -109,8 +120,6 @@
             <div class="row">
                 <label>护照号码</label>
                 <input class="form-control short @{{errors.nric ? 'error' : ''}}" name="Nric" type="text" ng-model="contract.nric"/>
-                <div class="clear"></div>
-                <div class="alert alert-danger" ng-show="errors.nric">@{{errors.nric[0]}}</div>
             </div>
 
             <div class="row">

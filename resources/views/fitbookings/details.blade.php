@@ -4,7 +4,7 @@
     <div class="clear"></div>
     
     <div class="row header">团队资料</div>
-        <div class="row">
+        <div class="row tour-details">
             <div class="col-md-8">
                 <div class="row green table-responsive">
                     <table class="table">

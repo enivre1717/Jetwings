@@ -83,6 +83,10 @@ app.config(function($routeProvider, $locationProvider) {
             controller: 'FeedbackController',
             templateUrl: viewUrl+'/feedback/index'
         })
+        .when('/logout',{
+            controller: 'LogoutController',
+            templateUrl: viewUrl+'/login',
+        })
         .otherwise({
             templateUrl: viewUrl+'/errors/404',
         });
@@ -113,9 +117,16 @@ app.run(['$http' , "$cookies", "$rootScope", "$location", function($http, $cooki
     
     $rootScope.$on("$routeChangeStart", function(evt, to, from) {
         if(typeof $cookies.get("apiToken") !== "undefined" && to.$$route.originalPath == "/"){
+            $rootScope.isLoggedIn = true;
             $location.path("/fitbookings/list");
         }
-
+        
+        if(typeof $cookies.get("apiToken") != "undefined" && $cookies.get("apiToken")!=""){
+            $rootScope.isLoggedIn = true;
+        }else{
+            $rootScope.isLoggedIn = false;
+        }
+        
      });
 
      $rootScope.$on("$routeChangeError", function(evt, to, from, error) {
@@ -138,7 +149,7 @@ app.run(['$http' , "$cookies", "$rootScope", "$location", function($http, $cooki
          }
          
      };
-  
+     
 }]);
 
 app.filter("formatDate",function formatDate(){

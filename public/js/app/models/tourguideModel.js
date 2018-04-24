@@ -17,6 +17,10 @@ app.factory('tourguideModel', function($http){
             return $http.get(apiUrl+"/me");
             
         };
+        
+        obj.logout = function(){
+            return $http.post(apiUrl+"/logout");
+        };
 	
 	return obj;
 

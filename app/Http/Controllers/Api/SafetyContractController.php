@@ -27,14 +27,30 @@ class SafetyContractController extends \App\Http\Controllers\Controller
             $aryResponse=array();
             $statusCode=config("app.status_code.OK");
             
-            $validator = Validator::make($request->all(), [
+            $validator = Validator::make($request->input("contract"), [
                 'name' => 'required',
-                'nric' => 'required',
+                'nric' => 'required|checkNric:'.$request->input("contract")["fitBookingId"],
                 'signature' => 'required',
+                'fromDateYr' => 'digits:4',
+                'fromDateDay' => 'required|integer|between:1,31',
+                'toDateYr' => 'digits:4',
+                'toDateDay' => 'required|integer|between:1,31',
+                'joinDateYr' => 'digits:4',
+                'joinDateDay' => 'required|integer|between:1,31',
             ],[
                 "name.required" => "名字不能为空!",
                 "nric.required" => "护照号码不能为空!",
-                "signature.required" => "签名不能为空!"
+                "nric.checkNric" => "护照号码已提交表单!",
+                "signature.required" => "签名不能为空!",
+                "fromDateDay.required" => "从日期不能为空!",
+                "fromDateYr.digits" => "从日期不是有效日期!",
+                "fromDateDay.between" => "从日期不是有效日期!",
+                "toDateDay.required" => "离团日期不能为空!",
+                "toDateYr.digits" => "离团日期不是有效日期!",
+                "toDateDay.between" => "离团日期不是有效日期!",
+                "joinDateDay.required" => "归团日期不能为空!",
+                "joinDateYr.digits" => "归团日期不是有效日期!",
+                "joinDateDay.between" => "归团日期不是有效日期!",
             ]);
             
             if ($validator->fails()) {

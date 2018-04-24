@@ -54,7 +54,7 @@ safety_contracts.controller("SafetyContractController", ["$scope", "$rootScope",
         $scope.submitContract = function(contract){
             
             //retrieve signature
-            contract.signature = $("#contract_signature").val();
+            contract.signature = $("#contract_signature").val()!= '{"lines":[]}' ? $("#contract_signature").val() : "";
             
             safetyContractsModel.submitForm(contract)
                   .then(function(results){

@@ -24,6 +24,7 @@
         <script src="{{ asset("js/app/main.js") }}" type="text/javascript"></script>
         
         <script src="{{ asset("js/app/controllers/LoginController.js") }}" type="text/javascript"></script>
+        <script src="{{ asset("js/app/controllers/LogoutController.js") }}" type="text/javascript"></script>
         <script src="{{ asset("js/app/controllers/FitBookingsController.js") }}" type="text/javascript"></script>
         <script src="{{ asset("js/app/controllers/FormsController.js") }}" type="text/javascript"></script>
         <script src="{{ asset("js/app/controllers/SafetyContractController.js") }}" type="text/javascript"></script>
@@ -77,11 +78,11 @@
                     </a>
                 </div>
                 
-                @if(Auth::check())
-                <div class="settings">
-                    <a href="{{url("/logout")}}">Logout</a>
+                <!--@if(Auth::check())-->
+                <div class="settings" ng-show="isLoggedIn">
+                    <a href="#!/logout">Logout</a>
                 </div>
-                @endif
+                <!--@endif-->
                 
             </div><!-- header -->
             
