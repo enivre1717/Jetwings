@@ -6,7 +6,17 @@
     <div class="clear"></div>
     
     <div class="form">
-        <form name="form" class="j-forms form">
+        <form name="form" class="form">
+            
+            <div class="row alert alert-danger" ng-show="errors">
+                Please fix the following input errors:
+                <ul>
+                    <li ng-show="errors.representative">@{{errors.representative[0]}}</li>
+                    <li ng-show="errors.signature">@{{errors.signature[0]}}</li>
+                    <li ng-show="errors.tourLeaderSignature">@{{errors.tourLeaderSignature[0]}}</li>
+                </ul>
+            </div>
+            
             <div class="row">
                 <p>为丰富客人的娱乐活动，旅行社在不影响正常行程安排的前提下，提供自</p>
                 <p>费景点项目供客人自行选择参加与否。因此在本次旅行过程，旅行社应客</p>
@@ -24,16 +34,12 @@
 
             <div class="row attractions">
                 <div class="row" ng-repeat="attraction in ownExpenses.attractions">
-                    <div class="col-md-5">
-                        <label>景点:</label>
-                        <input type="text" class="form-control" name="attraction[@{{$index}}]" ng-model="attraction.attraction"/>
-                        <div class="clear"></div>
-                        
-                    </div>
+                    <div class="col-md-1">景点:</div>
+                    <div class="col-md-5"><input type="text" class="form-control" name="attraction[@{{$index}}]" ng-model="attraction.attraction"/></div>
                 </div>
                 
                 <div class="row">
-                    <div class="col-md-5">
+                    <div class="col-md-6">
                         <button class="btn btn-info primary-btn" ng-click="addAttraction();">添加景点</button>
                     </div>
                 </div>
@@ -47,10 +53,8 @@
                           <li class="clearButton"><a href="#clear">Clear</a></li>
                         </ul>
                         <div class="clear"></div>
-                        <div class="sigPad <?php //print($model->getError("signature") ? "error" : ""); ?>" id="Signature"></div>
-                        <?php //echo $form->hiddenField($model,'signature',array("class"=>"output")); ?>
-                        <div class="clear"></div>
-                        <?php //echo $form->error($model, 'signature',array("class"=>"marginLeft20 errorMessage")); ?>
+                        <div class="sigPad kbw-signature @{{errors.signature ? 'error' : ''}}" id="Signature"></div>
+                        <input type="hidden" class="output" id="signature" ng-model="ownExpenses.signature" />
                     </div>
 
                     <label>客人签名</label>
@@ -62,10 +66,8 @@
                           <li class="clearButton"><a href="#clear">Clear</a></li>
                         </ul>
                         <div class="clear"></div>
-                        <div class="sigPad <?php //print($model->getError("tour_leader_signature")!="" ? "error" : ""); ?>" id="TourLeaderSignature"></div>
-                        <?php //echo $form->hiddenField($model,'tour_leader_signature',array("class"=>"output")); ?>
-                        <div class="clear"></div>
-                        <?php //echo $form->error($model, 'tour_leader_signature',array("class"=>"marginLeft20 errorMessage")); ?>
+                        <div class="sigPad kbw-signature @{{errors.tourLeaderSignature ? 'error' : ''}}" id="TourLeaderSignature"></div>
+                        <input type="hidden" class="output" id="tour_leader_signature" ng-model="ownExpenses.tourLeaderSignature" />
                     </div>
                     <label>领队签名</label>
                 </div>
@@ -73,28 +75,18 @@
 
             <div class="row representative">
                 <label>本人</label>
-                    <input type="text" name="representative" class="form-control" placeholder="团员代表" ng-model="ownExpenses.representative"/>
+                    <input type="text" name="representative" class="@{{errors.representative ? 'error' : ''}} form-control short" placeholder="团员代表" ng-model="ownExpenses.representative"/>
                 <label>代表以下团员代签。</label>
                 <div class="clear"></div>
             </div>
 
             <div class="row customer-names">
-                <?php
-                    //$r=0;
-                    //foreach($aryCustomerNames as $ownExpensesFormNameModel){ 
-                ?>
+                
                 <div class="row" ng-repeat="name in ownExpenses.names">
-                    <div class="col-md-5">
-                        <label>团员名:</label>
-                        <input type="text" class="form-control" name="name[@{{$index}}]" ng-model="name.name"/>
-                        <div class="clear"></div>
-                    </div>
+                    <div class="col-md-1">团员名:</div>
+                    <div class="col-md-5"><input type="text" class="form-control" name="name[@{{$index}}]" ng-model="name.name"/></div>
                 </div>
-                <?php 
-                        //$r++;
-                    //}//for 
-                ?>
-
+                
                 <div class="row">
                     <div class="col-md-5">
                         <button class="btn btn-info primary-btn" ng-click="addName();">添加客人</button>

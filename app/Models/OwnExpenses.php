@@ -52,6 +52,8 @@ class OwnExpenses extends Model
         $ownExpensesModel->representative = $data['representative'];
         $ownExpensesModel->created_by = Auth::id();
         $ownExpensesModel->updated_by = Auth::id();
+        $ownExpensesModel->signature = $data['signature'];
+        $ownExpensesModel->tour_leader_signature = $data['tourLeaderSignature'];
         
         if($ownExpensesModel->save()){
             

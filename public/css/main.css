@@ -253,7 +253,7 @@ form textarea.error,
 form select.error,
 form .error + i
 {
-    border-color: #C00;
+    border-color: #C00 !important;
 }
 
 form div.success input,

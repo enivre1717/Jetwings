@@ -47,16 +47,18 @@ in_store.controller("InStoreController", ["$scope", "$rootScope", "$route", "$ht
 
             inStoreModel.submitForm(inStore)
                 .then(function(results){
-                    // console.log("SUBMITTED");
-                    // console.log(inStore);
-                    console.log(results.data);
-                    if(results.data == true){
-                        $rootScope.showNotification("自费旅游项目协议书已成功提交。","success");
-                    }else{
-                        $rootScope.showNotification("自费旅游项目协议书未提交。","error");
-                    }
                     
-                    $location.path("/fitbookings/forms/"+$scope.inStore.fitBookingId);
+                    if(typeof results.data.errors !== "undefined" && Object.keys(results.data.errors).length>0){
+                            $scope.errors = results.data.errors;
+                    }else{
+                        if(results.data == true){
+                            $rootScope.showNotification("自费旅游项目协议书已成功提交。","success");
+                        }else{
+                            $rootScope.showNotification("自费旅游项目协议书未提交。","error");
+                        }
+
+                        $location.path("/fitbookings/forms/"+$scope.inStore.fitBookingId);
+                    }
                 }).catch(function(error){
                     console.log(error);
                     if(error.status == 401){

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 
 use App\Models\OwnExpenses;
+use Validator;
 
 class OwnExpensesController extends \App\Http\Controllers\Controller
 {
@@ -26,9 +27,29 @@ class OwnExpensesController extends \App\Http\Controllers\Controller
             $aryResponse=array();
             $statusCode=config("app.status_code.OK");
             
-            $ownExpensesModel=new OwnExpenses;
+            $validator = Validator::make($request->input("ownExpenses"), [
+                'representative' => 'required',
+                'signature' => 'required',
+                'tourLeaderSignature' => 'required',
+            ],[
+                "representative.required" => "团员代表不能为空!",
+                "signature.required" => "签名不能为空!",
+                "tourLeaderSignature.required" => "领队签名不能为空!",
+                
+            ]);
             
-            $aryResponse = $ownExpensesModel->submitForm($request->input("ownExpenses"));
+            if ($validator->fails()) {
+                $aryErrors["errors"] = $validator->errors();
+                
+                $aryResponse = $aryErrors;
+                
+            }else{
+                
+                $ownExpensesModel=new OwnExpenses;
+            
+                $aryResponse = $ownExpensesModel->submitForm($request->input("ownExpenses"));
+            }
+            
 
         }catch(\Exception $e){
             $statusCode=config("app.status_code.Exception");
