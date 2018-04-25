@@ -162,3 +162,14 @@ app.filter("formatDate",function formatDate(){
     }
 });
 
+// $(document).ready(function() {
+//     $(window).resize(function() {
+//         var p_menu = $(".pink-menu div:nth-child(2)").height();
+//         var w_width = $( window ).width();
+//         var mb = 10;
+//         if (w_width < 920) p_menu = p_menu + mb;
+//         $(".pink-menu div:nth-child(1)").height(p_menu - mb);
+//         $(".pink-menu div:nth-child(1)>div").css({"padding":0});
+//         console.log();
+//     }).resize();
+// });

@@ -290,7 +290,7 @@ form select.success
     margin-right:10px;
     margin-top:10px;
     height:150px;
-    min-width:150px;
+    min-width:165px;
     padding-top: 3%;
 }
 
@@ -322,7 +322,7 @@ form select.success
     text-align: center;
 }
 
-.btn.green{
+.btn.green, .green{
     background-color: #7EB63D;
     color:#ffffff;
     text-align: center;
