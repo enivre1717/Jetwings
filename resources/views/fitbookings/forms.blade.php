@@ -8,27 +8,31 @@
     </div>
     
     <div class="content menu">
-        <div class="col-md-1 col-sm-12">
-            <div class="hot-pink btn-lg"><span>
-                @{{bookingDetails.tour_code}}<br>团队详情</span></div>
-        </div>
-
-        <div class="col-md-10 col-sm-12">
-            <a class="btn btn-small hot-pink" href="#!/fitbookings/details/@{{bookingDetails.id}}">团队资料</a>
-            <div class="clear"></div>
+        <div class="row">
+            <div class="col-md-2">
+                <div class="hot-pink btn-lg"><span>
+                    @{{bookingDetails.tour_code}}<br>团队详情</span></div>
+            </div>
             
-            <a class="btn btn-small hot-pink" href="#!/fitbookings/welcome/@{{bookingDetails.id}}">接机牌</a>
-            <div class="clear"></div>
+            <div class="col-md-10">
+                <div class="row">
+                    <a class="btn btn-small hot-pink" href="#!/fitbookings/details/@{{bookingDetails.id}}">团队资料</a></div>
 
-            <a class="btn btn-small hot-pink" href="http://new.jetwings.asia/files/itinerary/@{{bookingDetails.itinerary_file}}" target="_blank" alt="Itinerary">行程</a>
-            <div class="clear"></div>
 
-            <a class="btn btn-small hot-pink" href="http://new.jetwings.asia/files/namelists/@{{bookingDetails.name_list_file}}" target="_blank" alt="Itinerary">名单</a>
-            <div class="clear"></div>
+                <div class="row">
+                    <a class="btn btn-small hot-pink" href="#!/fitbookings/welcome/@{{bookingDetails.id}}">接机牌</a>
+                </div>
+
+                <div class="row">
+                    <a class="btn btn-small hot-pink" href="http://new.jetwings.asia/files/itinerary/@{{bookingDetails.itinerary_file}}" target="_blank" alt="Itinerary">行程</a>
+                </div>
+
+                <div class="row">
+                    <a class="btn btn-small hot-pink" href="http://new.jetwings.asia/files/namelists/@{{bookingDetails.name_list_file}}" target="_blank" alt="Itinerary">名单</a>
+                </div>
+            </div>
         </div>
-
-        <div class="clear"></div>
-
+        
         <div class="col-md-1 col-sm-12">
             <div class="blue btn-lg"><span>表格</span></div>
         </div>
