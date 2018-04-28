@@ -36,7 +36,7 @@ own_expenses.controller("OwnExpensesController", ["$scope", "$rootScope", "$rout
                     if(typeof results.data.errors !== "undefined" && Object.keys(results.data.errors).length>0){
                             $scope.errors = results.data.errors;
                     }else{
-                            if(results.data == true){
+                            if(results.data == "true"){
                                 $rootScope.showNotification("自费旅游项目协议书已成功提交。","success");
                             }else{
                                 $rootScope.showNotification("自费旅游项目协议书未提交。","error");

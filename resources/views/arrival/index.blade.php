@@ -1,7 +1,8 @@
 <div ng-controller="ArrivalFormController">
     
-    <a href="#!/fitbookings/forms/@{{arrivalForms.fit_booking_id}}" class="btn btn-info primary-btn">Back</a>
-    <div class="clear"></div>
+    <div class="row">
+        <a href="#!/fitbookings/forms/@{{arrivalForms.fit_booking_id}}" class="btn btn-info primary-btn">Back</a>
+    </div>
     
     <h1>二次交接与离新确认书</h1>
     <div class="form">
@@ -62,26 +63,26 @@
             </div>
 
             <div class="row marginTop50">
-                <div class="col-xs-5 col-md-5">
+                <div class="col-xs-6 col-md-6">
                     <div class="sigWrapper">
                         <ul class="sigNav">
                           <li class="clearButton"><a href="#clear">Clear</a></li>
                         </ul>
                         <div class="clear"></div>
-                        <div class="sigPad <?php //print($arrivalModel->getError("tour_guide_signature") ? "error" : ""); ?>" id="TourGuideSignature"></div>
-                        <?php //echo $form->hiddenField($arrivalModel,'tour_guide_signature',array("class"=>"output")); ?>
+                        <div class="sigPad kbw-signature" id="TourGuideSignature"></div>
+                        <input type="hidden" id="tour_guide_signature" class="output" ng-value="arrivalForms.tourGuideSignature" />
                     </div>
                     <label>导游确认</label>
                 </div>
 
-                <div class="col-xs-5 col-md-5">
+                <div class="col-xs-6 col-md-6">
                     <div class="sigWrapper">
                         <ul class="sigNav">
                           <li class="clearButton"><a href="#clear">Clear</a></li>
                         </ul>
                         <div class="clear"></div>
-                        <div class="sigPad <?php //print($arrivalModel->getError("tour_leader_signature") ? "error" : ""); ?>" id="TourLeaderSignature"></div>
-                        <?php //echo $form->hiddenField($arrivalModel,'tour_leader_signature',array("class"=>"output")); ?>
+                        <div class="sigPad kbw-signature" id="TourLeaderSignature"></div>
+                        <input type="hidden" id="tour_leader_signature" class="output" ng-value="arrivalForms.tourLeaderSignature" />
                     </div>
                     <label>领队确认</label>
                 </div>

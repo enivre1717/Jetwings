@@ -30,6 +30,7 @@ class TourGuides extends Authenticatable
         
         //check if password match in new password field
         if(Auth::attempt(['username' => $username, 'password' => $password])){
+            
             $isAuth=true;
         }else{
             //check if password match password field
@@ -46,7 +47,10 @@ class TourGuides extends Authenticatable
                     ["password","=",$password]
                 ])->update(['new_password' => $newPassword]);
                 
+                
                 if(Auth::attempt(['username' => $username, 'password' => $newPassword])){
+                    
+                    die("here");
                     $isAuth=true;
                 }else{
                     $isAuth=false;
@@ -57,11 +61,18 @@ class TourGuides extends Authenticatable
         }//if Auth
         
         if($isAuth){
+            
             $user=Auth::user();
-            if(empty($user->api_token)){
-                $apiToken=self::updateApiToken($user->id);
-            }else{
-                $apiToken=self::getApiToken($user->id);
+            
+            //api valid
+            $apiValid = Auth::guard("api")->validate(['api_token' => $user->api_token]);
+            
+            if($apiValid){
+                if(empty($user->api_token)){
+                    $apiToken=self::updateApiToken($user->id);
+                }else{
+                    $apiToken=self::getApiToken($user->id);
+                }
             }
         }
         
@@ -69,7 +80,7 @@ class TourGuides extends Authenticatable
     }
     
     public function logout(){
-        Auth::logout();
+        Auth::guard("api")->logout();
         
         return true;
     }
@@ -108,7 +119,7 @@ class TourGuides extends Authenticatable
         
         if(strpos($apiToken,"Bearer")!==false){
             $apiToken=trim(str_replace("Bearer","",$apiToken));
-            $user=Auth::user();
+            $user=Auth::guard("api")->user();
             if($user["api_token"]!=$apiToken){
                 return false;
             }else{
@@ -125,7 +136,7 @@ class TourGuides extends Authenticatable
     
     public function getTourGuideDetails(){
         
-        $results = self::where(["id"=>Auth::id()])
+        $results = self::where(["id"=>Auth::guard("api")->id()])
                    ->select(["id","name"])->get();
         
         return $results;

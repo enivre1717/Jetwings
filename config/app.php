@@ -40,6 +40,7 @@ return [
     */
 
     'url' => env('APP_URL', 'http://localhost'),
+    'base_api_url' => 'http://localhost/jetwings/public/api/',
 
     /*
     |--------------------------------------------------------------------------
@@ -210,5 +211,29 @@ return [
         "ServerError"=>500,
         "Exception"=>400
     ],
+    "api_url" =>[
+        "login" => "login",
+        "getFitBookings" => "fitbookings/mine",
+        "getFitBookingsById" => "fitbookings/mine/{id}",
+        "getWelcomeSign" => "fitbookings/welcome/{id}",
+        "getSaleAgenciesById" => "sales-agencies/{id}",
+        "submitSafetyContracts" => "safety-contracts/submit",
+        "submitOwnExpenses" => "own-expenses/submit",
+        "submitInStore" => "in-store/submit",
+        "restaurants" => "restaurants",
+        "submitFeedback" => "feedback/submit",
+        "getArrivalForm" => "arrival-form/{id}",
+        "getArrivalDetails" => "fit-flights/get-arrival-details",
+        "submitArrivalForm" => "arrival-form/submit",
+        "getCommissionForm" => "commission-form/{id}",
+        "getTourGuideDetails" => "me",
+        "submitCommissionForm" => "commission-form/submit",
+        "getTickets" => "tickets",
+        "getOtherExpensesClaimOptions" => "common/other-expenses-claim-options",
+        "getAttractions" => "attractions",
+        "getClaim" => "claims/{id}",
+        "submitClaimForm" => "claim-form/submit",
+        "has2ndCall" => "fitbookings/has-2nd-call",
+    ]
 
 ];

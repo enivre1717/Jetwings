@@ -62,9 +62,11 @@ class FitBookings extends Model
      */
     public function getFitBookings($data){
         
-        $dateFrom=$data->input('dateFrom');
-        $dateTo=$data->input('dateTo');
-        $page=$data->input('page')!==null ? $data->input('page') : 1;
+        $data = json_decode($data->getContent(), true);
+        
+        $dateFrom = $data['dateFrom'];
+        $dateTo = $data['dateTo'];
+        $page = isset($data['page']) ? $data['page'] : 1;
         
         //$friendlyDateFrom=date("d-m-Y",strtotime(Common::unfriendly_short_date($dateFrom)));
         //$friendlyDateTo=date("d-m-Y",strtotime(Common::unfriendly_short_date($dateTo)));
@@ -80,7 +82,8 @@ class FitBookings extends Model
         $strFilter.=$strSep."fit_bookings.status='Active'";
         $strSep=" AND ";
         
-        $strFilter.=$strSep."fit_bookings.tour_guide_ids LIKE '%\'".Auth::id()."\'%'";
+        //$strFilter.=$strSep."fit_bookings.tour_guide_ids LIKE '%\'".Auth::id()."\'%'";
+        $strFilter.=$strSep."fit_bookings.tour_guide_ids LIKE '%\'".Auth::guard("api")->id()."\'%'";
         $strSep=" AND ";
         
         if($dateFrom!=""){

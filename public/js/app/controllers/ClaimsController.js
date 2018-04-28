@@ -330,7 +330,7 @@ claims.controller("ClaimsController", ["$scope", "$rootScope", "$route", "$locat
         };
         
         $scope.calTotalProduct = function(product){
-            product.total = parseInt(product.qty)*(parseFloat(product.fee));
+            product.total = (product.qty != null ? parseInt(product.qty) : 0)*(parseFloat(product.fee));
         };
         
         $scope.greaterThan = function(prop, val){

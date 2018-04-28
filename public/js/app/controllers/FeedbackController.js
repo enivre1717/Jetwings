@@ -41,7 +41,11 @@ feedback.controller("FeedbackController", ["$scope", "$rootScope", "$route", "$h
         feedbackModel.getRestaurants()
             .then(function(results){
                 $scope.restaurantlist = results.data;
-                // console.log('getRestaurants', $scope.restaurants);
+                
+                $scope.restaurantlist.push({
+                    "id": 0,
+                    "name": "其他"
+                });
             }).catch(function(error){
                 console.log("Error occurred in retrieving restaurants.");
                 return null;
@@ -54,13 +58,13 @@ feedback.controller("FeedbackController", ["$scope", "$rootScope", "$route", "$h
         $scope.feedbackHotelOptions = feedbackModel.getHotelStaticFormOpts();
 
         $scope.feedback.restaurants = [];
-        $scope.feedback.restaurants.push({"restaurant_id":"", "rating":"", "class":"fb-restaurant"});
+        $scope.feedback.restaurants.push({"restaurant_id":"", "other_restaurant":"", "rating":"", "class":"fb-restaurant"});
 
         $scope.feedback.names = [];
         $scope.feedback.names.push({"name":""});
 
         $scope.addRestaurantFeedback = function(){
-            $scope.feedback.restaurants.push({"restaurant_id":"", "rating":"", "class":"fb-restaurant"});
+            $scope.feedback.restaurants.push({"restaurant_id":"", "other_restaurant":"", "rating":"", "class":"fb-restaurant"});
             console.log($scope.feedback.restaurants);
         };
 
@@ -136,15 +140,21 @@ feedback.controller("FeedbackController", ["$scope", "$rootScope", "$route", "$h
 
             feedbackModel.submitForm(feedback)
                 .then(function(results){
-                    // console.log("SUBMITTED");
-                    console.log(results.data);
-                    if(results.data == true){
-                        $rootScope.showNotification("自费旅游项目协议书已成功提交。","success");
+                    
+                    //if got error
+                    if(typeof results.data.errors !== "undefined" && Object.keys(results.data.errors).length>0){
+                            $scope.errors = results.data.errors;
                     }else{
-                        $rootScope.showNotification("自费旅游项目协议书未提交。","error");
+                        // no error
+                        if(results.data == "true"){
+                            $rootScope.showNotification("自费旅游项目协议书已成功提交。","success");
+                        }else{
+                            $rootScope.showNotification("自费旅游项目协议书未提交。","error");
+                        }
+                    
+                        $location.path("/fitbookings/forms/"+$scope.feedback.fitBookingId);
                     }
                     
-                    $location.path("/fitbookings/forms/"+$scope.feedback.fitBookingId);
                 }).catch(function(error){
                     console.log(error);
                     if(error.status == 401){
@@ -154,5 +164,13 @@ feedback.controller("FeedbackController", ["$scope", "$rootScope", "$route", "$h
                     }
                 });
 
+        };
+        
+        $scope.isNumber = function(number) {
+            if(number != ""){
+                return true;
+            }else{
+                return false;
+            }
         };
 }]);

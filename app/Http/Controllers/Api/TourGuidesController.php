@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use Validator;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -20,10 +21,12 @@ class TourGuidesController extends \App\Http\Controllers\Controller
             $aryErrors = array();
             $statusCode=config("app.status_code.OK");
             
-            $username = $request->input("username");
-            $password = $request->input("password");
+            $data = json_decode($request->getContent(), true);
             
-            $validator = Validator::make($request->all(), [
+            $username = isset($data["username"]) ? $data["username"] : "";
+            $password = isset($data["password"]) ? $data["password"] : "";
+            
+            $validator = Validator::make($data, [
                 'username' => 'required',
                 'password' => 'required',
             ],[
@@ -36,11 +39,11 @@ class TourGuidesController extends \App\Http\Controllers\Controller
                 return response()->json($aryErrors, $statusCode);
             }else{
                 $tourguideModel = new TourGuides();
-
+                
                 $apiToken=$tourguideModel->authenicateTourGuide($username,$password);
 
                 if(!empty($apiToken)){
-                    return response()->json($apiToken, $statusCode);
+                    return response()->json(array("apiToken"=>$apiToken), $statusCode);
                 }else{
                     
                     $aryErrors["errors"] = array("password"=>array("Incorrect username or password."));

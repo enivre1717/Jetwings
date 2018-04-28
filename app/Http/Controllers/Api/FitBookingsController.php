@@ -32,7 +32,7 @@ class FitBookingsController extends \App\Http\Controllers\Controller
             $aryResponse=array();
             $statusCode=config("app.status_code.OK");
             $fitBookingModel=new FitBookings();
-
+            
             //$aryResponse=$fitBookingModel->getFitBookings($request);
             
             $fitbookingResults=$fitBookingModel->getFitBookings($request);

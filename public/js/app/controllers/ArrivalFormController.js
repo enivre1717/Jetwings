@@ -66,7 +66,7 @@ arrival_form.controller("ArrivalFormController", ["$scope", "$rootScope", "$rout
             
             arrivalFormModel.submitForms(arrivalForms)
                     .then(function(results){
-                        if(results.data == true){
+                        if(results.data == "true"){
                             $rootScope.showNotification("二次交接与离新确认书已成功提交。","success");
                         }else{
                             $rootScope.showNotification("二次交接与离新确认书未提交。","error");

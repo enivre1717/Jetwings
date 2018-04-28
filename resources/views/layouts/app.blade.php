@@ -5,6 +5,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<meta name="language" content="en" />
+        <meta name="csrf-token" content="{{ csrf_token() }}">
         <link rel="apple-touch-icon-precomposed" sizes="57x57" href="{{ asset("images/logo_mobile.jpg") }}" />
         <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ asset("images/logo_mobile.jpg") }}" />
         <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ asset("images/logo_mobile.jpg") }}" />
@@ -78,11 +79,9 @@
                     </a>
                 </div>
                 
-                <!--@if(Auth::check())-->
                 <div class="settings" ng-show="isLoggedIn">
                     <a href="#!/logout">Logout</a>
                 </div>
-                <!--@endif-->
                 
             </div><!-- header -->
             

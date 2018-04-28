@@ -21,7 +21,9 @@ class InStoreController extends \App\Http\Controllers\Controller
             $aryResponse=array();
             $statusCode=config("app.status_code.OK");
             
-            $validator = Validator::make($request->input("inStore"), [
+            $data = json_decode($request->getContent(), true);
+            
+            $validator = Validator::make($data["inStore"], [
                 'representative' => 'required',
                 'signature' => 'required',
                 'tourLeaderSignature' => 'required',
@@ -42,7 +44,7 @@ class InStoreController extends \App\Http\Controllers\Controller
             }else{
                 $inStoreModel = new InStore;
             
-                $aryResponse = $inStoreModel->submitForm($request->input("inStore"));
+                $aryResponse = $inStoreModel->submitForm($data["inStore"]);
             }
             
         }catch(\Exception $e){

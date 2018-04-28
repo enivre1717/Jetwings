@@ -24,12 +24,13 @@ class SafetyContractController extends \App\Http\Controllers\Controller
     public function submitForm(Request $request){
         
         try{
+            
             $aryResponse=array();
             $statusCode=config("app.status_code.OK");
             
-            $validator = Validator::make($request->input("contract"), [
+            $validator = Validator::make($request->input(), [
                 'name' => 'required',
-                'nric' => 'required|checkNric:'.$request->input("contract")["fitBookingId"],
+                'nric' => 'required|checkNric:'.$request->input()["fitBookingId"],
                 'signature' => 'required',
                 'fromDateYr' => 'digits:4',
                 'fromDateDay' => 'required|integer|between:1,31',
@@ -61,7 +62,7 @@ class SafetyContractController extends \App\Http\Controllers\Controller
             }else{
                 $safetyContractModel=new SafetyContracts;
 
-                $aryResponse = $safetyContractModel->submitForm($request->input("contract"));
+                $aryResponse = $safetyContractModel->submitForm($request->input());
             }
 
         }catch(\Exception $e){

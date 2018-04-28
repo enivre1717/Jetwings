@@ -27,7 +27,9 @@ class OwnExpensesController extends \App\Http\Controllers\Controller
             $aryResponse=array();
             $statusCode=config("app.status_code.OK");
             
-            $validator = Validator::make($request->input("ownExpenses"), [
+            $data = json_decode($request->getContent(), true);
+            
+            $validator = Validator::make($data["ownExpenses"], [
                 'representative' => 'required',
                 'signature' => 'required',
                 'tourLeaderSignature' => 'required',
@@ -47,7 +49,7 @@ class OwnExpensesController extends \App\Http\Controllers\Controller
                 
                 $ownExpensesModel=new OwnExpenses;
             
-                $aryResponse = $ownExpensesModel->submitForm($request->input("ownExpenses"));
+                $aryResponse = $ownExpensesModel->submitForm($data["ownExpenses"]);
             }
             
 

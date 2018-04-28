@@ -52,7 +52,9 @@ class CommissionFormController extends \App\Http\Controllers\Controller
             
             $commissionFormModel=new TourguideCommissions;
             
-            $aryResponse = $commissionFormModel->insertCommissionClaims($request->input("commissions"));
+            $data = json_decode($request->getContent(), true);
+            
+            $aryResponse = $commissionFormModel->insertCommissionClaims($data["commissions"]);
 
         }catch(\Exception $e){
             $statusCode=config("app.status_code.Exception");

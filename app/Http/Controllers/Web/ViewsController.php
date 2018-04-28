@@ -9,11 +9,6 @@ use App\Http\Requests;
 
 class ViewsController extends \App\Http\Controllers\Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-    
     /* Load booking listings */
     public function listBookings(){
         

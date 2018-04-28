@@ -33,13 +33,40 @@ Route::group(['namespace' => 'Web'], function () {
     Route::get('/notification/success', function () {
         return view('modal.success');
     });
+    
+    Route::post('login', "ApiController@post")->name('login');
+    Route::post('fitbookings/mine', "ApiController@post")->name("getFitBookings");
+    Route::post('safety-contracts/submit', "ApiController@post")->name("submitSafetyContracts");
+    Route::post('own-expenses/submit', "ApiController@post")->name("submitOwnExpenses");
+    Route::post('in-store/submit', "ApiController@post")->name("submitInStore");
+    Route::post('feedback/submit', "ApiController@post")->name("submitFeedback");
+    Route::post('fit-flights/get-arrival-details', "ApiController@post")->name("getArrivalDetails");
+    Route::post('arrival-form/submit', "ApiController@post")->name("submitArrivalForm");
+    Route::post('commission-form/submit', "ApiController@post")->name("submitCommissionForm");
+    Route::post('claims/submit', "ApiController@post")->name("submitClaimForm");
+    
+    
+    Route::get('fitbookings/mine/{id}', "ApiController@get")->name("getFitBookingsById");
+    Route::get("fitbookings/welcome/{id}", "ApiController@get")->name("getWelcomeSign");
+    Route::get("sales-agencies/{id}", "ApiController@get")->name("getSaleAgenciesById");
+    Route::get("restaurants", "ApiController@get")->name("restaurants");
+    Route::get("arrival-form/{id}", "ApiController@get")->name("getArrivalForm");
+    Route::get("commission-form/{id}", "ApiController@get")->name("getCommissionForm");
+    Route::get("me", "ApiController@get")->name("getTourGuideDetails");
+    Route::get('tickets', "ApiController@get")->name("getTickets");
+    Route::get('common/other-expenses-claim-options', "ApiController@get")->name("getOtherExpensesClaimOptions");
+    Route::get('attractions', "ApiController@get")->name("getAttractions");
+    Route::get('claims/{id}', "ApiController@get")->name("getClaim");
 });
-
-//Route::view('/fitbookings/list', 'welcome');
 
 Route::group(['namespace' => 'Api','prefix' => 'api'], function () {
     
     Route::post('login', "TourGuidesController@login");
+});
+
+Route::group(['namespace' => 'Api','prefix' => 'api', 'middleware' => ['api']], function () {
+    
+    //Route::post('login', "TourGuidesController@login");
     Route::post('logout', "TourGuidesController@logout");
     Route::get('me', "TourGuidesController@getTourGuideDetails");
     

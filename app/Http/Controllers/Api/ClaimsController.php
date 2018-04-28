@@ -29,7 +29,7 @@ class ClaimsController extends \App\Http\Controllers\Controller
             
             $ClaimsModel=new TourguideClaims;
             
-            $aryResponse = $ClaimsModel->getAClaim($fitbookingId, Auth::id());
+            $aryResponse = $ClaimsModel->getAClaim($fitbookingId, Auth::guard("api")->id());
             
         }catch(\Exception $e){
             $statusCode=config("app.status_code.Exception");
@@ -52,7 +52,9 @@ class ClaimsController extends \App\Http\Controllers\Controller
             
             $claimsModel=new TourguideClaims;
             
-            $aryResponse = $claimsModel->submitClaims($request->input("claim"));
+            $data = json_decode($request->getContent(), true);
+            
+            $aryResponse = $claimsModel->submitClaims($data["claim"]);
 
         }catch(\Exception $e){
             $statusCode=config("app.status_code.Exception");

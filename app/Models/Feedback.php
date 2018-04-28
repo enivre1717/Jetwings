@@ -55,7 +55,7 @@ class Feedback extends Model
         $feedbackModel->coach_cleaniness = $data['coach_cleaniness'];
         $feedbackModel->hotel = $data['hotel'];
         $feedbackModel->representative = $data['representative'];
-        $feedbackModel->remarks = $data['remarks'];
+        $feedbackModel->remarks = isset($data['remarks']) ? $data['remarks'] : "";
         $feedbackModel->customer_signature = $data['signature'];
         $feedbackModel->tour_leader_signature = $data['tourLeaderSignature'];
         $feedbackModel->created_by = Auth::id();

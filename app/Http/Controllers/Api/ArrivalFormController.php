@@ -52,7 +52,9 @@ class ArrivalFormController extends \App\Http\Controllers\Controller
             
             $arrivalFormsModel=new ArrivalForms;
             
-            $aryResponse = $arrivalFormsModel->insertArrivalFormDetails($request->input("arrivalForms"));
+            $data = json_decode($request->getContent(), true);
+            
+            $aryResponse = $arrivalFormsModel->insertArrivalFormDetails($data["arrivalForms"]);
 
         }catch(\Exception $e){
             $statusCode=config("app.status_code.Exception");

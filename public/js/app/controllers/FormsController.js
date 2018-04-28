@@ -22,4 +22,22 @@ forms.controller("FormsController", ["$scope", "$route", "$location", "$http", "
                 }
                 
             });
+            
+        fitbookingsModel.check2ndCall(fitBookingId)
+            .then(function(results){
+                
+                if(results.data){
+                    $scope.has2ndCall = results.data[0];
+            
+                }else{
+                    console.log("Error occurred in retrieving 2nd call.");
+                }
+            }).catch(function(error){
+                if(error.status == 401){
+                    $location.path("/");
+                }else{
+                    console.log("Error occurred in retrieving 2nd call.");
+                }
+                
+            });
 }]);
