@@ -1,11 +1,20 @@
 <h1>意见表</h1>
 
 <div ng-controller="FeedbackController">
-    <a href="#!/fitbookings/forms/@{{feedback.fitBookingId}}" class="btn primary-btn orange">Back</a>
-    <div class="clear"></div>
+    <div class="row">
+        <a href="#!/fitbookings/forms/@{{feedback.fitBookingId}}" class="btn primary-btn orange">Back</a>
+    </div>
 
     <div class="form">
         <form id="feedback-form" name="form" class="j-forms">
+            
+            <div class="row alert alert-danger" ng-show="errors">
+                Please fix the following input errors:
+                <ul>
+                    <li ng-repeat="error in errors">@{{error[0]}}</li>
+                </ul>
+            </div>
+            
             <div class="row">
                 <div class="col-md-5">
                     团号 Tour Code:
@@ -64,7 +73,7 @@
                             </div>
                             <div class="col-xs-2 col-md-1" ng-repeat="childotp in ratings">
                                 <label class="radio">
-                                    <input name="@{{fb.name}}" value="@{{childotp.value}}" type="radio" class="@{{fb.class+'-'+childotp.en_value}}" />
+                                    <input name="@{{fb.name}}" value="@{{childotp.value}}" type="radio" class="@{{fb.class+'-'+childotp.en_value}} @{{errors[fb.name] ? 'error' : ''}}" />
                                     <i></i>
                                 </label>
                             </div>
@@ -103,7 +112,7 @@
                             </div>
                             <div class="col-xs-2 col-md-1" ng-repeat="childotp in ratings">
                                 <label class="radio">
-                                    <input name="@{{fb.name}}" value="@{{childotp.value}}" type="radio" class="@{{fb.class+'-'+childotp.en_value}}" />
+                                    <input name="@{{fb.name}}" value="@{{childotp.value}}" type="radio" class="@{{fb.class+'-'+childotp.en_value}} @{{errors[fb.name] ? 'error' : ''}}" />
                                     <i></i>
                                 </label>
                             </div>
@@ -142,7 +151,7 @@
                             </div>
                             <div class="col-xs-2 col-md-1" ng-repeat="childotp in ratings">
                                 <label class="radio">
-                                    <input name="@{{fb.name}}" value="@{{childotp.value}}" type="radio" class="@{{fb.class+'-'+childotp.en_value}}" />
+                                    <input name="@{{fb.name}}" value="@{{childotp.value}}" type="radio" class="@{{fb.class+'-'+childotp.en_value}} @{{errors[fb.name] ? 'error' : ''}}" />
                                     <i></i>
                                 </label>
                             </div>
@@ -177,18 +186,20 @@
                         </div>
                         <div class="row" ng-repeat="restaurant in feedback.restaurants">
                             <div class="col-md-4 col-xs-4">
-                                <label class="input select">
-                                    <select class="form-control" name="restaurant[@{{$index}}]" ng-model="restaurant.restaurant_id">
+                                <div class="row select">
+                                    <select class="@{{errors['restaurants.'+$index+'.restaurant_id'] ? 'error' : ''}} form-control" name="restaurant[@{{$index}}]" ng-model="restaurant.restaurant_id">
                                         <option value="">- Select -</option>
                                         <option value="@{{item.id}}" ng-repeat="item in restaurantlist">@{{item.name}}</option>
                                     </select>
                                     <i></i>
-                                    <div class="clear"></div>
-                                </label>
+                                </div>
+                                <div class="row">
+                                    <input class="form-control marginTop10 @{{errors['restaurants.'+$index+'.other_restaurant'] ? 'error' : ''}}" ng-show="isNumber(restaurant.restaurant_id) && restaurant.restaurant_id == 0" type="text" name="other_restaurant[@{{$index}}]" ng-model="restaurant.other_restaurant" />
+                                </div>
                             </div>
                             <div class="col-xs-2 col-md-1" ng-repeat="childotp in ratings">
                                 <label class="radio">
-                                    <input name="restaurant_rate[@{{$parent.$index}}]" value="@{{childotp.value}}" type="radio" class="@{{'fb-restaurant-'+childotp.en_value}}" ng-model="restaurant.rating" />
+                                    <input name="restaurant_rate[@{{$parent.$index}}]" value="@{{childotp.value}}" type="radio" class="@{{'fb-restaurant-'+childotp.en_value}} @{{errors['restaurants.'+$parent.$index+'.rating'] ? 'error' : ''}}" ng-model="restaurant.rating" />
                                     <i></i>
                                 </label>
                             </div>
@@ -214,7 +225,7 @@
                                 <li class="clearButton"><a href="#clear">Clear</a></li>
                             </ul>
                             <div class="clear"></div>
-                            <div class="sigPad kbw-signature" id="Signature"></div>
+                            <div class="sigPad kbw-signature @{{errors.signature ? 'error' : ''}}" id="Signature"></div>
                             <input class="output" name="signature" id="feedback_signature" type="hidden" ng-value="feedback.signature">
                             <div class="clear"></div>
                         </div>
@@ -227,7 +238,7 @@
                                 <li class="clearButton"><a href="#clear">Clear</a></li>
                             </ul>
                             <div class="clear"></div>
-                            <div class="sigPad kbw-signature" id="TourLeaderSignature"></div>
+                            <div class="sigPad kbw-signature @{{errors.tourLeaderSignature ? 'error' : ''}}" id="TourLeaderSignature"></div>
                             <input class="output" name="tour_leader_signature" id="feedback_tour_leader_signature" type="hidden" ng-value="feedback.tourLeaderSignature">
                             <div class="clear"></div>
                         </div>
@@ -238,7 +249,7 @@
             </div>
             <div class="row representative">
                 <label>本人</label>
-                <input class="form-control short" placeholder="团员代表" name="representative" id="Feedbacks_representative" maxlength="255" type="text" ng-model="feedback.representative" />
+                <input class="form-control short @{{errors.representative ? 'error' : ''}}" placeholder="团员代表" name="representative" id="Feedbacks_representative" maxlength="255" type="text" ng-model="feedback.representative" />
                 <label>代表以下团员代签。</label>
                 <div class="clear"></div>
             </div>

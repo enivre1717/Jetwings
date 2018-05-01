@@ -20,7 +20,7 @@ class GuideIncomeOwns extends Model
      */
     public function claims()
     {
-        return $this->belongsTo('App\Models\TourGuideClaims',"tour_guide_claim_id","id");
+        return $this->belongsTo('App\Models\TourguideClaims',"tour_guide_claim_id","id");
     }
     
     /**

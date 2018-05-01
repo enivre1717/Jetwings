@@ -11,8 +11,9 @@ use App\Models\FitBookings;
 use App\Models\FitTransports;
 use App\Models\FitFlights;
 use App\Models\FitHotels;
+use App\Models\FitCalls;
 use App\Models\TourGuides;
-use App\Models\TourGuideClaims;
+use App\Models\TourguideClaims;
 
 class FitBookingsController extends \App\Http\Controllers\Controller
 {
@@ -32,7 +33,7 @@ class FitBookingsController extends \App\Http\Controllers\Controller
             $aryResponse=array();
             $statusCode=config("app.status_code.OK");
             $fitBookingModel=new FitBookings();
-
+            
             //$aryResponse=$fitBookingModel->getFitBookings($request);
             
             $fitbookingResults=$fitBookingModel->getFitBookings($request);
@@ -66,7 +67,7 @@ class FitBookingsController extends \App\Http\Controllers\Controller
                 $aryResponse[$i]["fitHotels"]= $fitHotelsResults;
                 
                 //retrieve if tour guide has submitted the claim
-                $tourguideClaimsModel=new TourGuideClaims();
+                $tourguideClaimsModel=new TourguideClaims();
                 
                 $tourGuideClaimResults = $tourguideClaimsModel->hasClaim($value->id, Auth::id());
                 
@@ -137,4 +138,33 @@ class FitBookingsController extends \App\Http\Controllers\Controller
         return response()->json($aryResponse, $statusCode);
         
     }//getWelcome
+    
+    /* Check Booking has 2nd Call
+     * 
+     * @params POST input $request
+     * @return json
+     */
+    public function has2ndCall(Request $request){
+        
+        try{
+            
+            $aryResponse=array();
+            $statusCode=config("app.status_code.OK");
+            
+            $fitCallsModel=new FitCalls;
+
+            $data = json_decode($request->getContent(), true);
+            
+            $aryResponse = $fitCallsModel->has2ndCall($data["fitBookingId"]);
+
+            
+        }catch(\Exception $e){
+            //echo 'Caught exception: ',  $e->getMessage(), "\n";
+            $aryResponse["message"] = 'Caught exception: '.$e->getMessage()."\n";
+            $statusCode=config("app.status_code.Exception");
+        }
+        
+        return response()->json($aryResponse, $statusCode);
+        
+    }//has2ndCall
 }

@@ -23,6 +23,15 @@ app.factory('fitbookingsModel', function($http, $route){
             return $http.get(apiUrl+"/fitbookings/welcome/"+fitBookingId);
         };
         
+        obj.check2ndCall = function(fitBookingId){
+            
+            var data ={
+                "fitBookingId": fitBookingId
+            };
+            
+            return $http.post(apiUrl+"/fitbookings/has-2nd-call", data);
+        };
+        
 	return obj;
 
 });

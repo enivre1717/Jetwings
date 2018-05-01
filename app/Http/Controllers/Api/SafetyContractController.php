@@ -24,12 +24,16 @@ class SafetyContractController extends \App\Http\Controllers\Controller
     public function submitForm(Request $request){
         
         try{
+            
             $aryResponse=array();
             $statusCode=config("app.status_code.OK");
             
-            $validator = Validator::make($request->input("contract"), [
+            $data = json_decode($request->getContent(), true);
+            
+            
+            $validator = Validator::make($data["contract"], [
                 'name' => 'required',
-                'nric' => 'required|checkNric:'.$request->input("contract")["fitBookingId"],
+                'nric' => 'required|checkNric:'.$data["contract"]["fitBookingId"],
                 'signature' => 'required',
                 'fromDateYr' => 'digits:4',
                 'fromDateDay' => 'required|integer|between:1,31',
@@ -40,7 +44,7 @@ class SafetyContractController extends \App\Http\Controllers\Controller
             ],[
                 "name.required" => "名字不能为空!",
                 "nric.required" => "护照号码不能为空!",
-                "nric.checkNric" => "护照号码已提交表单!",
+                "nric.check_nric" => "护照号码已提交表单!",
                 "signature.required" => "签名不能为空!",
                 "fromDateDay.required" => "从日期不能为空!",
                 "fromDateYr.digits" => "从日期不是有效日期!",
@@ -61,7 +65,7 @@ class SafetyContractController extends \App\Http\Controllers\Controller
             }else{
                 $safetyContractModel=new SafetyContracts;
 
-                $aryResponse = $safetyContractModel->submitForm($request->input("contract"));
+                $aryResponse = $safetyContractModel->submitForm($data["contract"]);
             }
 
         }catch(\Exception $e){

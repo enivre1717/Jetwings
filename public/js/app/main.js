@@ -3,8 +3,8 @@
 var getUrl = window.location;
 var baseUrl = getUrl .protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1];
 
-var viewUrl = baseUrl+"/public";
-var apiUrl = baseUrl+"/public/api";
+var viewUrl = baseUrl+"public";
+var apiUrl = baseUrl+"public";
 
 var app = angular.module('myApp', 
 [   "ngRoute", 
@@ -97,6 +97,8 @@ app.config(function($routeProvider, $locationProvider) {
 app.run(['$http' , "$cookies", "$rootScope", "$location", function($http, $cookies, $rootScope, $location) {
     $http.defaults.headers.common['Authorization'] = $cookies.get("apiToken");
     
+    $http.defaults.headers.common['X-CSRF-TOKEN'] = $('meta[name="csrf-token"]').attr('content');
+            
     $rootScope.monthList = function() {
         
         var aryMonth = [];

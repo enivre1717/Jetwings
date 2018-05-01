@@ -1,7 +1,7 @@
 'use strict'
 
-fit_bookings.controller("FitBookingsController", ["$scope", "$route", "$http", "$uibModal", "$window", "fitbookingsModel", "$location", 
-    function($scope, $route , $http, $uibModal, $window, fitbookingsModel, $location) {
+fit_bookings.controller("FitBookingsController", ["$scope", "$route", "$http", "$uibModal", "$window", "fitbookingsModel", "$location", "$cookies", 
+    function($scope, $route , $http, $uibModal, $window, fitbookingsModel, $location, $cookies) {
         
         //retrieve bookings
         $scope.isDateFromFilterOpened = false;
@@ -39,7 +39,12 @@ fit_bookings.controller("FitBookingsController", ["$scope", "$route", "$http", "
                 $scope.fitbookings = results.data;
         
             }).catch(function(error){
-                console.log("Error occurred in retrieving bookings.");
+                if(error.status == 401){
+                    $location.path("/");
+                    $cookies.remove("apiToken");
+                }else{
+                    console.log("Error occurred retrieving bookings.");
+                }
             });
         
         
@@ -51,7 +56,13 @@ fit_bookings.controller("FitBookingsController", ["$scope", "$route", "$http", "
                 $scope.fitbookings = results.data;
                 
             }).catch(function(error){
-                console.log("Error occurred in retrieving bookings.");
+                
+                if(error.status == 401){
+                    $location.path("/");
+                    $cookies.remove("apiToken");
+                }else{
+                    console.log("Error occurred retrieving bookings.");
+                }
             });
         };
         
@@ -60,8 +71,8 @@ fit_bookings.controller("FitBookingsController", ["$scope", "$route", "$http", "
             $location.path("/fitbookings/forms/"+fitBookingId);
         };
 }])
-    .controller("FitBookingsDetailsController", ["$scope", "$route", "$http", "$uibModal", "$window", "fitbookingsModel", "$location", 
-    function($scope, $route , $http, $uibModal, $window, fitbookingsModel, $location) {
+    .controller("FitBookingsDetailsController", ["$scope", "$route", "$http", "$uibModal", "$window", "fitbookingsModel", "$location", "$cookies", 
+    function($scope, $route , $http, $uibModal, $window, fitbookingsModel, $location, $cookies) {
         
         var fitBookingId = $route.current.params.fitBookingId;
         
@@ -76,10 +87,17 @@ fit_bookings.controller("FitBookingsController", ["$scope", "$route", "$http", "
                 });
                 
             }).catch(function(error){
-                console.log("Error occurred in retrieving bookings.");
+                
+                if(error.status == 401){
+                    $location.path("/");
+                    $cookies.remove("apiToken");
+                }else{
+                    console.log("Error occurred retrieving bookings details.");
+                }
+                
             });
-    }]).controller("WelcomeController", ["$scope", "$route", "$http", "$uibModal", "$window", "fitbookingsModel", "$location", 
-    function($scope, $route , $http, $uibModal, $window, fitbookingsModel, $location) {
+    }]).controller("WelcomeController", ["$scope", "$route", "$http", "$uibModal", "$window", "fitbookingsModel", "$location", "$cookies", 
+    function($scope, $route , $http, $uibModal, $window, fitbookingsModel, $location, $cookies) {
         
         $scope.fitBookingId = $route.current.params.fitBookingId;
         
@@ -89,6 +107,12 @@ fit_bookings.controller("FitBookingsController", ["$scope", "$route", "$http", "
                 $scope.welcomeSign = results.data;
                 
             }).catch(function(error){
-                console.log("Error occurred in retrieving welcome sign.");
+                
+                if(error.status == 401){
+                    $location.path("/");
+                    $cookies.remove("apiToken");
+                }else{
+                    console.log("Error occurred retrieving welcome sign.");
+                }
             });
     }]);

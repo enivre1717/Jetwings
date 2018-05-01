@@ -26,8 +26,11 @@ class FitFlightsController extends \App\Http\Controllers\Controller
             $aryResponse=array();
             $statusCode=config("app.status_code.OK");
             
-            $fitbookingId = $request->input("fitbookingId");
-            $callNum = $request->input("callNum");
+            $data = json_decode($request->getContent(), true);
+            
+            
+            $fitbookingId = $data["fitbookingId"];
+            $callNum = $data["callNum"];
             
             $fitbookingsModel=new FitBookings;
             

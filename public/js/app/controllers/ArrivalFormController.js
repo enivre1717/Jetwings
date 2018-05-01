@@ -64,16 +64,24 @@ arrival_form.controller("ArrivalFormController", ["$scope", "$rootScope", "$rout
         
         $scope.submitForm = function(arrivalForms){
             
+            arrivalForms.tourGuideSignature = $("#tour_guide_signature").val()!= '{"lines":[]}' ? $("#tour_guide_signature").val() : "";
+            arrivalForms.tourLeaderSignature = $("#tour_leader_signature").val()!= '{"lines":[]}' ? $("#tour_leader_signature").val() : "";
+            
             arrivalFormModel.submitForms(arrivalForms)
                     .then(function(results){
-                        if(results.data == true){
-                            $rootScope.showNotification("二次交接与离新确认书已成功提交。","success");
+                        
+                        if(typeof results.data.errors !== "undefined" && Object.keys(results.data.errors).length>0){
+                            $scope.errors = results.data.errors;
                         }else{
-                            $rootScope.showNotification("二次交接与离新确认书未提交。","error");
+                            if(results.data == "true"){
+                                $rootScope.showNotification("二次交接与离新确认书已成功提交。","success");
+                            }else{
+                                $rootScope.showNotification("二次交接与离新确认书未提交。","error");
+                            }
+
+                            $location.path("/fitbookings/forms/"+arrivalForms.fit_booking_id);
                         }
-                        
-                        $location.path("/fitbookings/forms/"+arrivalForms.fit_booking_id);
-                        
+                    
                     }).catch(function(error){
                         if(error.status == 401){
                             $location.path("/");
@@ -83,4 +91,14 @@ arrival_form.controller("ArrivalFormController", ["$scope", "$rootScope", "$rout
 
                     });
         };
+        
+        // Begin SigPad
+        $('#TourGuideSignature').signature({syncField: $("#TourGuideSignature").next("input") });
+        $('#TourLeaderSignature').signature({syncField: $("#TourLeaderSignature").next("input") });
+        $('.clearButton a').click( function(e) {
+            e.preventDefault();
+            $(this).parents(".sigWrapper").find(".sigPad").signature('clear');
+            $(this).parents(".sigWrapper").find(".sigPad").next("input").val("");
+        });
+        // End SigPad
 }]);

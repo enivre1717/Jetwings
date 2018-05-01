@@ -23,6 +23,9 @@ commission_form.controller("CommissionFormController", ["$scope", "$rootScope", 
                         $scope.commissions.total_sgd = calculateTotalSGD($scope.commissions);
                         $scope.commissions.total_rmb = calculateTotalRMB($scope.commissions);
                         
+                        $scope.commissions.tour_guide_signature = "";
+                        $scope.commissions.tour_leader_signature = ""
+            
                         if($scope.commissions.commission_items.length <=0){
                             $scope.commissions.commission_items.push({
                                 "id": 0,
@@ -131,15 +134,23 @@ commission_form.controller("CommissionFormController", ["$scope", "$rootScope", 
         
         $scope.submitForm = function(commissions){
             
+            commissions.tour_guide_signature = $("#tour_guide_signature").val()!= '{"lines":[]}' ? $("#tour_guide_signature").val() : "";
+            commissions.tour_leader_signature = $("#tour_leader_signature").val()!= '{"lines":[]}' ? $("#tour_leader_signature").val() : "";
+            
             commissionFormModel.submitForms(commissions)
                     .then(function(results){
-                        if(results.data == true){
-                            $rootScope.showNotification("领队佣金单已成功提交。","success");
-                        }else{
-                            $rootScope.showNotification("领队佣金单未提交。","error");
-                        }
                         
-                        $location.path("/fitbookings/forms/"+commissions.fit_booking_id);
+                        if(typeof results.data.errors !== "undefined" && Object.keys(results.data.errors).length>0){
+                            $scope.errors = results.data.errors;
+                        }else{
+                            if(results.data == "true"){
+                                $rootScope.showNotification("领队佣金单已成功提交。","success");
+                            }else{
+                                $rootScope.showNotification("领队佣金单未提交。","error");
+                            }
+                        
+                            $location.path("/fitbookings/forms/"+commissions.fit_booking_id);
+                        }
                         
                     }).catch(function(error){
                         if(error.status == 401){
@@ -190,4 +201,14 @@ commission_form.controller("CommissionFormController", ["$scope", "$rootScope", 
             
             return total.toFixed(2);
         }
+        
+        // Begin SigPad
+        $('#TourGuideSignature').signature({syncField: $("#TourGuideSignature").next("input") });
+        $('#TourLeaderSignature').signature({syncField: $("#TourLeaderSignature").next("input") });
+        $('.clearButton a').click( function(e) {
+            e.preventDefault();
+            $(this).parents(".sigWrapper").find(".sigPad").signature('clear');
+            $(this).parents(".sigWrapper").find(".sigPad").next("input").val("");
+        });
+        // End SigPad
 }]);

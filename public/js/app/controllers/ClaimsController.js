@@ -279,7 +279,7 @@ claims.controller("ClaimsController", ["$scope", "$rootScope", "$route", "$locat
         $scope.addTickets = function(){
             $scope.claim.ticket_expenses.push({
                 "id":"",
-                "ticket": "",
+                "ticket": "undefined",
                 "other_ticket": "",
                 "amount": 0,
                 "claim_option_id": 15
@@ -330,7 +330,7 @@ claims.controller("ClaimsController", ["$scope", "$rootScope", "$route", "$locat
         };
         
         $scope.calTotalProduct = function(product){
-            product.total = parseInt(product.qty)*(parseFloat(product.fee));
+            product.total = (product.qty != null ? parseInt(product.qty) : 0)*(parseFloat(product.fee));
         };
         
         $scope.greaterThan = function(prop, val){
@@ -400,13 +400,17 @@ claims.controller("ClaimsController", ["$scope", "$rootScope", "$route", "$locat
             claimsModel.submitForms(claim)
                     .then(function(results){
                         
-                       if(results.data == true){
-                           $rootScope.showNotification("导游请款单已成功提交。","success");
-                       }else{
-                           $rootScope.showNotification("导游请款单未提交。","error");
-                       }
-                        
-                        $location.path("/fitbookings/forms/"+claim.fit_booking_id);
+                        if(typeof results.data.errors !== "undefined" && Object.keys(results.data.errors).length>0){
+                            $scope.errors = results.data.errors;
+                        }else{
+                            if(results.data == "true"){
+                                $rootScope.showNotification("导游请款单已成功提交。","success");
+                            }else{
+                                $rootScope.showNotification("导游请款单未提交。","error");
+                            }
+
+                             $location.path("/fitbookings/forms/"+claim.fit_booking_id);
+                        }
                         
                     }).catch (function(error){
                         if(error.status == 401){

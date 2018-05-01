@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -29,7 +30,7 @@ class ClaimsController extends \App\Http\Controllers\Controller
             
             $ClaimsModel=new TourguideClaims;
             
-            $aryResponse = $ClaimsModel->getAClaim($fitbookingId, Auth::id());
+            $aryResponse = $ClaimsModel->getAClaim($fitbookingId, Auth::guard("api")->id());
             
         }catch(\Exception $e){
             $statusCode=config("app.status_code.Exception");
@@ -50,9 +51,29 @@ class ClaimsController extends \App\Http\Controllers\Controller
             $aryResponse=array();
             $statusCode=config("app.status_code.OK");
             
-            $claimsModel=new TourguideClaims;
+            $data = json_decode($request->getContent(), true);
             
-            $aryResponse = $claimsModel->submitClaims($request->input("claim"));
+            $validator = Validator::make($data["claim"], [
+                'expenses_restaurants.*.other_restaurant' => 'required_if:expenses_restaurants.*.restaurant_id,0',
+                'income_owns.*.other_attraction' => 'required_if:income_owns.*.attraction_id,0',
+                'ticket_expenses.*.other_ticket' => 'required_if:ticket_expenses.*.ticket,0',
+            ],[
+                'expenses_restaurants.*.other_restaurant.required_if' => '其他餐厅不能为空!',
+                'income_owns.*.other_attraction.required_if' => '其他自费项目不能为空!',
+                'ticket_expenses.*.other_ticket.required_if' => '其他门票不能为空!',
+            ]);
+            
+            if ($validator->fails()) {
+                $aryErrors["errors"] = $validator->errors();
+                
+                $aryResponse = $aryErrors;
+                
+            }else{
+                $claimsModel=new TourguideClaims;
+            
+                $aryResponse = $claimsModel->submitClaims($data["claim"]);
+            }
+            
 
         }catch(\Exception $e){
             $statusCode=config("app.status_code.Exception");

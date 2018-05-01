@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -50,10 +51,27 @@ class CommissionFormController extends \App\Http\Controllers\Controller
             $aryResponse=array();
             $statusCode=config("app.status_code.OK");
             
-            $commissionFormModel=new TourguideCommissions;
+            $data = json_decode($request->getContent(), true);
             
-            $aryResponse = $commissionFormModel->insertCommissionClaims($request->input("commissions"));
+            $validator = Validator::make($data["commissions"], [
+                'tour_guide_signature' => 'required',
+                'tour_leader_signature' => 'required',
+            ],[
+                'tour_guide_signature.required' => '导游确认不能为空!',
+                'tour_leader_signature.required' => '领队确认不能为空!',
+            ]);
+            
+            if ($validator->fails()) {
+                $aryErrors["errors"] = $validator->errors();
+                
+                $aryResponse = $aryErrors;
+                
+            }else{
+                $commissionFormModel=new TourguideCommissions;
 
+                $aryResponse = $commissionFormModel->insertCommissionClaims($data["commissions"]);
+            }
+            
         }catch(\Exception $e){
             $statusCode=config("app.status_code.Exception");
             $aryResponse["message"] = 'Caught exception: '.$e->getMessage()."\n";

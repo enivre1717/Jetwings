@@ -9,11 +9,13 @@
         <div class="clear"></div>
         <form name="form" class="j-forms">
         
-        <?php
-        $TotalExpenses = 0;
-        $TotalIncome = 0;
-        ?>
-
+            <div class="row alert alert-danger" ng-show="errors">
+                Please fix the following input errors:
+                <ul>
+                    <li ng-repeat="error in errors">@{{error[0]}}</li>
+                </ul>
+            </div>
+            
             <div class="row">
                 团号 Tour Code: @{{commissions.tour_code}}
             </div>
@@ -39,7 +41,7 @@
                 <div class="col-md-2 col-xs-3">
                     <div class="input-group" ng-show="!hasSubmitted">
                         <div class="input-group-addon"><i class="fa fa-usd"></i></div>
-                        <input ng-value="commissions.jewellery_sgd | currency: '' : 2" class="form-control" ng-keyup="calculateTotalSGD(commissions);" type="text" name="jewllerySGD" ng-model="commissions.jewellery_sgd" />
+                        <input ng-value="commissions.jewellery_sgd | currency: '' : 2" class="form-control @{{errors.jewellery_sgd ? 'error' : ''}}" ng-keyup="calculateTotalSGD(commissions);" type="text" name="jewllerySGD" ng-model="commissions.jewellery_sgd" />
                     </div>
                     <span ng-show="hasSubmitted">@{{commissions.jewellery_sgd!= null ? commissions.jewellery_sgd : 0 | currency: '$' : 2}}</span>
                     <div class="clear"></div>
@@ -48,7 +50,7 @@
                 <div class="col-md-2 col-xs-3">
                     <div class="input-group" ng-show="!hasSubmitted">
                         <div class="input-group-addon"><i class="fa fa-jpy"></i></div>
-                        <input ng-value="commissions.jewellery_rmb | currency: '' : 2" class="form-control" ng-keyup="calculateTotalRMB(commissions);" type="text" name="jewlleryRMB" ng-model="commissions.jewellery_rmb" />
+                        <input ng-value="commissions.jewellery_rmb | currency: '' : 2" class="form-control @{{errors.jewellery_rmb ? 'error' : ''}}" ng-keyup="calculateTotalRMB(commissions);" type="text" name="jewlleryRMB" ng-model="commissions.jewellery_rmb" />
                     </div>
                     <span ng-show="hasSubmitted">@{{commissions.jewellery_rmb!= null ? commissions.jewellery_rmb : 0 | currency: '' : 2}} RMB</span>
                     <div class="clear"></div>
@@ -61,7 +63,7 @@
                 <div class="col-md-2 col-xs-3">
                     <div class="input-group" ng-show="!hasSubmitted">
                         <div class="input-group-addon" for="$"><i class="fa fa-usd"></i></div>
-                        <input ng-value="commissions.yong_ann_sgd | currency: '' : 2" class="form-control" ng-keyup="calculateTotalSGD(commissions);" type="text" name="yongAnnSGD" ng-model="commissions.yong_ann_sgd" />
+                        <input ng-value="commissions.yong_ann_sgd | currency: '' : 2" class="form-control @{{errors.yong_ann_sgd ? 'error' : ''}}" ng-keyup="calculateTotalSGD(commissions);" type="text" name="yongAnnSGD" ng-model="commissions.yong_ann_sgd" />
                     </div>
                     <span ng-show="hasSubmitted">@{{commissions.yong_ann_sgd!= null ? commissions.yong_ann_sgd : 0 | currency: '$' : 2}}</span>
                     <div class="clear"></div>
@@ -70,7 +72,7 @@
                 <div class="col-md-2 col-xs-3">
                     <div class="input-group" ng-show="!hasSubmitted">
                         <div class="input-group-addon" for="$"><i class="fa fa-jpy"></i></div>
-                        <input ng-value="commissions.yong_ann_rmb | currency: '' : 2" class="form-control" ng-keyup="calculateTotalRMB(commissions);" type="text" name="yongAnnRMB" ng-model="commissions.yong_ann_rmb" />
+                        <input ng-value="commissions.yong_ann_rmb | currency: '' : 2" class="form-control @{{errors.yong_ann_rmb ? 'error' : ''}}" ng-keyup="calculateTotalRMB(commissions);" type="text" name="yongAnnRMB" ng-model="commissions.yong_ann_rmb" />
                     </div>
                     <span ng-show="hasSubmitted">@{{commissions.yong_ann_rmb!= null ? commissions.yong_ann_rmb : 0 | currency: '' : 2}} RMB</span>
                     <div class="clear"></div>
@@ -163,14 +165,10 @@
                           <li class="clearButton"><a href="#clear">Clear</a></li>
                         </ul>
                         <div class="clear"></div>
-                        <div class="sigPad <?php //print($commissionModel->getError("tour_leader_signature")!="" ? "error" : ""); ?>" id="TourLeaderSignature"></div>
-                        <?php //echo $form->hiddenField($commissionModel,'tour_leader_signature',array("class"=>"output")); ?>
+                        <div class="sigPad kbw-signature @{{errors.tour_leader_signature ? 'error' : ''}}" id="TourLeaderSignature"></div>
+                        <input type="hidden" class="output" id="tour_leader_signature" ng-model="commissions.tour_leader_signature" />
                     </div>
-                    <?php //echo $form->labelEx($commissionModel, "tour_leader_signature",array("class"=>"short"));?>
-
-                    <div class="clear"></div>
-                    <?php //echo $form->error($commissionModel, "tour_leader_signature",array("class"=>"marginLeft20 errorMessage")); ?>
-
+                    <label>领队签名</label>
                     <div class="clear"></div>
                     日期: @{{commissions.date}}
                 </div>
@@ -181,21 +179,17 @@
                           <li class="clearButton"><a href="#clear">Clear</a></li>
                         </ul>
                         <div class="clear"></div>
-                        <div class="sigPad <?php //print($commissionModel->getError("tour_guide_signature")!="" ? "error" : ""); ?>" id="TourGuideSignature"></div>
-                        <?php //echo $form->hiddenField($commissionModel,'tour_guide_signature',array("class"=>"output")); ?>
+                        <div class="sigPad kbw-signature @{{errors.tour_guide_signature ? 'error' : ''}}" id="TourGuideSignature"></div>
+                        <input type="hidden" class="output" id="tour_guide_signature" ng-model="commissions.tour_guide_signature" />
                     </div>
-                    <?php //echo $form->labelEx($commissionModel, "tour_guide_signature",array("class"=>"short"));?>
-
-                    <div class="clear"></div>
-                    <?php //echo $form->error($commissionModel, "tour_guide_signature",array("class"=>"marginLeft20 errorMessage")); ?>
-
+                    <label>导游签名</label>
                     <div class="clear"></div>
                     日期: @{{commissions.date}}
                 </div>
             </div>
 
             <div class="row buttons">
-                <button ng-show="!hasSubmitted" class="btn btn-info primary-btn" ng-click="submitForm()">Submit</button>
+                <button ng-show="!hasSubmitted" class="btn btn-info primary-btn" ng-click="submitForm(commissions)">Submit</button>
             </div>
 
         </form>

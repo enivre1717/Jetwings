@@ -18,6 +18,16 @@ a{
     clear:both;
 }
 
+.primary-btn, .primary-btn:active, .primary-btn:focus{
+    background-color: #ed7d31;
+    background-image:none;
+}
+
+.primary-btn:hover {
+    background-color: #fa8526;
+    background-image:none;
+}
+
 #page
 {
 	margin-top: 5px;
@@ -288,7 +298,7 @@ form select.success
 .btn-lg{
     float:left;
     margin-right:10px;
-    margin-top:10px;
+    /*margin-top:10px;*/
     height:150px;
     min-width:165px;
     padding-top: 3%;
@@ -306,7 +316,7 @@ form select.success
     text-align: center;
 }
 
-.btn-lg.blue, .btn-lg.hot-pink{
+.btn-lg.blue, .btn-lg.hot-pink, .btn-lg.orange{
     height: 260px;
     padding-top:25%;
 }
@@ -528,6 +538,10 @@ table .text{
 .menu a.btn-small { color: #ffffff; font-size: 18px; margin-top: 10px; }
 .menu .btn-small { float: left; height: 50px; width: 20%; }
 
+.menu .btn-lg{
+    width:100%;
+}
+
 @media (max-width: 575.98px) { 
     .menu .btn-small { width: 100%; }
     .btn-lg { width: 100%; }
@@ -540,4 +554,20 @@ table .text{
     .btn-lg { width: 100%; }
     .btn-lg span{ margin-top: 12% !important; padding-top: 10% !important; }
     div.hot-pink { padding-top: 10% !important; }
+    
+}
+/*mobile*/
+@media (min-width: 360px) and (max-width: 767.98px) {
+    
+    .menu .btn-lg{
+        margin-bottom:10px;
+    } 
+}
+
+/* Tablet */
+@media (min-width: 768px) and (max-width: 1024px) {
+    
+    .hot-pink span, .blue span, .purple span, .orange span{
+        margin-top: 0px;
+    }
 }

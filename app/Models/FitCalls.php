@@ -38,4 +38,20 @@ class FitCalls extends Model
     {
         return $this->hasMany('App\Models\FitFlights',"fit_call_id");
     }
+    
+    /* Check has 2nd Call
+     * 
+     * @params POST int $id
+     * @return array
+     */
+    public function has2ndCall ($id){
+        
+        $resultNum = self::where(["fit_booking_id"=>$id, "call_num" => 2])->count();
+            
+        if($resultNum<=0){
+            return false;
+        }else{
+            return true;
+        }
+    }
 }
