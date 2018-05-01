@@ -2,20 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/Applications/XAMPP/xamppfiles/htdocs/jetwings/app/Models/FitBookings.php</file>
-            <file>file:/Applications/XAMPP/xamppfiles/htdocs/jetwings/app/Models/GuideTicketExpenses.php</file>
-            <file>file:/Applications/XAMPP/xamppfiles/htdocs/jetwings/app/Models/GuideOtherExpenses.php</file>
-            <file>file:/Applications/XAMPP/xamppfiles/htdocs/jetwings/app/Models/GuideDriverTips.php</file>
-            <file>file:/Applications/XAMPP/xamppfiles/htdocs/jetwings/app/Models/GuideExpensesRestaurants.php</file>
-            <file>file:/Applications/XAMPP/xamppfiles/htdocs/jetwings/app/Models/GuideExpensesTaxis.php</file>
-            <file>file:/Applications/XAMPP/xamppfiles/htdocs/jetwings/app/Models/GuideExpensesTips.php</file>
-            <file>file:/Applications/XAMPP/xamppfiles/htdocs/jetwings/app/Models/GuideIncomeProducts.php</file>
-            <file>file:/Applications/XAMPP/xamppfiles/htdocs/jetwings/app/Models/GuideOtherIncomes.php</file>
-            <file>file:/Applications/XAMPP/xamppfiles/htdocs/jetwings/app/Http/Controllers/Api/ClaimsController.php</file>
-            <file>file:/Applications/XAMPP/xamppfiles/htdocs/jetwings/app/Models/GuideIncomeOwns.php</file>
-            <file>file:/Applications/XAMPP/xamppfiles/htdocs/jetwings/app/Models/GuideExpensesFees.php</file>
-            <file>file:/Applications/XAMPP/xamppfiles/htdocs/jetwings/app/Http/Controllers/Api/FitBookingsController.php</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>
