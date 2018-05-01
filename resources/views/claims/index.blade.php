@@ -8,7 +8,14 @@
     <div class="clear"></div>
     
     <form name="form" class="forms" novalidate>
-
+        
+        <div class="row alert alert-danger" ng-show="errors">
+            Please fix the following input errors:
+            <ul>
+                <li ng-repeat="error in errors">@{{error[0]}}</li>
+            </ul>
+        </div>
+        
 	<div class="table-responsive">
             <table class="table green restaurant-expenses">
                 <tr>
@@ -26,7 +33,7 @@
                         <div class="clear"></div>
                         
                         <div>
-                            <input name="otherRestuarant[]" class="form-control" ng-show="claim.status != 'Approved' && (restaurant.restaurant_id != undefined && (restaurant.restaurant_id == 0 || restaurant.restaurant_id == 999))" class="form-class" type="text" ng-model ="restaurant.other_restaurant" />
+                            <input name="otherRestuarant[]" class="form-control @{{errors['expenses_restaurants.'+$index+'.other_restaurant'] ? 'error' : ''}}" ng-show="claim.status != 'Approved' && (restaurant.restaurant_id != undefined && (restaurant.restaurant_id == 0 || restaurant.restaurant_id == 999))" class="form-class" type="text" ng-model ="restaurant.other_restaurant" />
                             <div class="text" ng-show="claim.status == 'Approved'">@{{restaurant.other_restaurant}}</div>
                             <div class="clear"></div>
                         </div>
@@ -56,13 +63,13 @@
             <tr ng-repeat="ticket in claim.ticket_expenses">
                 <td>
                     <select ng-show="claim.status != 'Approved'" class="form-control" name="ticket[]" ng-model="ticket.ticket">
-                        <option value="">-Select -</option>
+                        <option value="undefined">-Select -</option>
                         <option ng-repeat="t in tickets" ng-value="@{{t.id}}">@{{t.ticket}}</option>
                     </select>
                     <div class="text" ng-show="claim.status == 'Approved'">@{{ticket.tickets.ticket}}</div>
                     <div class="clear"></div>
                     <div>
-                        <input type="text"  ng-show="claim.status != 'Approved' && ticket.ticket!='' && ticket.ticket == 0" type="text" name="otherTicket[]" class="form-control" ng-model="ticket.other_ticket" />
+                        <input type="text"  ng-show="claim.status != 'Approved' && ticket.ticket!='undefined' && ticket.ticket == 0" type="text" name="otherTicket[]" class="form-control @{{errors['ticket_expenses.'+$index+'.other_ticket'] ? 'error' : ''}}" ng-model="ticket.other_ticket" />
                         <div class="text" ng-show="claim.status == 'Approved'">@{{ticket.other_ticket}}</div>
                         <div class="clear"></div>
                     </div>

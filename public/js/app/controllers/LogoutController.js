@@ -1,7 +1,7 @@
 'use strict'
 
-tour_guide.controller("LogoutController", ["$scope", "$route", "$http", "$uibModal", "$window", "tourguideModel", "$location", 
-    function($scope, $route, $http, $uibModal, $window, tourguideModel, $location) {
+tour_guide.controller("LogoutController", ["$scope", "$route", "$http", "$uibModal", "$window", "tourguideModel", "$location", "$cookies", 
+    function($scope, $route, $http, $uibModal, $window, tourguideModel, $location, $cookies) {
         
         
         tourguideModel.logout()
@@ -11,6 +11,7 @@ tour_guide.controller("LogoutController", ["$scope", "$route", "$http", "$uibMod
 
                     if(results.data == true){
                         $location.path("/");
+                        $cookies.remove("apiToken");
                     }
                 }else{
                     console.log("Error occurred - unable to logout of the app.");

@@ -23,9 +23,13 @@ class CurlHelper
         
         $result = curl_exec($ch);
         
+        $statusCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        
         curl_close($ch);
         
-        return $result;
+        //return $result;
+        //return response()->json(json_decode($result), $statusCode);
+        return response($result, $statusCode);
     }
     
     public static function get($url, $header = ""){
@@ -44,9 +48,11 @@ class CurlHelper
         }
 
         $result = curl_exec($ch);
-
+        
+        $statusCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        
         curl_close($ch);
         
-        return $result;
+        return response()->json(json_decode($result), $statusCode);
     }
 }

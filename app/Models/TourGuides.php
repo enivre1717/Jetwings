@@ -50,7 +50,6 @@ class TourGuides extends Authenticatable
                 
                 if(Auth::attempt(['username' => $username, 'password' => $newPassword])){
                     
-                    die("here");
                     $isAuth=true;
                 }else{
                     $isAuth=false;
@@ -61,27 +60,33 @@ class TourGuides extends Authenticatable
         }//if Auth
         
         if($isAuth){
-            
             $user=Auth::user();
             
-            //api valid
-            $apiValid = Auth::guard("api")->validate(['api_token' => $user->api_token]);
-            
-            if($apiValid){
-                if(empty($user->api_token)){
-                    $apiToken=self::updateApiToken($user->id);
-                }else{
-                    $apiToken=self::getApiToken($user->id);
-                }
+            if(empty($user->api_token)){
+                $apiToken=self::updateApiToken($user->id);
+            }else{
+                $apiToken=self::getApiToken($user->id);
             }
+            
+            //api valid
+            $apiValid = Auth::guard("api")->validate(['api_token' => $apiToken]);
+            
         }
         
         return $apiToken;
     }
     
     public function logout(){
-        Auth::guard("api")->logout();
+        Auth::logout(); //logout for web
         
+        //log user out of API
+        $user = Auth::guard('api')->user();
+
+        if ($user) {
+            $user->api_token = null;
+            $user->save();
+        }
+    
         return true;
     }
     

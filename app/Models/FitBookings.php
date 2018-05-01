@@ -210,4 +210,5 @@ class FitBookings extends Model
         
         return $result;
     }
+    
 }

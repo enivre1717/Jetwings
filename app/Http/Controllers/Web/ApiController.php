@@ -12,7 +12,6 @@ use App\Http\Helper\CurlHelper;
 class ApiController extends \App\Http\Controllers\Controller
 {
     
-    
     public function post(Request $request){
         
         try{

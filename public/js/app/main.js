@@ -3,8 +3,8 @@
 var getUrl = window.location;
 var baseUrl = getUrl .protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1];
 
-var viewUrl = baseUrl+"/public";
-var apiUrl = baseUrl+"/public";
+var viewUrl = baseUrl+"public";
+var apiUrl = baseUrl+"public";
 
 var app = angular.module('myApp', 
 [   "ngRoute", 
@@ -118,7 +118,6 @@ app.run(['$http' , "$cookies", "$rootScope", "$location", function($http, $cooki
     $rootScope.curDay = moment().format("DD");
     
     $rootScope.$on("$routeChangeStart", function(evt, to, from) {
-        
         if(typeof $cookies.get("apiToken") !== "undefined" && to.$$route.originalPath == "/"){
             $rootScope.isLoggedIn = true;
             $location.path("/fitbookings/list");

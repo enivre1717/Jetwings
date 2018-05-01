@@ -60,7 +60,7 @@
                     <label>客人签名</label>
 
                 </div>
-                <div class="col-xs-2 col-md-2">
+                <div class="col-xs-3 col-md-3">
                     <div class="sigWrapper">
                         <ul class="sigNav">
                           <li class="clearButton"><a href="#clear">Clear</a></li>

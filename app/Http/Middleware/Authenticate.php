@@ -24,7 +24,8 @@ class Authenticate
             }else {
                 return redirect()->guest('/');
             }*/
-            return response('User not authorized.', 401);
+            
+            return response()->json('User not authorized.', 401);
         }
 
         return $next($request);

@@ -35,6 +35,8 @@ Route::group(['namespace' => 'Web'], function () {
     });
     
     Route::post('login', "ApiController@post")->name('login');
+    Route::post('logout', "ApiController@post")->name('logout');
+    
     Route::post('fitbookings/mine', "ApiController@post")->name("getFitBookings");
     Route::post('safety-contracts/submit', "ApiController@post")->name("submitSafetyContracts");
     Route::post('own-expenses/submit', "ApiController@post")->name("submitOwnExpenses");
@@ -44,7 +46,7 @@ Route::group(['namespace' => 'Web'], function () {
     Route::post('arrival-form/submit', "ApiController@post")->name("submitArrivalForm");
     Route::post('commission-form/submit', "ApiController@post")->name("submitCommissionForm");
     Route::post('claims/submit', "ApiController@post")->name("submitClaimForm");
-    
+    Route::post('fitbookings/has-2nd-call', "ApiController@post")->name("has2ndCall");
     
     Route::get('fitbookings/mine/{id}', "ApiController@get")->name("getFitBookingsById");
     Route::get("fitbookings/welcome/{id}", "ApiController@get")->name("getWelcomeSign");
@@ -57,6 +59,7 @@ Route::group(['namespace' => 'Web'], function () {
     Route::get('common/other-expenses-claim-options', "ApiController@get")->name("getOtherExpensesClaimOptions");
     Route::get('attractions', "ApiController@get")->name("getAttractions");
     Route::get('claims/{id}', "ApiController@get")->name("getClaim");
+    
 });
 
 Route::group(['namespace' => 'Api','prefix' => 'api'], function () {
@@ -83,6 +86,7 @@ Route::group(['namespace' => 'Api','prefix' => 'api', 'middleware' => ['api']], 
     Route::get('common/other-expenses-claim-options', "CommonController@getOtherExpensesClaimOptions");
     
     Route::post('fit-flights/get-arrival-details', "FitFlightsController@getArrivalDetails");
+    Route::post('fitbookings/has-2nd-call', "FitBookingsController@has2ndCall");
     
     Route::post('safety-contracts/submit', "SafetyContractController@submitForm");
     Route::post('own-expenses/submit', "OwnExpensesController@submitForm");

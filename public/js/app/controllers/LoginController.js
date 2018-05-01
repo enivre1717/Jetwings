@@ -17,11 +17,12 @@ tour_guide.controller("LoginController", ["$scope", "$rootScope", "$route", "$ht
                 });*/
                 
                 if(results.status == 200){
-
+                    
                     if(typeof results.data.errors !== "undefined" && Object.keys(results.data.errors).length>0){
                         $scope.errors = results.data.errors;
                     }else{
                         $cookies.put("apiToken", "Bearer " + results.data.apiToken);
+                        
                         $http.defaults.headers.common['Authorization'] = "Bearer "+results.data.apiToken;
                         $location.path("/fitbookings/list");
                     
