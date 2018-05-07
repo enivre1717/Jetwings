@@ -22,19 +22,16 @@
         <script src="{{ asset("js/moment-with-locales.min.js")}}"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0rc1/angular-route.min.js"></script>
         <script src="{{ asset("js/angular-cookies.min.js")}}"></script>
-        <script src="{{ asset("js/app/main.js") }}" type="text/javascript"></script>
         
-        <script src="{{ asset("js/app/controllers/LoginController.js") }}" type="text/javascript"></script>
-        <script src="{{ asset("js/app/controllers/LogoutController.js") }}" type="text/javascript"></script>
-        <script src="{{ asset("js/app/controllers/FitBookingsController.js") }}" type="text/javascript"></script>
-        <script src="{{ asset("js/app/controllers/FormsController.js") }}" type="text/javascript"></script>
-        <script src="{{ asset("js/app/controllers/SafetyContractController.js") }}" type="text/javascript"></script>
-        <script src="{{ asset("js/app/controllers/OwnExpensesController.js") }}" type="text/javascript"></script>
-        <script src="{{ asset("js/app/controllers/InStoreController.js") }}" type="text/javascript"></script>
-        <script src="{{ asset("js/app/controllers/FeedbackController.js") }}" type="text/javascript"></script>
-        <script src="{{ asset("js/app/controllers/ArrivalFormController.js") }}" type="text/javascript"></script>
-        <script src="{{ asset("js/app/controllers/CommissionFormController.js") }}" type="text/javascript"></script>
-        <script src="{{ asset("js/app/controllers/ClaimsController.js") }}" type="text/javascript"></script>
+        <script src="{{ asset("js/app/main.min.js") }}" type="text/javascript"></script>
+        
+        <script src="{{ asset("js/app/controllers/SafetyContractController.min.js") }}" type="text/javascript"></script>
+        <script src="{{ asset("js/app/controllers/OwnExpensesController.min.js") }}" type="text/javascript"></script>
+        <script src="{{ asset("js/app/controllers/InStoreController.min.js") }}" type="text/javascript"></script>
+        <script src="{{ asset("js/app/controllers/FeedbackController.min.js") }}" type="text/javascript"></script>
+        <script src="{{ asset("js/app/controllers/ArrivalFormController.min.js") }}" type="text/javascript"></script>
+        <script src="{{ asset("js/app/controllers/CommissionFormController.min.js") }}" type="text/javascript"></script>
+        <script src="{{ asset("js/app/controllers/ClaimsController.min.js") }}" type="text/javascript"></script>
         
         <script src="{{ asset("js/app/models/tourguideModel.js") }}" type="text/javascript"></script>
         <script src="{{ asset("js/app/models/fitbookingsModel.js") }}" type="text/javascript"></script>
