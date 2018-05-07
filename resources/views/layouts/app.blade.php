@@ -15,7 +15,7 @@
         
         <script src="{{ asset("js/jquery-1.11.3.min.js") }}" type="text/javascript"></script>
         <script src="{{ asset("js/bootstrap-3.3.5/js/bootstrap.min.js") }}" type="text/javascript"></script>
-        <script src="{{ asset("js/jquery-ui.js") }}" type="text/javascript"></script>
+        <script src="{{ asset("js/jquery-ui.min.js") }}" type="text/javascript"></script>
         <script src="{{ asset("js/angular.min.js") }}" type="text/javascript"></script>
         <script src="{{ asset("js/ui-bootstrap-2.5.0.min.js") }}" type="text/javascript"></script>
         <script src="{{ asset("js/ui-bootstrap-tpls-2.5.0.min.js") }}" type="text/javascript"></script>
@@ -24,31 +24,6 @@
         <script src="{{ asset("js/angular-cookies.min.js")}}"></script>
         
         <script src="{{ asset("js/app/main.min.js") }}" type="text/javascript"></script>
-        
-        <script src="{{ asset("js/app/controllers/SafetyContractController.min.js") }}" type="text/javascript"></script>
-        <script src="{{ asset("js/app/controllers/OwnExpensesController.min.js") }}" type="text/javascript"></script>
-        <script src="{{ asset("js/app/controllers/InStoreController.min.js") }}" type="text/javascript"></script>
-        <script src="{{ asset("js/app/controllers/FeedbackController.min.js") }}" type="text/javascript"></script>
-        <script src="{{ asset("js/app/controllers/ArrivalFormController.min.js") }}" type="text/javascript"></script>
-        <script src="{{ asset("js/app/controllers/CommissionFormController.min.js") }}" type="text/javascript"></script>
-        <script src="{{ asset("js/app/controllers/ClaimsController.min.js") }}" type="text/javascript"></script>
-        
-        <script src="{{ asset("js/app/models/tourguideModel.js") }}" type="text/javascript"></script>
-        <script src="{{ asset("js/app/models/fitbookingsModel.js") }}" type="text/javascript"></script>
-        <script src="{{ asset("js/app/models/fitTransportsModel.js") }}" type="text/javascript"></script>
-        <script src="{{ asset("js/app/models/saleAgenciesModel.js") }}" type="text/javascript"></script>
-        <script src="{{ asset("js/app/models/safetyContractsModel.js") }}" type="text/javascript"></script>
-        <script src="{{ asset("js/app/models/ownExpensesModel.js") }}" type="text/javascript"></script>
-        <script src="{{ asset("js/app/models/inStoreModel.js") }}" type="text/javascript"></script>
-        <script src="{{ asset("js/app/models/feedbackModel.js") }}" type="text/javascript"></script>
-        <script src="{{ asset("js/app/models/arrivalFormModel.js") }}" type="text/javascript"></script>
-        <script src="{{ asset("js/app/models/fitFlightsModel.js") }}" type="text/javascript"></script>
-        <script src="{{ asset("js/app/models/commissionFormModel.js") }}" type="text/javascript"></script>
-        <script src="{{ asset("js/app/models/claimsModel.js") }}" type="text/javascript"></script>
-        <script src="{{ asset("js/app/models/restaurantsModel.js") }}" type="text/javascript"></script>
-        <script src="{{ asset("js/app/models/ticketsModel.js") }}" type="text/javascript"></script>
-        <script src="{{ asset("js/app/models/commonModel.js") }}" type="text/javascript"></script>
-        <script src="{{ asset("js/app/models/attractionsModel.js") }}" type="text/javascript"></script>
         
         <script src="{{ asset("js/jquery.signature/jquery.signature.min.js") }}" type="text/javascript"></script>
         <script src="{{ asset("js/jquery.signature/excanvas.js") }}" type="text/javascript"></script>

@@ -2,12 +2,16 @@
 
 tour_guide.controller("LoginController", ["$scope", "$rootScope", "$route", "$http", "$uibModal", "$window", "tourguideModel", "$cookies", "$location", 
     function($scope, $rootScope, $route, $http, $uibModal, $window, tourguideModel, $cookies, $location) {
-
+    
+    $scope.dataLoaded = true;
+    
     $scope.login = function(user){
         
         tourguideModel.login(user)
             .then(function(results){
                 
+                $scope.dataLoaded = false;
+        
                 /*$scope.$modalInstance = $uibModal.open({
                     animation: true,
                     backdrop: 'static',
@@ -17,6 +21,8 @@ tour_guide.controller("LoginController", ["$scope", "$rootScope", "$route", "$ht
                 });*/
                 
                 if(results.status == 200){
+                    
+                    $scope.dataLoaded = true;
                     
                     if(typeof results.data.errors !== "undefined" && Object.keys(results.data.errors).length>0){
                         $scope.errors = results.data.errors;

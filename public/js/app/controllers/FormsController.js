@@ -5,9 +5,13 @@ forms.controller("FormsController", ["$scope", "$route", "$location", "$http", "
         
         var fitBookingId = $route.current.params.fitBookingId;
         
+        $scope.dataLoaded = false;
+        
         fitbookingsModel.getBookingDetails(fitBookingId)
             .then(function(results){
                 
+                $scope.dataLoaded = true;
+        
                 if(results.data){
                     $scope.bookingDetails = results.data[0];
             
