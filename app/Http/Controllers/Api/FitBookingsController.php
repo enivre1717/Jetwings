@@ -69,7 +69,7 @@ class FitBookingsController extends \App\Http\Controllers\Controller
                 //retrieve if tour guide has submitted the claim
                 $tourguideClaimsModel=new TourguideClaims();
                 
-                $tourGuideClaimResults = $tourguideClaimsModel->hasClaim($value->id, Auth::id());
+                $tourGuideClaimResults = $tourguideClaimsModel->hasClaim($value->id, Auth::guard("api")->id());
                 
                 $aryResponse[$i]["hasClaim"]= $tourGuideClaimResults;
                 

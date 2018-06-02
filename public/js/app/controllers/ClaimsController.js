@@ -100,8 +100,6 @@ claims.controller("ClaimsController", ["$scope", "$rootScope", "$route", "$locat
                         
                     }
                     
-                    $scope.calTotal($scope.claim);
-                    
                     if(typeof $scope.claim.expenses_restaurants == "undefined" || $scope.claim.expenses_restaurants.length <=0){
                         $scope.claim.expenses_restaurants = [];
                         $scope.claim.expenses_restaurants.push({
@@ -251,7 +249,9 @@ claims.controller("ClaimsController", ["$scope", "$rootScope", "$route", "$locat
                                 "claim_option_id": 1
                             });
                     }
-        
+                    
+                    $scope.calTotal($scope.claim);
+                    
                 }else{
                     console.log("Tour guide claim is empty.");
                 }
@@ -392,7 +392,6 @@ claims.controller("ClaimsController", ["$scope", "$rootScope", "$route", "$locat
             $scope.advanceCash = advanceCash;
             $scope.balance = totalExpenses - totalIncome - advanceCash;
             
-            console.log($scope.totalIncome);
         };
         
         $scope.submitForm = function(claim){

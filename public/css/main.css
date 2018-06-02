@@ -291,6 +291,10 @@ form select.success
     border-color: #C6D880;
 }
 
+.commission .form-horizontal .control-label {
+    text-align: left;
+}
+
 /** End Form **/
 
 /** Start Btn **/
@@ -331,13 +335,21 @@ form select.success
 }
 
 .btn-lg.blue, .btn-lg.hot-pink, .btn-lg.orange{
-    height: 260px;
-    padding-top:25%;
+    /*height: 260px;
+    padding-top:25%;*/
+    height: 185px;
 }
 
-.hot-pink span, .blue span, .purple span, .orange span{
+.hot-pink span, .blue span, .purple span{
     margin-top: 35%;
     display: block;
+}
+
+.orange span{
+    margin-top: 14%;
+    margin-bottom: 14%;
+    display: block;
+    font-size: 18px;
 }
 
 .purple{
@@ -564,7 +576,9 @@ table .text{
     .menu .btn-small { width: 100%; }
     .btn-lg { width: 100%; }
     .btn-lg span{ margin-top: 12% !important; padding-top: 10% !important; }
-    div.hot-pink { padding-top: 10% !important; }
+    /*div.hot-pink { padding-top: 10% !important; }*/
+    .btn-sm { margin-bottom: 10px;}
+    .settings{ margin-right: 0px; }
 }
 
 @media (min-width: 576px) and (max-width: 767.98px) { 

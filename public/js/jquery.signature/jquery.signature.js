@@ -22,9 +22,11 @@
         _create: function() {
             this.element.addClass(this.widgetFullName || this.widgetBaseClass);
             try {
+                
                 this.canvas = $('<canvas width="' + this.element.width() + '" height="' + this.element.height() + '">' + this.options.notAvailable + '</canvas>')[0];
                 this.element.append(this.canvas);
-                this.ctx = this.canvas.getContext('2d')
+                this.ctx = this.canvas.getContext('2d');
+                
             } catch (e) {
                 $(this.canvas).remove();
                 this.resize = true;
@@ -164,9 +166,10 @@
         changeSize: function(){
             this.resize=true;
             
-            var b = $(this.canvas).parents(".sigPad");
-            $(this.canvas).attr("width",b.width());
-            $(this.canvas).attr("height",b.height());
+            var b = $(this.canvas).parents(".sigWrapper");
+            
+            $(this.canvas).attr("width",b.outerWidth());
+            //$(this.canvas).attr("height",b.height());
             
             var coord=$(this.canvas).parent().next("input").val();
             

@@ -61,6 +61,11 @@ class TourguideCommissions extends Model
                             ["status","<>","Deleted"]
                        ])->get();
         
+        if(isset($results[0])){
+            $results[0]->tour_leader_signature = json_encode($results[0]->tour_leader_signature);
+            $results[0]->tour_guide_signature = json_encode($results[0]->tour_guide_signature);
+        }
+        
         return $results;
     }
     
@@ -78,18 +83,20 @@ class TourguideCommissions extends Model
         
         
         $commissionClaimsModel->fit_booking_id = $commissions['fit_booking_id'];
-        $commissionClaimsModel->tour_guide_id = Auth::id();
-        $commissionClaimsModel->jewellery_sgd = $commissions['jewellery_sgd'];
-        $commissionClaimsModel->jewellery_rmb = $commissions['jewellery_rmb'];
-        $commissionClaimsModel->yong_ann_sgd = $commissions['yong_ann_sgd'];
-        $commissionClaimsModel->yong_ann_rmb = $commissions['yong_ann_rmb'];
-        $commissionClaimsModel->date = date("Y-m-d",strtotime($commissions['date']));
-        $commissionClaimsModel->sgd_to_company = $commissions['sgd_to_company'];
-        $commissionClaimsModel->rmb_to_company = $commissions['rmb_to_company'];
+        $commissionClaimsModel->tour_guide_id = Auth::guard("api")->id();
+        $commissionClaimsModel->jewellery_sgd = isset($commissions['jewellery_sgd']) ? $commissions['jewellery_sgd'] : 0;
+        $commissionClaimsModel->jewellery_rmb = isset($commissions['jewellery_rmb']) ? $commissions['jewellery_rmb'] : 0;
+        $commissionClaimsModel->yong_ann_sgd = isset($commissions['yong_ann_sgd']) ? $commissions['yong_ann_sgd'] : 0;
+        $commissionClaimsModel->yong_ann_rmb = isset($commissions['yong_ann_rmb']) ? $commissions['yong_ann_rmb'] : 0;
+        $commissionClaimsModel->date = date("Y-m-d");
+        $commissionClaimsModel->sgd_to_company = isset($commissions['sgd_to_company']) ? $commissions['sgd_to_company'] : 0;
+        $commissionClaimsModel->rmb_to_company = isset($commissions['rmb_to_company']) ? $commissions['rmb_to_company'] : 0;
+        $commissionClaimsModel->tour_guide_signature = isset($commissions['tour_guide_signature']) ? $commissions['tour_guide_signature'] : "";
+        $commissionClaimsModel->tour_leader_signature = isset($commissions['tour_leader_signature']) ? $commissions['tour_leader_signature'] : "";
         $commissionClaimsModel->status = "Active";
         
-        $commissionClaimsModel->added_by_id = Auth::id();
-        $commissionClaimsModel->updated_by_id = Auth::id();
+        $commissionClaimsModel->added_by_id = Auth::guard("api")->id();
+        $commissionClaimsModel->updated_by_id = Auth::guard("api")->id();
         
         if($commissionClaimsModel->save()){
             

@@ -77,7 +77,7 @@
             <!-- Start Funds-->
             <div class="row">
                 <div class="col-md-2 col-sm-4">
-                    <div class="orange btn-lg"><span>款项</span></div>
+                    <div class="orange btn-sm"><span>款项</span></div>
                 </div>
 
                 <div class="col-md-10 col-sm-8">

@@ -30,7 +30,7 @@ class CommissionFormController extends \App\Http\Controllers\Controller
             
             $CommissionFormModel=new TourguideCommissions;
             
-            $aryResponse = $CommissionFormModel->getCommissionClaimsDetails($fitbookingId, Auth::id());
+            $aryResponse = $CommissionFormModel->getCommissionClaimsDetails($fitbookingId, Auth::guard("api")->id());
 
         }catch(\Exception $e){
             $statusCode=config("app.status_code.Exception");

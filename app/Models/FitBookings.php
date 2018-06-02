@@ -131,8 +131,8 @@ class FitBookings extends Model
                     'fit_flights.arrival_at','fit_flights.departure_at','tours.type'])
                 ->groupBy("fit_bookings.id")
                 ->orderBy("fit_bookings.tour_date")
-                ->offset($page)
-                ->limit(5)
+                //->offset($page)
+                //->limit(5)
                 ->get();
                 //->toSql();
         

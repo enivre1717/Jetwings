@@ -25,8 +25,11 @@
         
         <script src="{{ asset("js/app/main.min.js") }}" type="text/javascript"></script>
         
-        <script src="{{ asset("js/jquery.signature/jquery.signature.min.js") }}" type="text/javascript"></script>
+        <script src="{{ asset("js/jquery.ui.touch-punch.min.js") }}" type="text/javascript"></script>
+        <script src="{{ asset("js/jquery.signature/jquery.signature.js") }}" type="text/javascript"></script>
+        <!--[if IE]> 
         <script src="{{ asset("js/jquery.signature/excanvas.js") }}" type="text/javascript"></script>
+        <![endif]-->
         
         <link href="{{ asset("css/font-awesome.css") }}" rel="stylesheet" type="text/css"/>
         <link href="{{ asset("js/bootstrap-3.3.5/css/bootstrap.min.css") }}" rel="stylesheet" type="text/css"/>

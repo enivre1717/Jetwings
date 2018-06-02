@@ -73,7 +73,7 @@
                     </div>
                 </td>
                 <td>
-                     <div class="row flight" ng-repeat="arrivals in bookings.fitFlights">
+                     <div class="row flight" ng-repeat="arrivals in bookings.fitFlights" ng-if="arrivals.type == 'Arrival'">
                         <div class="row" ng-if="arrivals.type == 'Arrival'">
                             <div class="col-md-5">入境日期:</div>
                             <div class="col-md-5">@{{arrivals.arrival_at | formatDate:"D/MM/Y"}}</div>

@@ -5,6 +5,8 @@ commission_form.controller("CommissionFormController", ["$scope", "$rootScope", 
         
         var fitBookingId = $route.current.params.fitBookingId;
         
+        $scope.dataLoaded = false;
+        
         //Retrieve commission details
         commissionFormModel.getCommissionClaimsDetails(fitBookingId)
                 .then(function(results){
@@ -19,13 +21,8 @@ commission_form.controller("CommissionFormController", ["$scope", "$rootScope", 
                         $scope.commissions.tour_code = results.data[0].fit_bookings.tour_code;
                         $scope.commissions.tour_leader = results.data[0].fit_bookings.tour_leader;
                         $scope.commissions.tour_guide = results.data[0].tourguides.name;
+                        $scope.commissions.tour_guide_signature = JSON.parse(results.data[0].tour_guide_signature);
                         
-                        $scope.commissions.total_sgd = calculateTotalSGD($scope.commissions);
-                        $scope.commissions.total_rmb = calculateTotalRMB($scope.commissions);
-                        
-                        $scope.commissions.tour_guide_signature = "";
-                        $scope.commissions.tour_leader_signature = ""
-            
                         if($scope.commissions.commission_items.length <=0){
                             $scope.commissions.commission_items.push({
                                 "id": 0,
@@ -36,6 +33,17 @@ commission_form.controller("CommissionFormController", ["$scope", "$rootScope", 
                                 "qty":0,
                             });
                         }
+                        
+                        $scope.commissions.total_sgd = calculateTotalSGD($scope.commissions);
+                        $scope.commissions.total_rmb = calculateTotalRMB($scope.commissions);
+                        
+                        // Begin SigPad
+                        $('.sigPad').signature({disabled: true});
+        
+                        $('#TourGuideSignature').signature('draw', $scope.commissions.tour_guide_signature);
+                        $('#TourLeaderSignature').signature('draw', $scope.commissions.tour_leader_signature);
+                        // End SigPad
+        
                     }else{
                         
                         $scope.commissions = {};
@@ -52,6 +60,16 @@ commission_form.controller("CommissionFormController", ["$scope", "$rootScope", 
                             "tourguide_commission_id": 0,
                             "qty":0,
                         });
+                        
+                        // Begin SigPad
+                        $('#TourGuideSignature').signature({syncField: $("#TourGuideSignature").next("input") });
+                        $('#TourLeaderSignature').signature({syncField: $("#TourLeaderSignature").next("input") });
+                        $('.clearButton a').click( function(e) {
+                            e.preventDefault();
+                            $(this).parents(".sigWrapper").find(".sigPad").signature('clear');
+                            $(this).parents(".sigWrapper").find(".sigPad").next("input").val("");
+                        });
+                        // End SigPad
                         
                         //retrieve booking details
                         fitbookingsModel.getBookingDetails(fitBookingId)
@@ -102,6 +120,8 @@ commission_form.controller("CommissionFormController", ["$scope", "$rootScope", 
                             });
                             
                     }
+                    
+                    $scope.dataLoaded = true;
                     
                 }).catch(function(error){
                     if(error.status == 401){
@@ -202,13 +222,4 @@ commission_form.controller("CommissionFormController", ["$scope", "$rootScope", 
             return total.toFixed(2);
         }
         
-        // Begin SigPad
-        $('#TourGuideSignature').signature({syncField: $("#TourGuideSignature").next("input") });
-        $('#TourLeaderSignature').signature({syncField: $("#TourLeaderSignature").next("input") });
-        $('.clearButton a').click( function(e) {
-            e.preventDefault();
-            $(this).parents(".sigWrapper").find(".sigPad").signature('clear');
-            $(this).parents(".sigWrapper").find(".sigPad").next("input").val("");
-        });
-        // End SigPad
 }]);

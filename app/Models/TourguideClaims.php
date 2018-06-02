@@ -118,7 +118,7 @@ class TourguideClaims extends Model
                 ->count();
                 //->toSql();
         
-        if(count($result)<=0){
+        if($result<=0){
             return false;
         }else{
             return true;
@@ -165,11 +165,11 @@ class TourguideClaims extends Model
             $claimModel = new TourguideClaims;
 
             $claimModel->fit_booking_id = $claim['fit_booking_id'];
-            $claimModel->tour_guide_id = Auth::id();
+            $claimModel->tour_guide_id = Auth::guard("api")->id();
             $claimModel->advance_cash = !empty($claim['advance_cash']) ? $claim['advance_cash'] : 0;
             $claimModel->status = "Pending";
-            $claimModel->added_by_id = Auth::id();
-            $claimModel->updated_by_id = Auth::id();
+            $claimModel->added_by_id = Auth::guard("api")->id();
+            $claimModel->updated_by_id = Auth::guard("api")->id();
         
         }else{
             

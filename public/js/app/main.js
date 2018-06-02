@@ -94,7 +94,7 @@ app.config(function($routeProvider, $locationProvider) {
     //console.log($cookies.get("apiToken"));
 });
 
-app.run(['$http' , "$cookies", "$rootScope", "$location", function($http, $cookies, $rootScope, $location) {
+app.run(['$http' , "$cookies", "$rootScope", "$location", "$window", function($http, $cookies, $rootScope, $location, $window) {
     $http.defaults.headers.common['Authorization'] = $cookies.get("apiToken");
     
     $http.defaults.headers.common['X-CSRF-TOKEN'] = $('meta[name="csrf-token"]').attr('content');
@@ -152,6 +152,13 @@ app.run(['$http' , "$cookies", "$rootScope", "$location", function($http, $cooki
          
      };
      
+     angular.element($window).bind('resize',function(){
+        var newWidth=$("canvas").parents("div").outerWidth();
+        var newHeight=$("canvas").parents("div").outerHeight();
+
+        $(".kbw-signature").signature("changeSize");
+    });
+     
 }]);
 
 app.filter("formatDate",function formatDate(){
@@ -163,15 +170,3 @@ app.filter("formatDate",function formatDate(){
         return $sce.trustAsHtml(text);
     }
 });
-
-// $(document).ready(function() {
-//     $(window).resize(function() {
-//         var p_menu = $(".pink-menu div:nth-child(2)").height();
-//         var w_width = $( window ).width();
-//         var mb = 10;
-//         if (w_width < 920) p_menu = p_menu + mb;
-//         $(".pink-menu div:nth-child(1)").height(p_menu - mb);
-//         $(".pink-menu div:nth-child(1)>div").css({"padding":0});
-//         console.log();
-//     }).resize();
-// });

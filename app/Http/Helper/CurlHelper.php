@@ -48,7 +48,7 @@ class CurlHelper
         }
 
         $result = curl_exec($ch);
-        
+        //die(print_r($result));
         $statusCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
         
         curl_close($ch);
