@@ -40,7 +40,8 @@ return [
     */
 
     'url' => env('APP_URL', 'http://tgstaging.jetwings.asia'),
-    'base_api_url' => 'http://tgstaging.jetwings.asia/public/api/',
+    //'base_api_url' => 'http://tgstaging.jetwings.asia/public/api/',
+    'base_api_url' => 'http://localhost/jetwings/public/api/',
 
     /*
     |--------------------------------------------------------------------------

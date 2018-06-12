@@ -334,10 +334,14 @@ form select.success
     text-align: center;
 }
 
-.btn-lg.blue, .btn-lg.hot-pink, .btn-lg.orange{
+.btn-lg.blue, .btn-lg.orange{
     /*height: 260px;
     padding-top:25%;*/
     height: 185px;
+}
+
+.btn-lg.hot-pink{
+    height:230px;
 }
 
 .hot-pink span, .blue span, .purple span{

@@ -19,7 +19,8 @@
 
     <div class="row">&nbsp;</div>
     
-    <div class="table-responsive">
+    <div class="table-responsive" ng-show="fitbookings.length > 0">
+	
         <table class="table table-striped table-hover bookings">
             <tr>
                 <th>
@@ -55,7 +56,7 @@
                 <td>@{{bookings.fitbookings.tour_code}}</td>
                 <td>@{{bookings.fitbookings.company_name}}</td>
                 <td>@{{bookings.fitbookings.tour_leader}}</td>
-                <td>@{{bookings.fitbookings.pax_update}}/@{{bookings.fitbookings.pax}}</td>
+                <td>@{{bookings.fitbookings.pax}}</td>
                 <td>
                     <div class="row tour-guide" ng-if="bookings.fitTransports.length > 0">
                         <div class="row">
@@ -89,7 +90,7 @@
                     </div>
                 </td>
                 <td>
-                    <div class="row flight" ng-repeat="departures in bookings.fitFlights">
+                    <div class="row flight" ng-repeat="departures in bookings.fitFlights" ng-if="departures.type == 'Departure'">
                         <div class="row" ng-if="departures.type == 'Departure'">
                             <div class="col-md-5">入境日期:</div>
                             <div class="col-md-5">@{{departures.departure_at | formatDate:"D/MM/Y"}}</div>
@@ -115,5 +116,8 @@
             </tr>
             <?php //}//for ?>
         </table>
+		
     </div>
+	
+	<div class="row" ng-show="fitbookings.length <= 0"><h3>今天有没有团。</h3></div>
 </div>

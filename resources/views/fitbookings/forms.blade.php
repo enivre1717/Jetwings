@@ -34,10 +34,16 @@
                     <div class="row">
                         <a class="btn btn-block hot-pink" href="http://new.jetwings.asia/files/namelists/@{{bookingDetails.name_list_file}}" target="_blank" alt="Itinerary">名单</a>
                     </div>
+                    
+                    <div class="row">
+                        <a ng-show="bookingDetails.ticket_file" class="btn btn-block hot-pink" href="http://new.jetwings.asia/files/tickets/@{{bookingDetails.ticket_file}}" target="_blank" alt="ferry_ticket">船票</a>
+                        <div ng-hide="bookingDetails.ticket_file" class="btn btn-block hot-pink" alt="ferry_ticket">无船票</div>
+                    </div>
                 </div>
             </div>
 
            <!-- End Tour details-->
+           
 
            <!-- Start Forms-->
             <div class="row">
