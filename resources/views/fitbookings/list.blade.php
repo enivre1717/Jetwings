@@ -119,5 +119,5 @@
 		
     </div>
 	
-	<div class="row" ng-show="fitbookings.length <= 0"><h3>今天有没有团。</h3></div>
+	<div class="row" ng-show="fitbookings.length <= 0"><h3>今天有没团。</h3></div>
 </div>

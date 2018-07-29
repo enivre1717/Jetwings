@@ -326,7 +326,6 @@ claims.controller("ClaimsController", ["$scope", "$rootScope", "$route", "$locat
         $scope.calTotalIncome = function(income){
             
             income.total = parseInt(income.qty)*(parseFloat(income.selling_price)-parseFloat(income.tl_cost)-parseFloat(income.tg_cost));
-            
         };
         
         $scope.calTotalProduct = function(product){
@@ -374,6 +373,7 @@ claims.controller("ClaimsController", ["$scope", "$rootScope", "$route", "$locat
 
                 //add product income
                 angular.forEach(claim.income_products, function(v,k){
+                    
                     totalIncome += parseFloat(v.total ? v.total : 0);
 
                 });

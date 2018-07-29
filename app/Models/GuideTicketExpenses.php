@@ -40,12 +40,14 @@ class GuideTicketExpenses extends Model
         $aryTicketExpenses = array();
         
         foreach($ticketExpenses as $key=>$value){
+            
+            
             if(!empty($value["id"])){
                 
                 $ticketExpensesModel = GuideTicketExpenses::find($value["id"]);
                 
                 //if id is not empty, ticket also not empty
-                if(!empty($value["ticket"])){
+                if(!empty($value["ticket"]) || $value["ticket"] === 0){
                     
                     //update
                     $ticketExpensesModel->ticket = $value["ticket"];
@@ -65,7 +67,8 @@ class GuideTicketExpenses extends Model
                 
                 //if id is empty and ticket is not empty
                 
-                if(!empty($value["ticket"])){
+                if(!empty($value["ticket"]) || $value["ticket"] === 0){
+                    
                     //insert
                     $ticketExpensesModel = new GuideTicketExpenses;
                     $ticketExpensesModel->ticket = $value["ticket"];

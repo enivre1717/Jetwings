@@ -83,7 +83,7 @@ class FitBookings extends Model
         $strSep=" AND ";
         
         //$strFilter.=$strSep."fit_bookings.tour_guide_ids LIKE '%\'".Auth::id()."\'%'";
-        $strFilter.=$strSep."fit_bookings.tour_guide_ids LIKE '%\'".Auth::guard("api")->id()."\'%'";
+        $strFilter.=$strSep."(fit_bookings.tour_guide_ids LIKE '%\'".Auth::guard("api")->id()."\'%' OR fit_bookings.tour_guide_ids LIKE '".Auth::guard("api")->id()."')";
         $strSep=" AND ";
         
         if($dateFrom!=""){

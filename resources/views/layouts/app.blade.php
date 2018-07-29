@@ -3,7 +3,7 @@
     <head>
         <base href="{{url("/")}}">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
 	<meta name="language" content="en" />
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <link rel="apple-touch-icon-precomposed" sizes="57x57" href="{{ asset("images/logo_mobile.jpg") }}" />

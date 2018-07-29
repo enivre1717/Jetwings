@@ -62,14 +62,14 @@
             </tr>
             <tr ng-repeat="ticket in claim.ticket_expenses">
                 <td>
-                    <select ng-show="claim.status != 'Approved'" class="form-control" name="ticket[]" ng-model="ticket.ticket">
-                        <option value="undefined">-Select -</option>
+                    <select ng-change="test(ticket);" ng-show="claim.status != 'Approved'" class="form-control" name="ticket[]" ng-model="ticket.ticket">
+                        <option value="">- Select -</option>
                         <option ng-repeat="t in tickets" ng-value="@{{t.id}}">@{{t.ticket}}</option>
                     </select>
                     <div class="text" ng-show="claim.status == 'Approved'">@{{ticket.tickets.ticket}}</div>
                     <div class="clear"></div>
                     <div>
-                        <input type="text"  ng-show="claim.status != 'Approved' && ticket.ticket!='undefined' && ticket.ticket == 0" type="text" name="otherTicket[]" class="form-control @{{errors['ticket_expenses.'+$index+'.other_ticket'] ? 'error' : ''}}" ng-model="ticket.other_ticket" />
+                        <input type="text"  ng-show="claim.status != 'Approved' && ticket.ticket !== '' && ticket.ticket == 0" type="text" name="otherTicket[]" class="form-control @{{errors['ticket_expenses.'+$index+'.other_ticket'] ? 'error' : ''}}" ng-model="ticket.other_ticket" />
                         <div class="text" ng-show="claim.status == 'Approved'">@{{ticket.other_ticket}}</div>
                         <div class="clear"></div>
                     </div>
@@ -141,6 +141,21 @@
         
         <table class="table blue other-expenses">
             <tr>
+                <th>门票（如之前已输入在旧表格</th>
+                <th>收费</th>
+            </tr>
+            <tr ng-repeat="other_expenses in claim.other_expenses | filter: {claim_option_id: '15'}">
+                <td>
+                    @{{other_expenses.expenses}}
+                </td>
+                <td>
+                    <div class="text">@{{other_expenses.amount | currency: '$':2}}</div>
+                </td>
+            </tr>
+        </table>
+        
+        <table class="table blue other-expenses">
+            <tr>
                 <th>其他付费</th>
                 <th>费用</th>
             </tr>
@@ -206,7 +221,7 @@
                     <td>
                         <div ng-show="claim.status != 'Approved'" class="input-group">
                             <label class="input-group-addon" for="$"><i class="fa fa-usd"></i></label>
-                            <input type="text" ng-keyup="calTotal(claim); calTotalIncome(income);" type="text" class="form-control" name="sellingPrice[]" ng-model="income.selling_price" ng-value="income.selling_price.toFixed(2)"/>
+                            <input type="text" ng-keyup="calTotalIncome(income); calTotal(claim);" type="text" class="form-control" name="sellingPrice[]" ng-model="income.selling_price" ng-value="income.selling_price.toFixed(2)"/>
                         </div>
                         <div class="text" ng-show="claim.status == 'Approved'">@{{income.selling_price | currency: '$':2}}</div>
                         <div class="clear"></div>
@@ -215,7 +230,7 @@
                     <td>
                         <div ng-show="claim.status != 'Approved'" class="input-group">
                             <label class="input-group-addon" for="$"><i class="fa fa-usd"></i></label>
-                            <input type="text" ng-keyup="calTotal(claim); calTotalIncome(income);" type="text" class="form-control" name="tlCost[]" ng-model="income.tl_cost" ng-value="income.tl_cost.toFixed(2)"/>
+                            <input type="text" ng-keyup="calTotalIncome(income); calTotal(claim);" type="text" class="form-control" name="tlCost[]" ng-model="income.tl_cost" ng-value="income.tl_cost.toFixed(2)"/>
                         </div>
                         <div class="text" ng-show="claim.status == 'Approved'">@{{income.tl_cost | currency: '$':2}}</div>
                         <div class="clear"></div>
@@ -224,7 +239,7 @@
                     <td>
                         <div ng-show="claim.status != 'Approved'" class="input-group">
                             <label class="input-group-addon" for="$"><i class="fa fa-usd"></i></label>
-                            <input type="text" ng-keyup="calTotal(claim); calTotalIncome(income);" type="text" class="form-control" name="tgCost[]" ng-model="income.tg_cost" ng-value="income.tg_cost.toFixed(2)"/>
+                            <input type="text" ng-keyup="calTotalIncome(income); calTotal(claim);" type="text" class="form-control" name="tgCost[]" ng-model="income.tg_cost" ng-value="income.tg_cost.toFixed(2)"/>
                         </div>
                         <div class="text" ng-show="claim.status == 'Approved'">@{{income.tg_cost | currency: '$':2}}</div>
                         <div class="clear"></div>
@@ -258,13 +273,13 @@
                 </tr>
                 <tr ng-repeat="product in claim.income_products">
                     <td>
-                        <input type="text" ng-show="claim.status != 'Approved'" type="text" ng-keyup="calTotal(claim); calTotalProduct(product);" class="form-control" ng-model="product.fee" ng-value="product.fee.toFixed(2)"/>
+                        <input type="text" ng-show="claim.status != 'Approved'" type="text" ng-keyup="calTotalProduct(product); calTotal(claim);" class="form-control" ng-model="product.fee" ng-value="product.fee.toFixed(2)"/>
                         <div class="text" ng-show="claim.status == 'Approved'">@{{product.fee | currency: '$':2}}</div>
                         <div class="clear"></div>
                         
                     </td>
                     <td>
-                        <input type="text" ng-show="claim.status != 'Approved'" type="text" ng-keyup="calTotal(claim); calTotalProduct(product);" class="form-control" ng-model="product.qty" />
+                        <input type="text" ng-show="claim.status != 'Approved'" type="text" ng-keyup="calTotalProduct(product); calTotal(claim);" class="form-control" ng-model="product.qty" />
                         <div class="text" ng-show="claim.status == 'Approved'">@{{product.qty}}</div>
                         <div class="clear"></div>
                         

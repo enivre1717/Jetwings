@@ -45,6 +45,7 @@ a{
 .content
 {
 	margin-top: 20px;
+        margin-bottom: 20px;
         width:100%;
 }
 
@@ -597,7 +598,8 @@ table .text{
     
     .menu .btn-lg{
         margin-bottom:10px;
-    } 
+    }
+    
 }
 
 /* Tablet */
